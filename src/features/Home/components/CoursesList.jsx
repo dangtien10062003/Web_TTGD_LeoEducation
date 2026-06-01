@@ -49,7 +49,7 @@ export const CoursesList = ({ onRegisterClick }) => {
         price: `${course.price.toLocaleString('vi-VN')}đ`,
         duration: course.duration,
         students: Math.floor(Math.random() * 1000) + 100,
-        lessons: parseInt(course.duration.match(/\d+/)?.[0]) || 24,
+        lessons: parseInt((course.duration || '').match(/\d+/)?.[0]) || 24,
         instructor: 'Giảng viên',
         rating: 4.8,
         category: course.category || 'Lập trình'
@@ -58,8 +58,8 @@ export const CoursesList = ({ onRegisterClick }) => {
       setCourses(mappedCourses);
       setPagination(prev => ({
         ...prev,
-        total: result.pagination.total,
-        totalPages: result.pagination.totalPages
+        total: result.pagination?.total ?? 0,
+        totalPages: result.pagination?.totalPages ?? 0
       }));
 
     } catch (err) {

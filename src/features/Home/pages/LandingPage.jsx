@@ -79,11 +79,17 @@ export const LandingPage = () => {
         onClose={handleCloseModal}
         title="Đăng ký khóa học"
       >
-        <RegistrationForm
-          selectedCourse={selectedCourse}
-          onSuccess={handleCloseModal}
-        />
+        {/* Backend hiện chưa có endpoint /api/registrations (tránh lỗi 500) */}
+        <div className="p-6 text-center text-gray-700">
+          Tạm thời chưa hỗ trợ đăng ký khóa học. Vui lòng thử lại sau.
+        </div>
       </Modal>
+
+
+
+
     </div>
   );
 };
+
+
