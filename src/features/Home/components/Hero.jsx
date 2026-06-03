@@ -43,6 +43,10 @@ export const Hero = () => {
             </motion.h1>
 
             <motion.p variants={itemVariants} className="text-lg md:text-xl text-slate-600 dark:text-gray-300 leading-relaxed max-w-xl">
+              Nấc thang tri thức - Vững bước tương lai!
+            </motion.p>
+
+            <motion.p variants={itemVariants} className="text-base md:text-lg text-slate-600 dark:text-gray-300 leading-relaxed max-w-xl">
               {t('hero.subtitle')}
             </motion.p>
 

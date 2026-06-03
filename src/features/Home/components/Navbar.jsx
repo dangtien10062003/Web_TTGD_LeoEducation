@@ -27,8 +27,7 @@ export const Navbar = () => {
     { label: t('nav.instructors'), path: '/instructors' },
     { label: t('nav.pricing'), path: '/pricing' },
     { label: t('nav.blog'), path: '/blog' },
-    { label: t('nav.about'), path: '/about' },
-    { label: t('nav.contact'), path: '/contact' }
+    { label: t('nav.about'), path: '/about' }
   ];
 
   return (
@@ -47,7 +46,12 @@ export const Navbar = () => {
               <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-gold-500/30 transition-shadow overflow-hidden">
                 <img src={logoImage} alt="LeoEducation Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="text-xl font-bold text-gradient hidden sm:block">LeoEducation</span>
+              <div className="flex flex-col leading-tight">
+                <span className="text-xl font-bold text-gradient">LeoEducation</span>
+                <span className="hidden md:block text-[11px] text-slate-500 dark:text-gray-400">
+                  Nấc thang tri thức - Vững bước tương lai!
+                </span>
+              </div>
             </Link>
           </motion.div>
 

@@ -30,7 +30,7 @@ export const Footer = () => {
       { label: t('nav.contact'), path: '/contact' }
     ],
     courses: [
-      { label: 'Lap trinh Web', path: '/courses' },
+      { label: 'Lập trình Web', path: '/courses' },
       { label: 'Digital Marketing', path: '/courses' },
       { label: 'UI/UX Design', path: '/courses' },
       { label: 'Data Science', path: '/courses' }
@@ -51,6 +51,9 @@ export const Footer = () => {
               </div>
 <span className="text-xl font-bold">LeoEducation</span>
             </div>
+            <p className="text-slate-500 dark:text-slate-400 mb-2 max-w-sm leading-relaxed font-medium">
+              Nấc thang tri thức - Vững bước tương lai!
+            </p>
             <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-sm leading-relaxed">
               Nen tang giao duc truc tuyen hang dau Viet Nam, cam ket mang den nhung khoa hoc chat luong cao.
             </p>
@@ -70,7 +73,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-slate-300 dark:text-gray-400">Lien ket nhanh</h4>
+            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-slate-300 dark:text-gray-400">Liên kết nhanh</h4>
             <ul className="space-y-3">
               {footerLinks.quickLinks.map((link) => (
                 <li key={link.label}>
@@ -84,7 +87,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-slate-300 dark:text-gray-400">Khoa hoc</h4>
+            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-slate-300 dark:text-gray-400">Khóa học</h4>
             <ul className="space-y-3">
               {footerLinks.courses.map((link) => (
                 <li key={link.label}>
@@ -98,7 +101,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-slate-300 dark:text-gray-400">Lien he</h4>
+            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-slate-300 dark:text-gray-400">Liên hệ</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-teal-500 dark:text-teal-400 mt-0.5 flex-shrink-0" />
@@ -110,7 +113,7 @@ export const Footer = () => {
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-teal-500 dark:text-teal-400 mt-0.5 flex-shrink-0" />
-                <span className="text-slate-400 dark:text-gray-500 text-sm">123 Duong ABC, Quan 1, TP.HCM</span>
+                <span className="text-slate-400 dark:text-gray-500 text-sm">123 Đường ABC, Quận 1, TP.HCM</span>
               </li>
             </ul>
           </div>
@@ -119,17 +122,17 @@ export const Footer = () => {
         <div className="border-t border-slate-200 dark:border-gray-800 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h4 className="font-semibold mb-1">Dang ky nhan tin</h4>
-              <p className="text-sm text-slate-400 dark:text-gray-500">Nhan thong tin ve khoa hoc va uu dai moi nhat</p>
+              <h4 className="font-semibold mb-1">Đăng ký nhận tin</h4>
+              <p className="text-sm text-slate-400 dark:text-gray-500">Nhận thông tin về khóa học và ưu đãi mới nhất</p>
             </div>
             <div className="flex gap-2 w-full md:w-auto">
               <input
                 type="email"
-                placeholder="Nhap email cua ban"
+                placeholder="Nhập email của bạn"
                 className="px-4 py-3 rounded-xl bg-slate-800 dark:bg-gray-900 border border-slate-700 dark:border-gray-700 text-white placeholder:text-slate-500 dark:placeholder:text-gray-600 focus:outline-none focus:border-teal-500 transition-colors flex-1 md:w-64"
               />
               <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 dark:from-teal-600 dark:to-teal-700 text-white font-semibold hover:shadow-lg hover:shadow-teal-500/20 transition-all whitespace-nowrap">
-                Dang ky
+                Đăng ký
               </button>
             </div>
           </div>
@@ -138,8 +141,8 @@ export const Footer = () => {
         <div className="border-t border-slate-200 dark:border-gray-800 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-slate-500 dark:text-gray-600 text-sm">{t('footer.copyright')}</p>
           <div className="flex gap-6 text-sm text-slate-500 dark:text-gray-600">
-            <a href="#" className="hover:text-slate-300 dark:hover:text-gray-400 transition-colors">Chinh sach bao mat</a>
-            <a href="#" className="hover:text-slate-300 dark:hover:text-gray-400 transition-colors">Dieu khoan</a>
+            <a href="#" className="hover:text-slate-300 dark:hover:text-gray-400 transition-colors">Chính sách bảo mật</a>
+            <a href="#" className="hover:text-slate-300 dark:hover:text-gray-400 transition-colors">Điều khoản</a>
             <a href="#" className="hover:text-slate-300 dark:hover:text-gray-400 transition-colors">Cookies</a>
           </div>
         </div>
