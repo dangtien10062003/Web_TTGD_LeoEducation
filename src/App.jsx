@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { ScrollToTop } from './components/ScrollToTop';
 import { MainLayout } from './layouts/MainLayout';
@@ -21,7 +21,6 @@ function App() {
       <BrowserRouter basename={basename}>
         <ScrollToTop />
         <Routes>
-          {basename && <Route path={basename} element={<Navigate to="/" replace />} />}
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
             <Route path="courses" element={<CoursesPage />} />
