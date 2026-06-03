@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { ScrollToTop } from './components/ScrollToTop';
 import { MainLayout } from './layouts/MainLayout';
@@ -13,11 +13,15 @@ import { ContactPage } from './features/Home/pages/ContactPage';
 import './i18n/index.js';
 
 function App() {
+  const base = import.meta.env.BASE_URL;
+  const basename = base && base !== '/' ? base.replace(/\/$/, '') : undefined;
+
   return (
     <ThemeProvider>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <BrowserRouter basename={basename}>
         <ScrollToTop />
         <Routes>
+          {basename && <Route path={basename} element={<Navigate to="/" replace />} />}
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
             <Route path="courses" element={<CoursesPage />} />

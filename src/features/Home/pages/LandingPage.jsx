@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
 import { Categories } from '../components/Categories';
 import { About } from '../components/About';
@@ -22,28 +21,7 @@ export const LandingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
 
-  // Restore scroll position on reload
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      setTimeout(() => {
-        const element = document.querySelector(hash);
-        if (element) element.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      const savedScrollPosition = sessionStorage.getItem('scrollPosition');
-      if (savedScrollPosition) {
-        setTimeout(() => {
-          window.scrollTo(0, parseInt(savedScrollPosition));
-        }, 100);
-      }
-    }
-    const handleBeforeUnload = () => {
-      sessionStorage.setItem('scrollPosition', window.scrollY.toString());
-    };
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, []);
+
 
   const handleRegisterClick = (course) => {
     setSelectedCourse(course);
@@ -57,7 +35,6 @@ export const LandingPage = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar />
       <Hero />
       <Categories />
       <About />
