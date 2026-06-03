@@ -1,15 +1,6 @@
-import { Hero } from '../components/Hero';
-import { Categories } from '../components/Categories';
-import { About } from '../components/About';
-import { Testimonials } from '../components/Testimonials';
+﻿import React from 'react';
+import { LandingPage } from './LandingPage';
 
 export const HomePage = () => {
-  return (
-    <>
-      <Hero />
-      <Categories />
-      <About />
-      <Testimonials />
-    </>
-  );
+  return <LandingPage />;
 };

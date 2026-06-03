@@ -1,6 +1,7 @@
+﻿import React from 'react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Quote, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Star, Quote, Loader2, ChevronLeft, ChevronRight, MessageSquare } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Card } from '../../../components/Card';
 
@@ -12,15 +13,33 @@ export const Testimonials = () => {
 
   useEffect(() => {
     setItems([
-      { id: 1, name: 'Nguyen Van A', role: 'Frontend Developer', content: 'Khoa hoc rat bo ich, giang vien nhiet tinh va tan tam.', rating: 5, avatar: 'https://ui-avatars.com/api/?name=Nguyen+Van+A&background=14B8A6&color=fff' },
-      { id: 2, name: 'Tran Thi B', role: 'UI/UX Designer', content: 'Chuong trinh hoc duoc thiet ke rat khoa hoc, de hieu.', rating: 5, avatar: 'https://ui-avatars.com/api/?name=Tran+Thi+B&background=D4AF37&color=fff' },
-      { id: 3, name: 'Le Van C', role: 'Full-stack Developer', content: 'Sau khoa hoc toi da tu tin hon rat nhieu trong cong viec.', rating: 5, avatar: 'https://ui-avatars.com/api/?name=Le+Van+C&background=1E3A5F&color=fff' }
+      {
+        id: 1,
+        name: 'Phụ huynh Nguyễn Thị Mai',
+        role: t('tutors.parentRole'),
+        content: t('tutors.testimonial1'),
+        rating: 5
+      },
+      {
+        id: 2,
+        name: 'Học sinh Trần Văn B',
+        role: t('tutors.studentRole'),
+        content: t('tutors.testimonial2'),
+        rating: 5
+      },
+      {
+        id: 3,
+        name: 'Phụ huynh Lê Thị C',
+        role: t('tutors.parentRole'),
+        content: t('tutors.testimonial3'),
+        rating: 5
+      }
     ]);
     setLoading(false);
   }, []);
 
   if (loading) return (
-<section className="py-24 bg-white dark:bg-gray-950 transition-colors duration-200">
+    <section className="py-24 bg-white dark:bg-gray-950 transition-colors duration-200">
       <div className="container mx-auto px-4 flex items-center justify-center min-h-[400px]">
         <Loader2 className="w-12 h-12 animate-spin text-teal-600 dark:text-teal-400" />
       </div>
@@ -28,29 +47,52 @@ export const Testimonials = () => {
   );
 
   return (
-<section className="py-24 bg-white dark:bg-gray-950 relative overflow-hidden transition-colors duration-200">
+    <section className="py-24 bg-white dark:bg-gray-950 relative overflow-hidden transition-colors duration-200">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-gray-700 to-transparent" />
-      <div className="absolute top-40 right-0 w-80 h-80 bg-gold-100/50 dark:bg-gold-900/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-0 w-80 h-80 bg-teal-100/50 dark:bg-teal-900/20 rounded-full blur-3xl" />
+      <div className="absolute top-40 right-0 w-80 h-80 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-0 w-80 h-80 bg-teal-100/40 dark:bg-teal-900/10 rounded-full blur-3xl" />
+
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-          <motion.span initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ type: 'spring', stiffness: 200 }} className="inline-flex items-center gap-2 px-4 py-2 bg-gold-50 dark:bg-gold-900/30 border border-gold-200 dark:border-gold-700 text-gold-700 dark:text-gold-300 rounded-full text-sm font-semibold mb-6">
-            <Quote className="w-4 h-4" /> Danh gia
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <motion.span
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ type: 'spring', stiffness: 200 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gold-50 dark:bg-gold-900/30 border border-gold-200 dark:border-gold-700 text-gold-700 dark:text-gold-300 rounded-full text-sm font-semibold mb-6"
+          >
+            <MessageSquare className="w-4 h-4" />
+            {t('tutors.badge')}
           </motion.span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            <span className="text-gradient">{t('testimonials.title')}</span>
+            <span className="text-gradient">{t('tutors.title')}</span>
           </h2>
-          <p className="text-lg text-slate-500 dark:text-gray-400">{t('testimonials.subtitle')}</p>
+          <p className="text-lg text-slate-600 dark:text-gray-400">{t('tutors.subtitle')}</p>
         </motion.div>
 
+        {/* Desktop: 3 columns */}
         <div className="hidden md:grid md:grid-cols-3 gap-8 items-start">
           {items.map((item, index) => (
-            <motion.div key={item.id} initial={{ opacity: 0, y: 60, rotate: index === 0 ? -2 : index === 2 ? 2 : 0 }} whileInView={{ opacity: 1, y: 0, rotate: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.2, type: 'spring', stiffness: 80 }} whileHover={{ y: -10, scale: 1.02 }} style={{ marginTop: index === 1 ? '2rem' : 0 }}>
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 60, rotate: index === 0 ? -2 : index === 2 ? 2 : 0 }}
+              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2, type: 'spring', stiffness: 80 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              style={{ marginTop: index === 1 ? '2rem' : 0 }}
+            >
               <Card variant="glass" className="h-full" hover={false}>
                 <div className="p-6">
                   <motion.div initial={{ rotate: -20, scale: 0 }} whileInView={{ rotate: 0, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.3, type: 'spring' }}>
-                    <Quote className="w-10 h-10 text-teal-200 mb-4" />
+                    <Quote className="w-10 h-10 text-teal-200 dark:text-teal-700 mb-4" />
                   </motion.div>
+
                   <div className="flex gap-1 mb-4">
                     {[...Array(item.rating)].map((_, i) => (
                       <motion.div key={i} initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.4 + i * 0.05, type: 'spring' }}>
@@ -58,12 +100,16 @@ export const Testimonials = () => {
                       </motion.div>
                     ))}
                   </div>
+
                   <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.5 }} className="text-slate-600 dark:text-gray-300 mb-6 leading-relaxed text-[15px]">
                     &ldquo;{item.content}&rdquo;
                   </motion.p>
+
                   <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.6 }} className="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-gray-700">
                     <div className="relative">
-                      <img src={item.avatar} alt={item.name} className="w-12 h-12 rounded-full object-cover ring-2 ring-teal-100 dark:ring-teal-800" />
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center text-white font-bold text-lg">
+                        {item.name.charAt(0)}
+                      </div>
                       <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-teal-500 dark:bg-teal-600 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-900">
                         <Star className="w-3 h-3 text-white fill-white" />
                       </div>
@@ -79,19 +125,30 @@ export const Testimonials = () => {
           ))}
         </div>
 
+        {/* Mobile: carousel */}
         <div className="md:hidden">
           <div className="relative">
             <AnimatePresence mode="wait">
-              <motion.div key={active} initial={{ opacity: 0, x: 60, scale: 0.95 }} animate={{ opacity: 1, x: 0, scale: 1 }} exit={{ opacity: 0, x: -60, scale: 0.95 }} transition={{ type: 'spring', stiffness: 100 }}>
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, x: 60, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: -60, scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 100 }}
+              >
                 <Card variant="glass" hover={false}>
                   <div className="p-6">
-                    <Quote className="w-8 h-8 text-teal-200 mb-4" />
+                    <Quote className="w-8 h-8 text-teal-200 dark:text-teal-700 mb-4" />
                     <div className="flex gap-1 mb-4">
-                      {[...Array(items[active]?.rating || 5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
+                      {[...Array(items[active]?.rating || 5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      ))}
                     </div>
                     <p className="text-slate-600 dark:text-gray-300 mb-6">&ldquo;{items[active]?.content}&rdquo;</p>
                     <div className="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-gray-700">
-                      <img src={items[active]?.avatar} alt="" className="w-12 h-12 rounded-full object-cover ring-2 ring-teal-100 dark:ring-teal-800" />
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center text-white font-bold text-lg">
+                        {items[active]?.name?.charAt(0)}
+                      </div>
                       <div>
                         <h4 className="font-semibold text-slate-800 dark:text-white">{items[active]?.name}</h4>
                         <p className="text-sm text-slate-500 dark:text-gray-400">{items[active]?.role}</p>
@@ -101,16 +158,27 @@ export const Testimonials = () => {
                 </Card>
               </motion.div>
             </AnimatePresence>
+
             <div className="flex items-center justify-center gap-4 mt-6">
-              <button onClick={() => setActive(p => p === 0 ? items.length - 1 : p - 1)} className="p-2 rounded-full bg-slate-50 dark:bg-gray-700 border border-slate-200 dark:border-gray-600 hover:bg-teal-50 dark:hover:bg-teal-900/30 transition-colors">
+              <button
+                onClick={() => setActive(p => p === 0 ? items.length - 1 : p - 1)}
+                className="p-2 rounded-full bg-slate-50 dark:bg-gray-700 border border-slate-200 dark:border-gray-600 hover:bg-teal-50 dark:hover:bg-teal-900/30 transition-colors"
+              >
                 <ChevronLeft className="w-5 h-5 text-slate-600 dark:text-gray-300" />
               </button>
               <div className="flex gap-2">
                 {items.map((_, i) => (
-                  <button key={i} onClick={() => setActive(i)} className={"w-2 h-2 rounded-full transition-all " + (i === active ? "bg-teal-500 dark:bg-teal-400 w-6" : "bg-slate-300 dark:bg-gray-600")} />
+                  <button
+                    key={i}
+                    onClick={() => setActive(i)}
+                    className={`w-2 h-2 rounded-full transition-all ${i === active ? 'bg-teal-500 dark:bg-teal-400 w-6' : 'bg-slate-300 dark:bg-gray-600'}`}
+                  />
                 ))}
               </div>
-              <button onClick={() => setActive(p => p === items.length - 1 ? 0 : p + 1)} className="p-2 rounded-full bg-slate-50 dark:bg-gray-700 border border-slate-200 dark:border-gray-600 hover:bg-teal-50 dark:hover:bg-teal-900/30 transition-colors">
+              <button
+                onClick={() => setActive(p => p === items.length - 1 ? 0 : p + 1)}
+                className="p-2 rounded-full bg-slate-50 dark:bg-gray-700 border border-slate-200 dark:border-gray-600 hover:bg-teal-50 dark:hover:bg-teal-900/30 transition-colors"
+              >
                 <ChevronRight className="w-5 h-5 text-slate-600 dark:text-gray-300" />
               </button>
             </div>
