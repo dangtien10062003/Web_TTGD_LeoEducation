@@ -10,6 +10,7 @@ import { PricingPage } from './features/Home/pages/PricingPage';
 import { BlogPage } from './features/Home/pages/BlogPage';
 import { AboutPage } from './features/Home/pages/AboutPage';
 import { ContactPage } from './features/Home/pages/ContactPage';
+import { CourseDetail } from './features/Home/pages/CourseDetail';
 import './i18n/index.js';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path="blog" element={<BlogPage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="contact" element={<ContactPage />} />
+            <Route path="courses/:id" element={<CourseDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>

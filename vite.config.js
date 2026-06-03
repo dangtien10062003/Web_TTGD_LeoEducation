@@ -2,20 +2,19 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: "/",
+  base: "/Web_TTGD_LeoEducation/",
   plugins: [react()],
   build: {
     outDir: "dist",
     assetsDir: "assets",
-    rollupOptions: {
-      input: {
-        main: "index.html",
-      },
-    },
   },
   resolve: {
     alias: {
       "@": "/src",
     },
+  },
+  server: {
+    base: "/",
+    port: 5173,
   },
 });

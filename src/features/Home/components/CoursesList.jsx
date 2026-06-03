@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Users, BookOpen, Star, Loader2, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Card } from '../../../components/Card';
 import { Button } from '../../../components/Button';
@@ -212,7 +213,7 @@ export const CoursesList = ({ onRegisterClick }) => {
               <motion.div key={course.id} variants={itemVariants}>
                 <Card variant="gradient" className="h-full flex flex-col group bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 shadow-sm hover:shadow-lg">
                   {/* Image */}
-                  <div className="relative overflow-hidden">
+                  <Link to={`/courses/${course.id}`} className="block relative overflow-hidden">
                     <img
                       src={course.image}
                       alt={course.title}
@@ -227,13 +228,15 @@ export const CoursesList = ({ onRegisterClick }) => {
                       <span className="text-slate-700 dark:text-gray-300 font-semibold text-sm">{course.level}</span>
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
+                  </Link>
 
                   {/* Content */}
                   <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold mb-2 text-slate-800 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
-                      {course.title}
-                    </h3>
+                    <Link to={`/courses/${course.id}`}>
+                      <h3 className="text-xl font-bold mb-2 text-slate-800 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                        {course.title}
+                      </h3>
+                    </Link>
                     <p className="text-slate-500 dark:text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">
                       {course.description}
                     </p>
