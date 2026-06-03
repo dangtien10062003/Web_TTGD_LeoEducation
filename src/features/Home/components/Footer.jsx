@@ -1,7 +1,8 @@
 ﻿import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, GraduationCap, ArrowUpRight, PhoneCall, MessageCircle, ArrowUp } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUpRight, PhoneCall, MessageCircle, ArrowUp } from 'lucide-react';
+import logoImage from '../../../assets/Gemini_Generated_Image_yykl3wyykl3wyykl-removebg-preview.png';
 import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
@@ -44,8 +45,8 @@ export const Footer = () => {
           {/* Logo + description */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-navy-600 flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden">
+                <img src={logoImage} alt="LeoEducation Logo" className="w-full h-full object-contain" />
               </div>
               <span className="text-xl font-bold text-navy-700 dark:text-white">LeoEducation</span>
             </div>

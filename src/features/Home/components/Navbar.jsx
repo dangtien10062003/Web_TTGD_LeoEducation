@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe, Sun, Moon, GraduationCap } from 'lucide-react';
+import { Menu, X, Globe, Sun, Moon } from 'lucide-react';
+import logoImage from '../../../assets/Gemini_Generated_Image_yykl3wyykl3wyykl-removebg-preview.png';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../../contexts/ThemeContext';
 
@@ -41,8 +42,8 @@ export const Navbar = () => {
           {/* Logo */}
           <motion.div whileHover={{ scale: 1.03 }}>
             <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-navy-600 flex items-center justify-center shadow-lg group-hover:shadow-teal-500/30 transition-shadow">
-                <GraduationCap className="w-6 h-6 text-white" />
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-teal-500/30 transition-shadow overflow-hidden">
+                <img src={logoImage} alt="LeoEducation Logo" className="w-full h-full object-contain" />
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="text-xl font-bold text-gradient">LeoEducation</span>
