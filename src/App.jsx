@@ -14,7 +14,7 @@ import './i18n/index.js';
 function App() {
   return (
     <ThemeProvider>
-      <BrowserRouter basename="/Web_GD">
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<MainLayout />}>

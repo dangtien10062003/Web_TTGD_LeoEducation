@@ -100,10 +100,16 @@ export const useTranslation = (ns, props = {}) => {
       return lastSnapshot;
     }
 
+    // `scopeNs` (4th opts arg, i18next ≥ 26.0.10) gives the selector API access
+    // to the full hook namespace list while `ns` (resolution-scope) stays at
+    // the primary string. Without it, `t($ => $.secondaryNs.foo)` would silently
+    // miss under default `nsMode` because `o.ns` is a single string and i18next's
+    // selector rewrite only fires on multi-ns input.
     const calculatedT = i18n.getFixedT(
       currentLng,
       i18nOptions.nsMode === 'fallback' ? namespaces : namespaces[0],
       keyPrefix,
+      { scopeNs: namespaces },
     );
 
     const newSnapshot = {

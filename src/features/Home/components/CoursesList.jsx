@@ -117,7 +117,7 @@ export const CoursesList = ({ onRegisterClick }) => {
 
   if (loading) {
     return (
-<section id="courses" className="py-24 bg-white dark:bg-gray-950 transition-colors duration-200">
+<section id="courses" className="py-24 bg-slate-50 dark:bg-gray-950 transition-colors duration-200">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center">
@@ -131,8 +131,8 @@ export const CoursesList = ({ onRegisterClick }) => {
   }
 
   return (
-<section id="courses" className="py-24 bg-white dark:bg-gray-950 relative transition-colors duration-200">
-      <div className="absolute inset-0 bg-grid opacity-40 dark:opacity-20" />
+<section id="courses" className="py-24 bg-slate-50 dark:bg-gray-950 relative transition-colors duration-200">
+      <div className="absolute inset-0 bg-grid opacity-20 dark:opacity-20" />
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -186,7 +186,7 @@ export const CoursesList = ({ onRegisterClick }) => {
           >
             {filteredCourses.map((course) => (
               <motion.div key={course.id} variants={itemVariants}>
-                <Card variant="gradient" className="h-full flex flex-col group">
+                <Card variant="gradient" className="h-full flex flex-col group bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 shadow-sm hover:shadow-lg">
                   <div className="relative overflow-hidden">
                     <img
                       src={course.image}
@@ -224,7 +224,7 @@ export const CoursesList = ({ onRegisterClick }) => {
                       </div>
                     </div>
 
-                    <div className="mt-auto pt-4 border-t border-slate-100">
+                    <div className="mt-auto pt-4 border-t border-slate-200 dark:border-gray-700">
                       <Button
                         onClick={() => onRegisterClick(course)}
                         className="w-full"
