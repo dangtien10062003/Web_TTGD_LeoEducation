@@ -13,8 +13,10 @@ import { ContactPage } from './features/Home/pages/ContactPage';
 import './i18n/index.js';
 
 function App() {
-  const base = import.meta.env.BASE_URL;
-  const basename = base && base !== '/' ? base.replace(/\/$/, '') : undefined;
+  // On GitHub Pages the path is /Web_TTGD_LeoEducation/
+  // In dev (localhost) there is no basename
+  const isGithubPages = window.location.hostname.includes('github.io');
+  const basename = isGithubPages ? '/Web_TTGD_LeoEducation' : undefined;
 
   return (
     <ThemeProvider>
