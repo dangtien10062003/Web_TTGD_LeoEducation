@@ -1,3 +1,4 @@
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 
 export const Card = ({ children, className = '', hover = true, variant = 'default', ...props }) => {

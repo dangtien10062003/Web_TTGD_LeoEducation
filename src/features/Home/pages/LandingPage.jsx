@@ -1,10 +1,13 @@
+﻿import React from 'react';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
 import { Categories } from '../components/Categories';
 import { About } from '../components/About';
 import { CoursesList } from '../components/CoursesList';
 import { Instructors } from '../components/Instructors';
+import { LearningPath } from '../components/LearningPath';
 import { Testimonials } from '../components/Testimonials';
 import { Pricing } from '../components/Pricing';
 import { Blog } from '../components/Blog';
@@ -15,23 +18,19 @@ import { Modal } from '../../../components/Modal';
 import { RegistrationForm } from '../components/RegistrationForm';
 
 export const LandingPage = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
 
   // Restore scroll position on reload
   useEffect(() => {
     const hash = window.location.hash;
-    
     if (hash) {
-      // Wait for content to load then scroll to hash
       setTimeout(() => {
         const element = document.querySelector(hash);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
       }, 100);
     } else {
-      // Restore scroll position from localStorage
       const savedScrollPosition = sessionStorage.getItem('scrollPosition');
       if (savedScrollPosition) {
         setTimeout(() => {
@@ -39,12 +38,9 @@ export const LandingPage = () => {
         }, 100);
       }
     }
-
-    // Save scroll position before unload
     const handleBeforeUnload = () => {
       sessionStorage.setItem('scrollPosition', window.scrollY.toString());
     };
-
     window.addEventListener('beforeunload', handleBeforeUnload);
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, []);
@@ -67,6 +63,7 @@ export const LandingPage = () => {
       <About />
       <CoursesList onRegisterClick={handleRegisterClick} />
       <Instructors />
+      <LearningPath />
       <Testimonials />
       <Pricing />
       <Blog />
@@ -74,22 +71,12 @@ export const LandingPage = () => {
       <ContactForm />
       <Footer />
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        title="Đăng ký khóa học"
-      >
-        {/* Backend hiện chưa có endpoint /api/registrations (tránh lỗi 500) */}
-        <div className="p-6 text-center text-gray-700">
-          Tạm thời chưa hỗ trợ đăng ký khóa học. Vui lòng thử lại sau.
+      <Modal isOpen={isModalOpen} onClose={handleCloseModal} title="Đăng ký khóa học">
+        {/* Backend hiện chưa có endpoint /api/registrations */}
+        <div className="p-6 text-center text-slate-700 dark:text-gray-300">
+          {t('contact.backendError') || 'Tạm thời chưa hỗ trợ đăng ký khóa học. Vui lòng liên hệ hotline 0703.428.300.'}
         </div>
       </Modal>
-
-
-
-
     </div>
   );
 };
-
-

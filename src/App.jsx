@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -20,7 +21,7 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
             <Route path="courses" element={<CoursesPage />} />
-            <Route path="instructors" element={<InstructorsPage />} />
+            <Route path="teachers" element={<InstructorsPage />} />
             <Route path="pricing" element={<PricingPage />} />
             <Route path="blog" element={<BlogPage />} />
             <Route path="about" element={<AboutPage />} />

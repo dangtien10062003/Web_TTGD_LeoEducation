@@ -1,11 +1,116 @@
+﻿import React from 'react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, BookOpen, Star, Loader2 } from 'lucide-react';
+import { Users, BookOpen, Star, Loader2, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Card } from '../../../components/Card';
 import { Button } from '../../../components/Button';
 
-const CATEGORIES = ['Tất cả', 'Lập trình', 'Marketing', 'Thiết kế', 'Data Science'];
+const CATEGORIES = ['Tất cả', 'Tiếng Anh', 'Toán', 'Vật lý', 'Hóa học', 'Ngữ văn', 'Sinh học'];
+
+// Dữ liệu khóa học từ trang Bit Education
+const BIT_COURSES = [
+  {
+    id: 1,
+    title: 'Gia Sư Tiếng Anh',
+    description: 'Củng cố phát âm và từ vựng, nâng cao khả năng giao tiếp thực tế. Nắm vững ngữ pháp và luyện nghe – nói, thành thạo trong thi cử.',
+    category: 'Tiếng Anh',
+    image: 'https://images.unsplash.com/photo-1543109740-4bdb38fda756?w=500',
+    duration: 'Linh hoạt',
+    level: 'Lớp 1-12',
+    features: ['Phát âm chuẩn', 'Ngữ pháp vững chắc', 'Luyện đề 9+']
+  },
+  {
+    id: 2,
+    title: 'Gia Sư Toán',
+    description: 'Nâng cao kiến thức Toán từ cơ bản đến nâng cao, phát triển tư duy logic. Luyện giải đề nhanh và hiệu quả.',
+    category: 'Toán',
+    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500',
+    duration: 'Linh hoạt',
+    level: 'Lớp 1-12',
+    features: ['Tư duy logic', 'Giải đề nhanh', 'Đạt 9+']
+  },
+  {
+    id: 3,
+    title: 'Gia Sư Hóa Học',
+    description: 'Bổ sung kiến thức Hóa học nâng cao bám sát chương trình SGK. Áp dụng sơ đồ tư duy để hiểu rõ các khái niệm.',
+    category: 'Hóa học',
+    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=500',
+    duration: 'Linh hoạt',
+    level: 'Lớp 8-12',
+    features: ['Ghi nhớ tuần hoàn', 'Cân bằng phương trình', 'Bài tập khó']
+  },
+  {
+    id: 4,
+    title: 'Gia Sư Vật Lý',
+    description: 'Phát triển tư duy và ghi nhớ quy tắc, giải quyết các bài toán phức tạp. Luyện giải đề khó và quản lý thời gian.',
+    category: 'Vật lý',
+    image: 'https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=500',
+    duration: 'Linh hoạt',
+    level: 'Lớp 6-12',
+    features: ['Phương trình vật lý', 'Đề khó', 'Thí nghiệm ảo']
+  },
+  {
+    id: 5,
+    title: 'Gia Sư Ngữ Văn',
+    description: 'Củng cố kiến thức ngữ pháp và văn học, nắm vững tác phẩm trọng điểm. Phát triển kỹ năng lập luận và phân tích.',
+    category: 'Ngữ văn',
+    image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=500',
+    duration: 'Linh hoạt',
+    level: 'Lớp 1-12',
+    features: ['Tác phẩm trọng điểm', 'Lập dàn ù', 'Nghị luận']
+  },
+  {
+    id: 6,
+    title: 'Gia Sư Sinh Học',
+    description: 'Sinh học tế bào, di truyền học, sinh thái học, sinh học phân tử. Phương pháp giảng dạy trực quan, bài tập thực hành phong phú.',
+    category: 'Sinh học',
+    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=500',
+    duration: 'Linh hoạt',
+    level: 'Lớp 6-12',
+    features: ['Sơ đồ tư duy', 'Thí nghiệm ảo', 'Ôn thi HK']
+  },
+  {
+    id: 7,
+    title: 'Ôn Thi Đại Học/THPTQG',
+    description: 'Bổ sung kiến thức còn thiếu, tập trung phương pháp giải đề nhanh. Luyện giải đề nâng cao, rèn kỹ năng phản xạ.',
+    category: 'Toán',
+    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500',
+    duration: '3-6 tháng',
+    level: 'Lớp 12',
+    features: ['Giải đề nhanh', 'Chiến lược thi cử', '20+ đề thử']
+  },
+  {
+    id: 8,
+    title: 'Lấy Gốc/Kèm Học Sinh Yếu',
+    description: 'Đánh giá tình trạng mất gốc và bổ sung kiến thức nền tảng theo SGK. Xây dựng lộ trình cá nhân hóa.',
+    category: 'Toán',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500',
+    duration: 'Linh hoạt',
+    level: 'Lớp 1-12',
+    features: ['Đánh giá mất gốc', 'Lộ trình cá nhân', 'Từ cơ bản lên']
+  },
+  {
+    id: 9,
+    title: 'Luyện Thi Vào Lớp 6',
+    description: 'Bồi dưỡng kiến thức nâng cao, sẵn sàng cho kỳ thi vào lớp 6. Luyện đề thi thử bám sát.',
+    category: 'Toán',
+    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500',
+    duration: '3-6 tháng',
+    level: 'Lớp 5',
+    features: ['Toán nâng cao', 'Tiếng Việt', 'Anh văn cơ bản']
+  },
+  {
+    id: 10,
+    title: 'Luyện Thi Vào Lớp 10',
+    description: 'Bồi dưỡng kiến thức nâng cao, sẵn sàng cho kỳ thi vào lớp 10. Luyện đề thi thử bám sát.',
+    category: 'Toán',
+    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500',
+    duration: '6-12 tháng',
+    level: 'Lớp 9',
+    features: ['Toán - Lý - Hóa', 'Ngữ Văn', 'Tiếng Anh']
+  }
+];
 
 export const CoursesList = ({ onRegisterClick }) => {
   const { t } = useTranslation();
@@ -13,93 +118,14 @@ export const CoursesList = ({ onRegisterClick }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeCategory, setActiveCategory] = useState('Tất cả');
-  const [pagination, setPagination] = useState({
-    currentPage: 1,
-    limit: 6,
-    total: 0,
-    totalPages: 0
-  });
 
   useEffect(() => {
-    fetchCourses();
-  }, [pagination.currentPage]);
-
-  const fetchCourses = async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const API_URL = process.env.NODE_ENV === 'production'
-        ? 'https://your-backend-url.com/api/courses'
-        : 'http://localhost:5000/api/courses';
-
-      const response = await fetch(`${API_URL}?page=${pagination.currentPage}&limit=${pagination.limit}`);
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        throw new Error('Không thể tải danh sách khóa học');
-      }
-
-      const mappedCourses = result.data.map(course => ({
-        id: course.courseId,
-        courseId: course.courseId,
-        title: course.courseName,
-        description: course.description,
-        image: course.imageURL || 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500',
-        price: `${course.price.toLocaleString('vi-VN')}đ`,
-        duration: course.duration,
-        students: Math.floor(Math.random() * 1000) + 100,
-        lessons: parseInt((course.duration || '').match(/\d+/)?.[0]) || 24,
-        instructor: 'Giảng viên',
-        rating: 4.8,
-        category: course.category || 'Lập trình'
-      }));
-
-      setCourses(mappedCourses);
-      setPagination(prev => ({
-        ...prev,
-        total: result.pagination?.total ?? 0,
-        totalPages: result.pagination?.totalPages ?? 0
-      }));
-
-    } catch (err) {
-      console.error('Error fetching courses:', err);
-      setError(err.message);
-      loadFallbackData();
-    } finally {
+    // Simulate loading data from API
+    setTimeout(() => {
+      setCourses(BIT_COURSES);
       setLoading(false);
-    }
-  };
-
-  const loadFallbackData = () => {
-    const fallbackCourses = [
-      {
-        id: 1, courseId: 1,
-        title: 'Lập trình Web Frontend',
-        description: 'Học HTML, CSS, JavaScript và React từ cơ bản đến nâng cao',
-        image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500',
-        price: '2.999.000đ', duration: '3 tháng', students: 1250, lessons: 45,
-        instructor: 'Nguyễn Văn A', rating: 4.8, category: 'Lập trình'
-      },
-      {
-        id: 2, courseId: 2,
-        title: 'Digital Marketing',
-        description: 'Chiến lược Marketing Online hiệu quả cho doanh nghiệp',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500',
-        price: '1.999.000đ', duration: '2 tháng', students: 890, lessons: 32,
-        instructor: 'Trần Thị B', rating: 4.7, category: 'Marketing'
-      },
-      {
-        id: 3, courseId: 3,
-        title: 'UI/UX Design',
-        description: 'Thiết kế giao diện người dùng chuyên nghiệp với Figma',
-        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500',
-        price: '2.499.000đ', duration: '2.5 tháng', students: 670, lessons: 38,
-        instructor: 'Lê Văn C', rating: 4.9, category: 'Thiết kế'
-      }
-    ];
-    setCourses(fallbackCourses);
-  };
+    }, 800);
+  }, []);
 
   const filteredCourses = activeCategory === 'Tất cả'
     ? courses
@@ -117,7 +143,7 @@ export const CoursesList = ({ onRegisterClick }) => {
 
   if (loading) {
     return (
-<section id="courses" className="py-24 bg-slate-50 dark:bg-gray-950 transition-colors duration-200">
+      <section id="courses" className="py-24 bg-slate-50 dark:bg-gray-950 transition-colors duration-200">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center">
@@ -131,9 +157,10 @@ export const CoursesList = ({ onRegisterClick }) => {
   }
 
   return (
-<section id="courses" className="py-24 bg-slate-50 dark:bg-gray-950 relative transition-colors duration-200">
-      <div className="absolute inset-0 bg-grid opacity-20 dark:opacity-20" />
+    <section id="courses" className="py-24 bg-slate-50 dark:bg-gray-950 relative transition-colors duration-200">
+      <div className="absolute inset-0 bg-grid opacity-20 dark:opacity-10" />
       <div className="container mx-auto px-4 relative z-10">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -142,19 +169,15 @@ export const CoursesList = ({ onRegisterClick }) => {
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-700 text-teal-700 dark:text-teal-300 rounded-full text-sm font-semibold mb-6">
             <BookOpen className="w-4 h-4" />
-            Khóa học
+            {t('courses.title')}
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            <span className="text-gradient">{t('courses.title')}</span>
+            <span className="text-gradient">{t('categories.title')}</span>
           </h2>
-          <p className="text-lg text-slate-500 dark:text-gray-400">{t('courses.subtitle')}</p>
-          {error && (
-            <p className="text-sm text-amber-600 dark:text-amber-400 mt-2 bg-amber-50 dark:bg-amber-900/20 inline-block px-4 py-2 rounded-full">
-              ⚠️ Đang hiển thị dữ liệu mẫu (Backend chưa kết nối)
-            </p>
-          )}
+          <p className="text-lg text-slate-600 dark:text-gray-400">{t('categories.subtitle')}</p>
         </motion.div>
 
+        {/* Filter */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -167,7 +190,7 @@ export const CoursesList = ({ onRegisterClick }) => {
               onClick={() => setActiveCategory(cat)}
               className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                 activeCategory === cat
-                  ? 'bg-navy-700 dark:bg-teal-600 text-white shadow-lg shadow-navy-500/20 dark:shadow-teal-500/20'
+                  ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/20'
                   : 'bg-white dark:bg-gray-800 text-slate-600 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 border border-slate-200 dark:border-gray-600'
               }`}
             >
@@ -176,6 +199,7 @@ export const CoursesList = ({ onRegisterClick }) => {
           ))}
         </motion.div>
 
+        {/* Course Grid */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeCategory}
@@ -187,44 +211,50 @@ export const CoursesList = ({ onRegisterClick }) => {
             {filteredCourses.map((course) => (
               <motion.div key={course.id} variants={itemVariants}>
                 <Card variant="gradient" className="h-full flex flex-col group bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 shadow-sm hover:shadow-lg">
+                  {/* Image */}
                   <div className="relative overflow-hidden">
                     <img
                       src={course.image}
                       alt={course.title}
                       className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute top-4 right-4 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
-                      <span className="text-navy-700 dark:text-teal-400 font-bold text-sm">{course.price}</span>
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                        {course.category}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-4 right-4 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
+                      <span className="text-slate-700 dark:text-gray-300 font-semibold text-sm">{course.level}</span>
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
 
+                  {/* Content */}
                   <div className="p-6 flex-1 flex flex-col">
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="px-3 py-1 bg-teal-50 dark:bg-teal-900/50 text-teal-700 dark:text-teal-300 rounded-full text-xs font-semibold border border-teal-100 dark:border-teal-700">
-                        {course.category}
-                      </span>
-                      <div className="flex items-center gap-1 ml-auto">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        <span className="text-sm font-semibold text-slate-700 dark:text-gray-300">{course.rating}</span>
-                      </div>
+                    <h3 className="text-xl font-bold mb-2 text-slate-800 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                      {course.title}
+                    </h3>
+                    <p className="text-slate-500 dark:text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">
+                      {course.description}
+                    </p>
+
+                    {/* Features */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {course.features.map((f, i) => (
+                        <span key={i} className="px-2.5 py-1 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-lg text-xs font-medium border border-teal-100 dark:border-teal-700">
+                          {f}
+                        </span>
+                      ))}
                     </div>
 
-                    <h3 className="text-xl font-bold mb-2 text-slate-800 dark:text-white group-hover:text-navy-700 dark:group-hover:text-teal-400 transition-colors">{course.title}</h3>
-                    <p className="text-slate-500 dark:text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">{course.description}</p>
-
-                    <div className="flex items-center gap-5 text-sm text-slate-500 dark:text-gray-400 mb-5">
-                      <div className="flex items-center gap-1.5">
-                        <Users className="w-4 h-4 text-slate-400 dark:text-gray-500" />
-                        <span>{course.students} {t('courses.students')}</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <BookOpen className="w-4 h-4 text-slate-400 dark:text-gray-500" />
-                        <span>{course.lessons} {t('courses.lessons')}</span>
-                      </div>
+                    {/* Duration */}
+                    <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-gray-400 mb-5">
+                      <BookOpen className="w-4 h-4" />
+                      <span>Thời lượng: {course.duration}</span>
                     </div>
 
-                    <div className="mt-auto pt-4 border-t border-slate-200 dark:border-gray-700">
+                    {/* CTA */}
+                    <div className="mt-auto">
                       <Button
                         onClick={() => onRegisterClick(course)}
                         className="w-full"
@@ -232,6 +262,7 @@ export const CoursesList = ({ onRegisterClick }) => {
                         size="md"
                       >
                         {t('courses.register')}
+                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     </div>
                   </div>
@@ -240,30 +271,6 @@ export const CoursesList = ({ onRegisterClick }) => {
             ))}
           </motion.div>
         </AnimatePresence>
-
-        {pagination.totalPages > 1 && (
-          <div className="flex justify-center items-center gap-4 mt-12">
-            <Button
-              onClick={() => setPagination(prev => ({ ...prev, currentPage: prev.currentPage - 1 }))}
-              disabled={pagination.currentPage === 1}
-              variant="outline"
-              className="dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
-            >
-              Trang trước
-            </Button>
-            <span className="text-slate-600 dark:text-gray-300 font-medium">
-              Trang {pagination.currentPage} / {pagination.totalPages}
-            </span>
-            <Button
-              onClick={() => setPagination(prev => ({ ...prev, currentPage: prev.currentPage + 1 }))}
-              disabled={pagination.currentPage === pagination.totalPages}
-              variant="outline"
-              className="dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
-            >
-              Trang sau
-            </Button>
-          </div>
-        )}
       </div>
     </section>
   );
