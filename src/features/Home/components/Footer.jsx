@@ -55,7 +55,7 @@ export const Footer = () => {
               Nấc thang tri thức - Vững bước tương lai!
             </p>
             <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-sm leading-relaxed">
-              Nen tang giao duc truc tuyen hang dau Viet Nam, cam ket mang den nhung khoa hoc chat luong cao.
+              Nền tảng giáo dục trực tuyến hàng đầu Việt Nam, cam kết mang đến những khóa học chất lượng cao.
             </p>
             <div className="flex gap-3">
               {['facebook', 'twitter', 'instagram', 'youtube'].map((social) => (
