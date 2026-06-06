@@ -8,6 +8,7 @@ import { CheckCircle, Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '../../../components/Input';
 import { Button } from '../../../components/Button';
+import { publicApi } from '../../../services/api';
 
 const createSchema = (t) => z.object({
   fullName: z.string()
@@ -48,10 +49,6 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
     setError(null);
     
     try {
-      const API_URL = process.env.NODE_ENV === 'production'
-        ? 'https://your-backend-url.com/api/registrations'
-        : 'http://localhost:5000/api/registrations';
-
       const dataToSend = {
         fullName: data.fullName,
         email: data.email || null,
@@ -59,19 +56,7 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
         courseId: selectedCourse?.courseId || selectedCourse?.id
       };
 
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataToSend)
-      });
-
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        throw new Error(result.message || 'Có lỗi xảy ra, vui lòng thử lại');
-      }
+      await publicApi.registerCourse(dataToSend);
 
       setIsSuccess(true);
       reset();

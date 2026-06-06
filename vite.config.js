@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: "/Web_TTGD_LeoEducation/",
+  base: process.env.NODE_ENV === 'production' ? '/Web_GD/' : '/',
   plugins: [react()],
   build: {
     outDir: "dist",
@@ -16,5 +16,11 @@ export default defineConfig({
   server: {
     base: "/",
     port: 5173,
+    proxy: {
+      "/api": {
+        target: "http://localhost:5000",
+        changeOrigin: true,
+      },
+    },
   },
 });

@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 import { Check, Sparkles, Gift, BookOpen } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../../components/Button';
+import { Modal } from '../../../components/Modal';
 
 export const Pricing = () => {
   const { t } = useTranslation();
+  const [selectedPromo, setSelectedPromo] = React.useState(null);
 
   // Trial & promotion section (từ trang Bit)
   const promotions = [
@@ -75,11 +77,13 @@ export const Pricing = () => {
           {promotions.map((promo, index) => (
             <motion.div
               key={index}
+              onClick={() => setSelectedPromo(promo)}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -8 }}
+              className="cursor-pointer"
             >
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-slate-200 dark:border-gray-700 hover:border-transparent transition-all shadow-sm hover:shadow-xl text-center h-full">
                 <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${promo.color} flex items-center justify-center mx-auto mb-4 shadow-lg`}>
@@ -91,6 +95,25 @@ export const Pricing = () => {
             </motion.div>
           ))}
         </div>
+
+        <Modal
+          isOpen={Boolean(selectedPromo)}
+          onClose={() => setSelectedPromo(null)}
+          title={selectedPromo?.title || 'Chi tiết ưu đãi'}
+        >
+          {selectedPromo && (
+            <div className="space-y-5">
+              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${selectedPromo.color} flex items-center justify-center shadow-lg`}>
+                <selectedPromo.icon className="w-8 h-8 text-white" />
+              </div>
+              <p className="text-sm leading-relaxed text-slate-600">{selectedPromo.desc}</p>
+              <div className="rounded-2xl bg-teal-50 border border-teal-100 p-4">
+                <p className="text-sm font-semibold text-teal-800 mb-1">Gợi ý tiếp theo</p>
+                <p className="text-sm text-teal-700">Đăng ký tư vấn để LeoEducation kiểm tra trình độ và đề xuất lộ trình phù hợp.</p>
+              </div>
+            </div>
+          )}
+        </Modal>
 
         {/* Registration form CTA */}
         <motion.div

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Card } from '../../../components/Card';
 import { Button } from '../../../components/Button';
+import { publicApi } from '../../../services/api';
 
 const CATEGORIES = ['Tất cả', 'Tiếng Anh', 'Toán', 'Vật lý', 'Hóa học', 'Ngữ văn', 'Sinh học'];
 
@@ -119,18 +120,68 @@ export const CoursesList = ({ onRegisterClick }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeCategory, setActiveCategory] = useState('Tất cả');
+  const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
-    // Simulate loading data from API
-    setTimeout(() => {
-      setCourses(BIT_COURSES);
-      setLoading(false);
-    }, 800);
+    let mounted = true;
+
+    Promise.allSettled([
+      publicApi.subjects(),
+      publicApi.courses({ limit: 100 }),
+    ])
+      .then(([subjectsResult, coursesResult]) => {
+        if (!mounted) return;
+
+        if (subjectsResult.status === 'fulfilled') {
+          setSubjects(subjectsResult.value.data || []);
+        }
+
+        if (coursesResult.status === 'fulfilled' && coursesResult.value.data?.length) {
+          setCourses(coursesResult.value.data);
+        } else {
+          if (coursesResult.status === 'rejected') {
+            console.error(coursesResult.reason);
+            setError(coursesResult.reason.message);
+          }
+          setCourses(BIT_COURSES);
+        }
+      })
+      .finally(() => {
+        if (mounted) setLoading(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
-  const filteredCourses = activeCategory === 'Tất cả'
+  const filterItems = subjects.length
+    ? [{ id: 'all', name: 'Tất cả' }, ...subjects]
+    : CATEGORIES.map((name) => ({ id: name, name }));
+
+  const activeSubject = subjects.find((subject) => subject.id === activeCategory);
+  const filteredCourses = activeCategory === 'Tất cả' || activeCategory === 'all'
     ? courses
-    : courses.filter(c => c.category === activeCategory);
+    : activeSubject
+      ? courses.filter(c => c.subjectId === activeSubject.id)
+      : courses.filter(c => c.category === activeCategory);
+
+  const handleFilterClick = (cat) => {
+    const nextCategory = cat.id === 'all' ? 'Tất cả' : cat.id;
+    setActiveCategory(nextCategory);
+
+    if (!subjects.length) return;
+
+    setLoading(true);
+    publicApi
+      .courses({ limit: 100, ...(cat.id !== 'all' ? { subjectId: cat.id } : {}) })
+      .then((res) => setCourses(res.data?.length ? res.data : []))
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+      })
+      .finally(() => setLoading(false));
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -185,17 +236,17 @@ export const CoursesList = ({ onRegisterClick }) => {
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-2 mb-12"
         >
-          {CATEGORIES.map((cat) => (
+          {filterItems.map((cat) => (
             <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
+              key={cat.id}
+              onClick={() => handleFilterClick(cat)}
               className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
-                activeCategory === cat
+                activeCategory === cat.id || (activeCategory === 'Tất cả' && cat.id === 'all')
                   ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/20'
                   : 'bg-white dark:bg-gray-800 text-slate-600 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 border border-slate-200 dark:border-gray-600'
               }`}
             >
-              {cat}
+              {cat.name}
             </button>
           ))}
         </motion.div>

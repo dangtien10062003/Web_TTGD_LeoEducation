@@ -1,10 +1,11 @@
-﻿import React from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, BookOpen, Clock, Users, Star, CheckCircle, Phone, GraduationCap, Target } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../../components/Button';
 import { Footer } from '../components/Footer';
+import { publicApi } from '../../../services/api';
 
 
 // Course data (same as CoursesList)
@@ -304,9 +305,38 @@ const COURSES = [
 export const CourseDetail = () => {
   const { id } = useParams();
   const { t } = useTranslation();
-  const course = COURSES.find(c => c.id === parseInt(id));
+  const [apiCourse, setApiCourse] = useState(null);
+  const [apiChecked, setApiChecked] = useState(false);
+  const fallbackCourse = COURSES.find(c => c.id === parseInt(id));
+  const course = apiCourse || fallbackCourse;
 
-  if (!course) {
+  useEffect(() => {
+    let mounted = true;
+
+    publicApi
+      .course(id)
+      .then((res) => {
+        if (mounted) setApiCourse(res.data);
+      })
+      .catch(console.error)
+      .finally(() => {
+        if (mounted) setApiChecked(true);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [id]);
+
+  if (!course && !apiChecked) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
+        <div className="text-center text-slate-600 dark:text-gray-300">Đang tải khóa học...</div>
+      </div>
+    );
+  }
+
+  if (!course && apiChecked) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
         <div className="text-center">
@@ -321,9 +351,9 @@ export const CourseDetail = () => {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-950">
-      {/* Navbar */}
-      <div className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-gray-700">
-        <div className="container mx-auto px-4 py-4">
+      {/* Back bar */}
+      <div className="pt-24 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-gray-700">
+        <div className="container mx-auto px-4 pb-4">
           <Link to="/courses" className="inline-flex items-center gap-2 text-teal-600 dark:text-teal-400 hover:text-teal-700 font-medium text-sm">
             <ArrowLeft className="w-4 h-4" />
             Quay lại danh sách khóa học

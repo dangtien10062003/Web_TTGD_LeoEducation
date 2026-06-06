@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Footer } from '../components/Footer';
 import { CoursesList } from '../components/CoursesList';
 import { Modal } from '../../../components/Modal';
@@ -19,9 +18,7 @@ export const CoursesPage = () => {
       <CoursesList onRegisterClick={handleRegisterClick} />
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Đăng ký khóa học">
         {selectedCourse && (
-          <div className="p-6 text-center text-slate-700">
-            Tạm thời chưa hỗ trợ đăng ký. Vui lòng liên hệ hotline.
-          </div>
+          <RegistrationForm selectedCourse={selectedCourse} onSuccess={() => setIsModalOpen(false)} />
         )}
       </Modal>
       <Footer />

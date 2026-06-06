@@ -8,6 +8,7 @@ import { Send, CheckCircle2, Loader2, User, Mail, Phone, MessageSquare, Baby, Sp
 import { useTranslation } from 'react-i18next';
 import { Input } from '../../../components/Input';
 import { Button } from '../../../components/Button';
+import { publicApi } from '../../../services/api';
 
 const createSchema = (t) => z.object({
   parentName: z.string()
@@ -42,14 +43,12 @@ export const ContactForm = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/contact';
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+      await publicApi.contact({
+        fullName: data.parentName,
+        email: data.email,
+        phone: data.phone,
+        message: `Tên con: ${data.childName}\n${data.message}`,
       });
-      const result = await response.json();
-      if (!response.ok || !result.success) throw new Error(result.message || 'Có lỗi xảy ra');
       setIsSuccess(true);
       reset();
       setTimeout(() => setIsSuccess(false), 5000);

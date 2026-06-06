@@ -49,10 +49,9 @@ export const LandingPage = () => {
       <Footer />
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal} title="Đăng ký khóa học">
-        {/* Backend hiện chưa có endpoint /api/registrations */}
-        <div className="p-6 text-center text-slate-700 dark:text-gray-300">
-          {t('contact.backendError') || 'Tạm thời chưa hỗ trợ đăng ký khóa học. Vui lòng liên hệ hotline 0703.428.300.'}
-        </div>
+        {selectedCourse && (
+          <RegistrationForm selectedCourse={selectedCourse} onSuccess={handleCloseModal} />
+        )}
       </Modal>
     </div>
   );
