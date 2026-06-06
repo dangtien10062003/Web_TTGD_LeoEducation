@@ -405,9 +405,9 @@ export const CourseDetail = () => {
                     Đăng ký học thử miễn phí
                   </motion.button>
                 </a>
-                <a href="tel:0703428300" className="px-6 py-3.5 rounded-xl border-2 border-white/20 text-white font-semibold hover:bg-white/10 transition-colors inline-flex items-center gap-2">
+                <a href="tel:0866123170" className="px-6 py-3.5 rounded-xl border-2 border-white/20 text-white font-semibold hover:bg-white/10 transition-colors inline-flex items-center gap-2">
                   <Phone className="w-4 h-4" />
-                  0703.428.300
+                  0866.123.170
                 </a>
               </div>
             </motion.div>
@@ -569,7 +569,7 @@ export const CourseDetail = () => {
                   </motion.button>
                 </a>
                 <p className="text-center text-xs text-gray-400 mt-4">
-                  📞 Hotline: 0703.428.300
+                  📞 Hotline: 0866.123.170
                 </p>
               </motion.div>
             </div>
@@ -594,16 +594,16 @@ export const CourseDetail = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <motion.a
-                href="tel:0703428300"
+                href="tel:0866123170"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="px-8 py-4 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white font-bold shadow-lg shadow-teal-500/20 inline-flex items-center gap-2"
               >
                 <Phone className="w-5 h-5" />
-                Gọi ngay: 0703.428.300
+                Gọi ngay: 0866.123.170
               </motion.a>
               <a
-                href="https://zalo.me/0703428300"
+                href="https://zalo.me/0866123170"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 rounded-xl border-2 border-teal-500 text-teal-600 dark:text-teal-400 font-bold hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors inline-flex items-center gap-2"

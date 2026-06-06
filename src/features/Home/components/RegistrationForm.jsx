@@ -68,7 +68,7 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
 
     } catch (err) {
       if (err.message === 'Failed to fetch') {
-        setError('Backend chưa được deploy. Vui lòng liên hệ: contact@eduplatform.vn hoặc 1900 xxxx');
+        setError('Backend chưa được deploy. Vui lòng liên hệ: leoeducation.vn@gmail.com hoặc 0866.123.170');
       } else {
         setError(err.message || 'Có lỗi xảy ra, vui lòng thử lại sau');
       }

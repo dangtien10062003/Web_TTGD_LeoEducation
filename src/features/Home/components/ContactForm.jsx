@@ -54,7 +54,7 @@ export const ContactForm = () => {
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (err) {
       if (err.message === 'Failed to fetch') {
-        setError(t('contact.backendError') || 'Backend chưa được deploy. Vui lòng liên hệ: hotline 0703.428.300');
+        setError(t('contact.backendError') || 'Backend chưa được deploy. Vui lòng liên hệ: hotline 0866.123.170');
       } else {
         setError(err.message);
       }

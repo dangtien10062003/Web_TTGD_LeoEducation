@@ -2,14 +2,12 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Hero } from '../components/Hero';
-import { Categories } from '../components/Categories';
 import { About } from '../components/About';
 import { CoursesList } from '../components/CoursesList';
 import { Instructors } from '../components/Instructors';
 import { LearningPath } from '../components/LearningPath';
 import { Testimonials } from '../components/Testimonials';
 import { Pricing } from '../components/Pricing';
-import { Blog } from '../components/Blog';
 import { FAQ } from '../components/FAQ';
 import { ContactForm } from '../components/ContactForm';
 import { Footer } from '../components/Footer';
@@ -36,14 +34,12 @@ export const LandingPage = () => {
   return (
     <div className="min-h-screen">
       <Hero />
-      <Categories />
       <About />
       <CoursesList onRegisterClick={handleRegisterClick} />
       <Instructors />
       <LearningPath />
       <Testimonials />
       <Pricing />
-      <Blog />
       <FAQ />
       <ContactForm />
       <Footer />
