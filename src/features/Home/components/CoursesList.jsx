@@ -229,39 +229,53 @@ export const CoursesList = ({ onRegisterClick }) => {
           <p className="text-lg text-slate-600 dark:text-gray-400">{t('categories.subtitle')}</p>
         </motion.div>
 
-        {/* Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-2 mb-12"
-        >
-          {filterItems.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => handleFilterClick(cat)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
-                activeCategory === cat.id || (activeCategory === 'Tất cả' && cat.id === 'all')
-                  ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/20'
-                  : 'bg-white dark:bg-gray-800 text-slate-600 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 border border-slate-200 dark:border-gray-600'
-              }`}
-            >
-              {cat.name}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Course Grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        <div className="grid lg:grid-cols-[240px_minmax(0,1fr)] gap-6 lg:gap-8 items-start">
+          {/* Subject Sidebar */}
+          <motion.aside
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="lg:sticky lg:top-28 rounded-lg border border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-3 shadow-sm"
           >
-            {filteredCourses.map((course) => (
-              <motion.div key={course.id} variants={itemVariants}>
+            <div className="px-2 pb-3 mb-3 border-b border-slate-100 dark:border-gray-700">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-gold-600 dark:text-gold-400">Môn học</p>
+              <p className="text-sm text-slate-500 dark:text-gray-400 mt-1">Chọn nhanh khóa học</p>
+            </div>
+            <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-1 lg:pb-0">
+              {filterItems.map((cat) => {
+                const isActive = activeCategory === cat.id || (activeCategory === 'Tất cả' && cat.id === 'all');
+
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => handleFilterClick(cat)}
+                    className={`min-w-max lg:min-w-0 lg:w-full px-4 py-3 rounded-md text-sm font-semibold text-left transition-all duration-200 border ${
+                      isActive
+                        ? 'bg-navy-700 text-white border-navy-700 shadow-md shadow-navy-700/15'
+                        : 'bg-slate-50 dark:bg-gray-800 text-slate-700 dark:text-gray-300 border-slate-200 dark:border-gray-700 hover:bg-gold-50 hover:border-gold-300 hover:text-navy-700'
+                    }`}
+                  >
+                    <span className="flex items-center justify-between gap-3">
+                      {cat.name}
+                      {isActive && <ArrowRight className="w-4 h-4 flex-shrink-0" />}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </motion.aside>
+
+          {/* Course Grid */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 min-w-0"
+            >
+              {filteredCourses.map((course) => (
+                <motion.div key={course.id} variants={itemVariants}>
                 <Card variant="gradient" className="h-full flex flex-col group bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 shadow-sm hover:shadow-lg">
                   {/* Image */}
                   <Link to={`/courses/${course.id}`} className="block relative overflow-hidden">
@@ -321,10 +335,11 @@ export const CoursesList = ({ onRegisterClick }) => {
                     </div>
                   </div>
                 </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );
