@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+
 import { ThemeProvider } from './contexts/ThemeContext';
 import { ScrollToTop } from './components/ScrollToTop';
 import { RouteSEO } from './components/RouteSEO';
@@ -25,8 +26,10 @@ const PageFallback = () => (
 );
 
 function App() {
-  const base = import.meta.env.BASE_URL;
-  const basename = base && base !== '/' ? base.replace(/\/$/, '') : undefined;
+  // On GitHub Pages the path is /Web_TTGD_LeoEducation/
+  // In dev (localhost) there is no basename
+  const isGithubPages = window.location.hostname.includes('github.io');
+  const basename = isGithubPages ? '/Web_TTGD_LeoEducation' : undefined;
 
   return (
     <ThemeProvider>
@@ -51,6 +54,7 @@ function App() {
             </Route>
           </Routes>
         </Suspense>
+
       </BrowserRouter>
     </ThemeProvider>
   );
