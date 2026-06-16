@@ -10,7 +10,6 @@ import { publicApi } from '../../../services/api';
 
 const CATEGORIES = ['Tất cả', 'Tiếng Anh', 'Toán', 'Vật lý', 'Hóa học', 'Ngữ văn', 'Sinh học'];
 
-// Dữ liệu khóa học từ trang Bit Education
 const BIT_COURSES = [
   {
     id: 1,
