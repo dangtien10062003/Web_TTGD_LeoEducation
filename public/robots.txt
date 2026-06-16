@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dangtien10062003.github.io/Web_TTGD_LeoEducation/sitemap.xml

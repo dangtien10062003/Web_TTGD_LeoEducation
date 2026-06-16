@@ -8,6 +8,9 @@ import { Send, CheckCircle2, Loader2, User, Mail, Phone, MessageSquare, Baby, Sp
 import { useTranslation } from 'react-i18next';
 import { Input } from '../../../components/Input';
 import { Button } from '../../../components/Button';
+import { Toast } from '../../../components/Toast';
+import { publicApi } from '../../../services/api';
+import { trackEvent } from '../../../utils/analytics';
 
 const createSchema = (t) => z.object({
   parentName: z.string()
@@ -32,6 +35,7 @@ export const ContactForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const [toast, setToast] = useState(null);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: zodResolver(createSchema(t)),
@@ -42,22 +46,43 @@ export const ContactForm = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/contact';
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+      await publicApi.contact({
+        fullName: data.parentName,
+        email: data.email,
+        phone: data.phone,
+        message: `Tên con: ${data.childName}\n${data.message}`,
       });
-      const result = await response.json();
-      if (!response.ok || !result.success) throw new Error(result.message || 'Có lỗi xảy ra');
       setIsSuccess(true);
+      setToast({
+        type: 'success',
+        title: 'Đã gửi thông tin tư vấn',
+        message: 'LeoEducation sẽ liên hệ lại trong thời gian sớm nhất.',
+      });
+      trackEvent('lead_submit_success', {
+        form_name: 'contact_consultation',
+        course_interest: data.message,
+      });
       reset();
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (err) {
+      const nextError = err.message === 'Failed to fetch'
+        ? (t('contact.backendError') || 'Backend chưa được deploy. Vui lòng liên hệ: hotline 0866.123.170')
+        : err.message;
+
+      setToast({
+        type: 'error',
+        title: 'Chưa gửi được thông tin',
+        message: nextError,
+      });
+      trackEvent('lead_submit_error', {
+        form_name: 'contact_consultation',
+        error_message: nextError,
+      });
+
       if (err.message === 'Failed to fetch') {
-        setError(t('contact.backendError') || 'Backend chưa được deploy. Vui lòng liên hệ: hotline 0703.428.300');
+        setError(nextError);
       } else {
-        setError(err.message);
+        setError(nextError);
       }
     } finally {
       setIsLoading(false);
@@ -73,6 +98,13 @@ export const ContactForm = () => {
 
   return (
     <section id="contact-form" className="py-24 bg-white dark:bg-gray-950 relative overflow-hidden transition-colors duration-200">
+      <Toast
+        open={Boolean(toast)}
+        type={toast?.type}
+        title={toast?.title}
+        message={toast?.message}
+        onClose={() => setToast(null)}
+      />
       <div className="absolute top-0 right-0 w-96 h-96 bg-teal-200/20 dark:bg-teal-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold-200/20 dark:bg-gold-500/10 rounded-full blur-3xl" />
 

@@ -2,9 +2,11 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Users, BookOpen, Star, Loader2, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Card } from '../../../components/Card';
 import { Button } from '../../../components/Button';
+import { publicApi } from '../../../services/api';
 
 const CATEGORIES = ['Tất cả', 'Tiếng Anh', 'Toán', 'Vật lý', 'Hóa học', 'Ngữ văn', 'Sinh học'];
 
@@ -118,18 +120,68 @@ export const CoursesList = ({ onRegisterClick }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeCategory, setActiveCategory] = useState('Tất cả');
+  const [subjects, setSubjects] = useState([]);
 
   useEffect(() => {
-    // Simulate loading data from API
-    setTimeout(() => {
-      setCourses(BIT_COURSES);
-      setLoading(false);
-    }, 800);
+    let mounted = true;
+
+    Promise.allSettled([
+      publicApi.subjects(),
+      publicApi.courses({ limit: 100 }),
+    ])
+      .then(([subjectsResult, coursesResult]) => {
+        if (!mounted) return;
+
+        if (subjectsResult.status === 'fulfilled') {
+          setSubjects(subjectsResult.value.data || []);
+        }
+
+        if (coursesResult.status === 'fulfilled' && coursesResult.value.data?.length) {
+          setCourses(coursesResult.value.data);
+        } else {
+          if (coursesResult.status === 'rejected') {
+            console.error(coursesResult.reason);
+            setError(coursesResult.reason.message);
+          }
+          setCourses(BIT_COURSES);
+        }
+      })
+      .finally(() => {
+        if (mounted) setLoading(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
   }, []);
 
-  const filteredCourses = activeCategory === 'Tất cả'
+  const filterItems = subjects.length
+    ? [{ id: 'all', name: 'Tất cả' }, ...subjects]
+    : CATEGORIES.map((name) => ({ id: name, name }));
+
+  const activeSubject = subjects.find((subject) => subject.id === activeCategory);
+  const filteredCourses = activeCategory === 'Tất cả' || activeCategory === 'all'
     ? courses
-    : courses.filter(c => c.category === activeCategory);
+    : activeSubject
+      ? courses.filter(c => c.subjectId === activeSubject.id)
+      : courses.filter(c => c.category === activeCategory);
+
+  const handleFilterClick = (cat) => {
+    const nextCategory = cat.id === 'all' ? 'Tất cả' : cat.id;
+    setActiveCategory(nextCategory);
+
+    if (!subjects.length) return;
+
+    setLoading(true);
+    publicApi
+      .courses({ limit: 100, ...(cat.id !== 'all' ? { subjectId: cat.id } : {}) })
+      .then((res) => setCourses(res.data?.length ? res.data : []))
+      .catch((err) => {
+        console.error(err);
+        setError(err.message);
+      })
+      .finally(() => setLoading(false));
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -157,83 +209,99 @@ export const CoursesList = ({ onRegisterClick }) => {
   }
 
   return (
-    <section id="courses" className="py-24 bg-slate-50 dark:bg-gray-950 relative transition-colors duration-200">
+    <section id="courses" className="py-16 sm:py-20 lg:py-24 bg-slate-50 dark:bg-gray-950 relative transition-colors duration-200">
       <div className="absolute inset-0 bg-grid opacity-20 dark:opacity-10" />
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-4 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-10 lg:mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-700 text-teal-700 dark:text-teal-300 rounded-full text-sm font-semibold mb-6">
+          <span className="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-700 text-teal-700 dark:text-teal-300 rounded-full text-sm font-semibold mb-4 sm:mb-6">
             <BookOpen className="w-4 h-4" />
             {t('courses.title')}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 tracking-tight">
             <span className="text-gradient">{t('categories.title')}</span>
           </h2>
-          <p className="text-lg text-slate-600 dark:text-gray-400">{t('categories.subtitle')}</p>
+          <p className="text-base sm:text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">{t('categories.subtitle')}</p>
         </motion.div>
 
-        {/* Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-2 mb-12"
-        >
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
-                activeCategory === cat
-                  ? 'bg-teal-600 text-white shadow-lg shadow-teal-500/20'
-                  : 'bg-white dark:bg-gray-800 text-slate-600 dark:text-gray-300 hover:bg-slate-100 dark:hover:bg-gray-700 border border-slate-200 dark:border-gray-600'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Course Grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeCategory}
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+        <div className="grid lg:grid-cols-[240px_minmax(0,1fr)] gap-6 lg:gap-8 items-start">
+          {/* Subject Sidebar */}
+          <motion.aside
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="sticky top-16 z-20 -mx-4 sm:mx-0 rounded-none sm:rounded-lg border-y sm:border border-slate-200 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur p-3 shadow-sm lg:top-28"
           >
-            {filteredCourses.map((course) => (
-              <motion.div key={course.id} variants={itemVariants}>
+            <div className="flex items-center justify-between gap-3 px-1 sm:px-2 pb-3 mb-3 border-b border-slate-100 dark:border-gray-700">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-gold-600 dark:text-gold-400">Môn học</p>
+              <p className="text-xs sm:text-sm text-slate-500 dark:text-gray-400">Chọn nhanh</p>
+            </div>
+            <div className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-1 lg:pb-0 snap-x">
+              {filterItems.map((cat) => {
+                const isActive = activeCategory === cat.id || (activeCategory === 'Tất cả' && cat.id === 'all');
+
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => handleFilterClick(cat)}
+                    className={`shrink-0 snap-start whitespace-nowrap lg:whitespace-normal lg:w-full px-4 py-2.5 sm:py-3 rounded-md text-sm font-semibold text-left transition-all duration-200 border ${
+                      isActive
+                        ? 'bg-navy-700 text-white border-navy-700 shadow-md shadow-navy-700/15'
+                        : 'bg-slate-50 dark:bg-gray-800 text-slate-700 dark:text-gray-300 border-slate-200 dark:border-gray-700 hover:bg-gold-50 hover:border-gold-300 hover:text-navy-700'
+                    }`}
+                  >
+                    <span className="flex items-center justify-between gap-3">
+                      {cat.name}
+                      {isActive && <ArrowRight className="w-4 h-4 flex-shrink-0" />}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </motion.aside>
+
+          {/* Course Grid */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 min-w-0"
+            >
+              {filteredCourses.map((course) => (
+                <motion.div key={course.id} variants={itemVariants}>
                 <Card variant="gradient" className="h-full flex flex-col group bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 shadow-sm hover:shadow-lg">
                   {/* Image */}
-                  <div className="relative overflow-hidden">
+                  <Link to={`/courses/${course.id}`} className="block relative overflow-hidden">
                     <img
                       src={course.image}
                       alt={course.title}
-                      className="w-full aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full aspect-[16/11] sm:aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute top-4 left-4">
+                    <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
                       <span className="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
                         {course.category}
                       </span>
                     </div>
-                    <div className="absolute bottom-4 right-4 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
+                    <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
                       <span className="text-slate-700 dark:text-gray-300 font-semibold text-sm">{course.level}</span>
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
+                  </Link>
 
                   {/* Content */}
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold mb-2 text-slate-800 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
-                      {course.title}
-                    </h3>
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col">
+                    <Link to={`/courses/${course.id}`}>
+                      <h3 className="text-lg sm:text-xl font-bold mb-2 text-slate-800 dark:text-white group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                        {course.title}
+                      </h3>
+                    </Link>
                     <p className="text-slate-500 dark:text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">
                       {course.description}
                     </p>
@@ -241,7 +309,7 @@ export const CoursesList = ({ onRegisterClick }) => {
                     {/* Features */}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {course.features.map((f, i) => (
-                        <span key={i} className="px-2.5 py-1 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-lg text-xs font-medium border border-teal-100 dark:border-teal-700">
+                        <span key={i} className="px-2.5 py-1 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-md text-xs font-medium border border-teal-100 dark:border-teal-700">
                           {f}
                         </span>
                       ))}
@@ -267,10 +335,11 @@ export const CoursesList = ({ onRegisterClick }) => {
                     </div>
                   </div>
                 </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   );

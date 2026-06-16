@@ -4,15 +4,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Quote, Loader2, ChevronLeft, ChevronRight, MessageSquare } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Card } from '../../../components/Card';
+import { Modal } from '../../../components/Modal';
+import { publicApi } from '../../../services/api';
 
 export const Testimonials = () => {
   const { t } = useTranslation();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [active, setActive] = useState(0);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
-    setItems([
+    const fallback = [
       {
         id: 1,
         name: 'Phụ huynh Nguyễn Thị Mai',
@@ -34,9 +37,28 @@ export const Testimonials = () => {
         content: t('tutors.testimonial3'),
         rating: 5
       }
-    ]);
-    setLoading(false);
-  }, []);
+    ];
+    let mounted = true;
+
+    publicApi
+      .testimonials()
+      .then((res) => {
+        if (!mounted) return;
+        setItems(res.data?.length ? res.data : fallback);
+      })
+      .catch((err) => {
+        if (!mounted) return;
+        console.error(err);
+        setItems(fallback);
+      })
+      .finally(() => {
+        if (mounted) setLoading(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, [t]);
 
   if (loading) return (
     <section className="py-24 bg-white dark:bg-gray-950 transition-colors duration-200">
@@ -80,12 +102,14 @@ export const Testimonials = () => {
           {items.map((item, index) => (
             <motion.div
               key={item.id}
+              onClick={() => setSelectedItem(item)}
               initial={{ opacity: 0, y: 60, rotate: index === 0 ? -2 : index === 2 ? 2 : 0 }}
               whileInView={{ opacity: 1, y: 0, rotate: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2, type: 'spring', stiffness: 80 }}
               whileHover={{ y: -10, scale: 1.02 }}
               style={{ marginTop: index === 1 ? '2rem' : 0 }}
+              className="cursor-pointer"
             >
               <Card variant="glass" className="h-full" hover={false}>
                 <div className="p-6">
@@ -131,10 +155,12 @@ export const Testimonials = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
+                onClick={() => setSelectedItem(items[active])}
                 initial={{ opacity: 0, x: 60, scale: 0.95 }}
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 exit={{ opacity: 0, x: -60, scale: 0.95 }}
                 transition={{ type: 'spring', stiffness: 100 }}
+                className="cursor-pointer"
               >
                 <Card variant="glass" hover={false}>
                   <div className="p-6">
@@ -184,6 +210,34 @@ export const Testimonials = () => {
             </div>
           </div>
         </div>
+
+        <Modal
+          isOpen={Boolean(selectedItem)}
+          onClose={() => setSelectedItem(null)}
+          title={selectedItem?.name || 'Chi tiết đánh giá'}
+        >
+          {selectedItem && (
+            <div className="space-y-5">
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl">
+                  {selectedItem.name?.charAt(0)}
+                </div>
+                <div>
+                  <p className="font-semibold text-slate-800">{selectedItem.name}</p>
+                  <p className="text-sm text-slate-500">{selectedItem.role}</p>
+                </div>
+              </div>
+
+              <div className="flex gap-1">
+                {[...Array(selectedItem.rating || 5)].map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+
+              <p className="text-sm leading-relaxed text-slate-600">&ldquo;{selectedItem.content}&rdquo;</p>
+            </div>
+          )}
+        </Modal>
       </div>
     </section>
   );

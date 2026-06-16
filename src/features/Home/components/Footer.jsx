@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ArrowUpRight, PhoneCall, MessageCircle, ArrowUp } from 'lucide-react';
+import { Mail, Phone, Globe2, ArrowUpRight, PhoneCall, MessageCircle, ArrowUp } from 'lucide-react';
 import logoImage from '../../../assets/Gemini_Generated_Image_yykl3wyykl3wyykl-removebg-preview.png';
 import { useTranslation } from 'react-i18next';
 
@@ -58,9 +58,9 @@ export const Footer = () => {
             </p>
             <div className="flex gap-3">
               {[
-                { name: 'facebook', url: 'https://facebook.com' },
+                { name: 'facebook', url: 'https://www.facebook.com/leoeducation.vn?locale=vi_VN' },
                 { name: 'youtube', url: 'https://youtube.com' },
-                { name: 'zalo', url: 'https://zalo.me' }
+                { name: 'zalo', url: 'https://zalo.me/0866123170' }
               ].map((social) => (
                 <a
                   key={social.name}
@@ -117,15 +117,15 @@ export const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail className="w-5 h-5 text-teal-500 dark:text-teal-400 mt-0.5 flex-shrink-0" />
-                <span className="text-slate-500 dark:text-gray-500 text-sm">contact@leoeducation.vn</span>
+                <span className="text-slate-500 dark:text-gray-500 text-sm">leoeducation.vn@gmail.com</span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 text-teal-500 dark:text-teal-400 mt-0.5 flex-shrink-0" />
-                <span className="text-slate-500 dark:text-gray-500 text-sm">0703.428.300</span>
+                <span className="text-slate-500 dark:text-gray-500 text-sm">0866.123.170</span>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-teal-500 dark:text-teal-400 mt-0.5 flex-shrink-0" />
-                <span className="text-slate-500 dark:text-gray-500 text-sm">{t('footer.address') || 'TP. Hồ Chí Minh'}</span>
+                <Globe2 className="w-5 h-5 text-teal-500 dark:text-teal-400 mt-0.5 flex-shrink-0" />
+                <span className="text-slate-500 dark:text-gray-500 text-sm">Tư vấn online toàn quốc</span>
               </li>
             </ul>
           </div>
@@ -157,8 +157,8 @@ export const Footer = () => {
             {t('footer.copyright') || '© 2026 LeoEducation. All rights reserved.'}
           </p>
           <div className="flex gap-6 text-sm text-slate-500 dark:text-gray-600">
-            <a href="#" className="hover:text-slate-700 dark:hover:text-gray-400 transition-colors">{t('footer.privacy') || 'Chính sách bảo mật'}</a>
-            <a href="#" className="hover:text-slate-700 dark:hover:text-gray-400 transition-colors">{t('footer.terms') || 'Điều khoản'}</a>
+            <Link to="/privacy" className="hover:text-slate-700 dark:hover:text-gray-400 transition-colors">{t('footer.privacy') || 'Chính sách bảo mật'}</Link>
+            <Link to="/terms" className="hover:text-slate-700 dark:hover:text-gray-400 transition-colors">{t('footer.terms') || 'Điều khoản'}</Link>
           </div>
         </div>
       </div>
@@ -166,14 +166,14 @@ export const Footer = () => {
       {/* Fixed floating buttons */}
       <div className="fixed right-4 bottom-5 z-50 flex flex-col gap-3">
         <a
-          href="tel:0703428300"
+          href="tel:0866123170"
           className="w-11 h-11 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/30 flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
           aria-label="Gọi điện" title="Gọi điện"
         >
           <PhoneCall className="w-5 h-5" />
         </a>
         <a
-          href="https://zalo.me/0703428300"
+          href="https://zalo.me/0866123170"
           target="_blank"
           rel="noopener noreferrer"
           className="w-11 h-11 rounded-full bg-blue-500 hover:bg-blue-600 text-white shadow-lg shadow-blue-500/30 flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
@@ -182,7 +182,7 @@ export const Footer = () => {
           <span className="text-xs font-bold">ZL</span>
         </a>
         <a
-          href="#"
+          href="https://www.facebook.com/leoeducation.vn?locale=vi_VN"
           target="_blank"
           rel="noopener noreferrer"
           className="w-11 h-11 rounded-full bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-sky-500/30 flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"

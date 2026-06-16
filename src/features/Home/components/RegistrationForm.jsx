@@ -8,6 +8,9 @@ import { CheckCircle, Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Input } from '../../../components/Input';
 import { Button } from '../../../components/Button';
+import { Toast } from '../../../components/Toast';
+import { publicApi } from '../../../services/api';
+import { trackEvent } from '../../../utils/analytics';
 
 const createSchema = (t) => z.object({
   fullName: z.string()
@@ -28,6 +31,7 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState(null);
+  const [toast, setToast] = useState(null);
   
   const {
     register,
@@ -48,10 +52,6 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
     setError(null);
     
     try {
-      const API_URL = process.env.NODE_ENV === 'production'
-        ? 'https://your-backend-url.com/api/registrations'
-        : 'http://localhost:5000/api/registrations';
-
       const dataToSend = {
         fullName: data.fullName,
         email: data.email || null,
@@ -59,21 +59,18 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
         courseId: selectedCourse?.courseId || selectedCourse?.id
       };
 
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataToSend)
-      });
-
-      const result = await response.json();
-
-      if (!response.ok || !result.success) {
-        throw new Error(result.message || 'Có lỗi xảy ra, vui lòng thử lại');
-      }
+      await publicApi.registerCourse(dataToSend);
 
       setIsSuccess(true);
+      setToast({
+        type: 'success',
+        title: 'Đăng ký thành công',
+        message: 'LeoEducation đã nhận thông tin và sẽ liên hệ tư vấn.',
+      });
+      trackEvent('course_registration_success', {
+        course_id: dataToSend.courseId,
+        course_title: selectedCourse?.title,
+      });
       reset();
       
       setTimeout(() => {
@@ -82,10 +79,25 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
       }, 2000);
 
     } catch (err) {
+      const nextError = err.message === 'Failed to fetch'
+        ? 'Backend chưa được deploy. Vui lòng liên hệ: leoeducation.vn@gmail.com hoặc 0866.123.170'
+        : (err.message || 'Có lỗi xảy ra, vui lòng thử lại sau');
+
+      setToast({
+        type: 'error',
+        title: 'Đăng ký chưa thành công',
+        message: nextError,
+      });
+      trackEvent('course_registration_error', {
+        course_id: selectedCourse?.courseId || selectedCourse?.id,
+        course_title: selectedCourse?.title,
+        error_message: nextError,
+      });
+
       if (err.message === 'Failed to fetch') {
-        setError('Backend chưa được deploy. Vui lòng liên hệ: contact@eduplatform.vn hoặc 1900 xxxx');
+        setError(nextError);
       } else {
-        setError(err.message || 'Có lỗi xảy ra, vui lòng thử lại sau');
+        setError(nextError);
       }
     } finally {
       setIsLoading(false);
@@ -94,30 +106,46 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
 
   if (isSuccess) {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="text-center py-8"
-      >
+      <>
+        <Toast
+          open={Boolean(toast)}
+          type={toast?.type}
+          title={toast?.title}
+          message={toast?.message}
+          onClose={() => setToast(null)}
+        />
         <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.2, type: "spring" }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="text-center py-8"
         >
-          <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-4" />
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring" }}
+          >
+            <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-4" />
+          </motion.div>
+          <h3 className="text-2xl font-bold text-gray-800 mb-2">
+            {t('registration.success')}
+          </h3>
+          <p className="text-gray-600">
+            {t('registration.successMessage')}
+          </p>
         </motion.div>
-        <h3 className="text-2xl font-bold text-gray-800 mb-2">
-          {t('registration.success')}
-        </h3>
-        <p className="text-gray-600">
-          {t('registration.successMessage')}
-        </p>
-      </motion.div>
+      </>
     );
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <Toast
+        open={Boolean(toast)}
+        type={toast?.type}
+        title={toast?.title}
+        message={toast?.message}
+        onClose={() => setToast(null)}
+      />
       <div className="text-center mb-6">
         <h3 className="text-2xl font-bold text-gray-800 mb-2">
           {t('registration.title')}
