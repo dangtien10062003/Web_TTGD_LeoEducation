@@ -11,9 +11,10 @@ const requiredEnv = (env, key) => {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
+  const isDevelopment = mode === 'development';
 
   return {
-    base: requiredEnv(env, 'VITE_APP_BASE_PATH'),
+    base: env.VITE_APP_BASE_PATH || '/',
     plugins: [react()],
     build: {
       outDir: "dist",
@@ -24,15 +25,17 @@ export default defineConfig(({ mode }) => {
         "@": "/src",
       },
     },
-    server: {
-      base: "/",
-      port: Number(requiredEnv(env, 'VITE_DEV_SERVER_PORT')),
-      proxy: {
-        "/api": {
-          target: requiredEnv(env, 'VITE_API_PROXY_TARGET'),
-          changeOrigin: true,
+    ...(isDevelopment && {
+      server: {
+        base: "/",
+        port: Number(requiredEnv(env, 'VITE_DEV_SERVER_PORT')),
+        proxy: {
+          "/api": {
+            target: requiredEnv(env, 'VITE_API_PROXY_TARGET'),
+            changeOrigin: true,
+          },
         },
       },
-    },
+    }),
   };
 });
