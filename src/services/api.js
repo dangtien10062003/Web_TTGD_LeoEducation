@@ -1,4 +1,5 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL
+  || (import.meta.env.PROD ? 'https://be-leoeducation.onrender.com/api' : '/api');
 
 const fallbackImages = [
   'https://images.unsplash.com/photo-1543109740-4bdb38fda756?w=700',
