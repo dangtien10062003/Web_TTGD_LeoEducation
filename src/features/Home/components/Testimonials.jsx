@@ -15,41 +15,18 @@ export const Testimonials = () => {
   const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
-    const fallback = [
-      {
-        id: 1,
-        name: 'Phụ huynh Nguyễn Thị Mai',
-        role: t('tutors.parentRole'),
-        content: t('tutors.testimonial1'),
-        rating: 5
-      },
-      {
-        id: 2,
-        name: 'Học sinh Trần Văn B',
-        role: t('tutors.studentRole'),
-        content: t('tutors.testimonial2'),
-        rating: 5
-      },
-      {
-        id: 3,
-        name: 'Phụ huynh Lê Thị C',
-        role: t('tutors.parentRole'),
-        content: t('tutors.testimonial3'),
-        rating: 5
-      }
-    ];
     let mounted = true;
 
     publicApi
       .testimonials()
       .then((res) => {
         if (!mounted) return;
-        setItems(res.data?.length ? res.data : fallback);
+        setItems(res.data || []);
       })
       .catch((err) => {
         if (!mounted) return;
         console.error(err);
-        setItems(fallback);
+        setItems([]);
       })
       .finally(() => {
         if (mounted) setLoading(false);
@@ -67,6 +44,8 @@ export const Testimonials = () => {
       </div>
     </section>
   );
+
+  if (!loading && items.length === 0) return null;
 
   return (
     <section className="py-24 bg-white dark:bg-gray-950 relative overflow-hidden transition-colors duration-200">
@@ -118,7 +97,7 @@ export const Testimonials = () => {
                   </motion.div>
 
                   <div className="flex gap-1 mb-4">
-                    {[...Array(item.rating)].map((_, i) => (
+                    {[...Array(item.rating || 0)].map((_, i) => (
                       <motion.div key={i} initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.4 + i * 0.05, type: 'spring' }}>
                         <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                       </motion.div>

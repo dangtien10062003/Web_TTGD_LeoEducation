@@ -8,34 +8,8 @@ import { publicApi } from '../../../services/api';
 export const Blog = () => {
   const { t } = useTranslation();
 
-  const fallbackPosts = [
-    {
-      emoji: '📚',
-      category: t('blog.post1Category'),
-      date: '15/05/2026',
-      title: t('blog.post1Title'),
-      excerpt: t('blog.post1Excerpt'),
-      color: 'from-blue-500 to-cyan-500',
-    },
-    {
-      emoji: '🎓',
-      category: t('blog.post2Category'),
-      date: '12/05/2026',
-      title: t('blog.post2Title'),
-      excerpt: t('blog.post2Excerpt'),
-      color: 'from-purple-500 to-pink-500',
-    },
-    {
-      emoji: '📝',
-      category: t('blog.post3Category'),
-      date: '10/05/2026',
-      title: t('blog.post3Title'),
-      excerpt: t('blog.post3Excerpt'),
-      color: 'from-orange-500 to-red-500',
-    },
-  ];
-
-  const [posts, setPosts] = useState(fallbackPosts);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedPost, setSelectedPost] = useState(null);
 
   useEffect(() => {
@@ -44,14 +18,19 @@ export const Blog = () => {
     publicApi
       .blogs()
       .then((res) => {
-        if (mounted && res.data?.length) setPosts(res.data);
+        if (mounted) setPosts(res.data || []);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        if (mounted) setLoading(false);
+      });
 
     return () => {
       mounted = false;
     };
   }, []);
+
+  if (!loading && posts.length === 0) return null;
 
   return (
     <section className="py-24 bg-white dark:bg-gray-950 transition-colors duration-200">
@@ -97,7 +76,7 @@ export const Blog = () => {
                   {post.imageUrl ? (
                     <img src={post.imageUrl} alt={post.title} className="h-full w-full object-cover" />
                   ) : (
-                    post.emoji
+                    null
                   )}
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
                 </div>
@@ -143,7 +122,7 @@ export const Blog = () => {
                 {selectedPost.imageUrl ? (
                   <img src={selectedPost.imageUrl} alt={selectedPost.title} className="h-full w-full object-cover" />
                 ) : (
-                  selectedPost.emoji
+                  null
                 )}
                 <div className="absolute inset-0 bg-black/10" />
               </div>

@@ -7,308 +7,13 @@ import { Button } from '../../../components/Button';
 import { Footer } from '../components/Footer';
 import { publicApi } from '../../../services/api';
 
-
-// Course data (same as CoursesList)
-const COURSES = [
-  {
-    id: 1,
-    title: 'Gia Sư Tiếng Anh',
-    category: 'Tiếng Anh',
-    level: 'Lớp 1-12',
-    duration: 'Linh hoạt',
-    image: 'https://images.unsplash.com/photo-1543109740-4bdb38fda756?w=500',
-    description: 'Công cụ phát âm và từ vựng, nâng cao khả năng giao tiếp thực tế. Nắm vững ngữ pháp và luyện nghe - nói, thạo trong thi cử. Phương pháp Scaffolded Learning giúp học sinh tiến bộ nhanh chóng với lộ trình cá nhân hóa.',
-    features: ['Phát âm chuẩn', 'Ngữ pháp vững chắc', 'Luyện đề 9+', 'Giao tiếp thực tế'],
-    schedule: '2-3 buổi/tuần, 90 phút/buổi',
-    teacher: 'Sinh viên/ Giảng viên chuyên ngành Anh Ngữ',
-    price: 'Liên hệ để được tư vấn',
-    highlights: [
-      '100% giáo viên có chứng chỉ IELTS 7.0+',
-      'Lộ trình học tập cá nhân hóa theo Scaffolded Learning',
-      'Đánh giá kiến thức đầu vào miễn phí bài test chuẩn',
-      'Theo dõi tiến độ hàng tuần với báo cáo chi tiết',
-      'Bài tập bổ sung và hỏi đáp ngoài giờ học'
-    ],
-    curriculum: [
-      'Đánh giá trình độ đầu vào',
-      'Phát âm & ngữ âm cơ bản',
-      'Từ vựng theo chủ đề',
-      'Ngữ pháp nâng cao',
-      'Luyện nghe - nói thực hành',
-      'Luyện đề thi HK & THPTQG',
-      'Đánh giá tiến độ & điều chỉnh lộ trình'
-    ]
-  },
-  {
-    id: 2,
-    title: 'Gia Sư Toán',
-    category: 'Toán',
-    level: 'Lớp 1-12',
-    duration: 'Linh hoạt',
-    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500',
-    description: 'Nâng cao kiến thức Toán từ cơ bản đến nâng cao, phát triển tư duy logic. Luyện giải đề nhanh và hiệu quả. Phương pháp bám sát SGK kết hợp bài tập nâng cao.',
-    features: ['Tư duy logic', 'Giải đề nhanh', 'Đạt 9+', 'Bài tập bổ sung'],
-    schedule: '2-3 buổi/tuần, 90 phút/buổi',
-    teacher: 'Sinh viên/ Giảng viên chuyên ngành Toán',
-    price: 'Liên hệ để được tư vấn',
-    highlights: [
-      'Giáo viên tốt nghiệp các trường ĐH chuyên Toán hàng đầu',
-      'Phương pháp dạy trực quan, dễ hiểu, không nhàm chán',
-      'Bài tập đa dạng từ cơ bản đến nâng cao',
-      'Hỗ trợ giải đề 24/7 qua Zalo/Messenger',
-      'Cam kết đầu ra: cải thiện ít nhất 3 điểm sau 1 học kỳ'
-    ],
-    curriculum: [
-      'Đánh giá kiến thức nền tảng',
-      'Ôn tập & bổ sung kiến thức cơ bản',
-      'Bài tập nâng cao theo chương trình',
-      'Phương pháp giải nhanh & thủ thuật',
-      'Luyện đề thi định kỳ',
-      'Chấm thi thử & nhận xét',
-      'Ôn tập tổng kết & thi thử'
-    ]
-  },
-  {
-    id: 3,
-    title: 'Gia Sư Hóa Học',
-    category: 'Hóa học',
-    level: 'Lớp 8-12',
-    duration: 'Linh hoạt',
-    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=500',
-    description: 'Bổ sung kiến thức Hóa học nâng cao bám sát chương trình SGK. Áp dụng sơ đồ tư duy để hiểu rõ các khái niệm. Thực hành số lượng phong phú.',
-    features: ['Ghi nhớ tuần hoàn', 'Cân bằng phương trình', 'Bài tập khó', 'Sơ đồ tư duy'],
-    schedule: '2-3 buổi/tuần, 90 phút/buổi',
-    teacher: 'Sinh viên/ Giảng viên chuyên ngành Hóa',
-    price: 'Liên hệ để được tư vấn',
-    highlights: [
-      'Giáo viên có kinh nghiệm giảng dạy Hóa năm năm+',
-      'Phương pháp sơ đồ tư duy dễ nhớ, dễ hiểu',
-      'Hệ thống bài tập 3 cấp độ: cơ bản - nâng cao - khó',
-      'Hỗ trợ làm thí nghiệm ảo qua video minh họa',
-      'Đề thi thử bám sát cấu trúc Bộ GD&ĐT'
-    ],
-    curriculum: [
-      'Kiểm tra kiến thức đầu vào',
-      'Hóa học vô cơ & cơ bản hữu cơ',
-      'Cân bằng phương trình & bài tập tổng hợp',
-      'Hóa học hữu cơ nâng cao',
-      'Thí nghiệm & thực hành',
-      'Ôn thi HK & THPTQG',
-      'Đánh giá & định hướng'
-    ]
-  },
-  {
-    id: 4,
-    title: 'Gia Sư Vật Lý',
-    category: 'Vật lý',
-    level: 'Lớp 6-12',
-    duration: 'Linh hoạt',
-    image: 'https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=500',
-    description: 'Phát triển tư duy và ghi nhớ quy tắc, giải quyết các bài toán phức tạp. Luyện giải đề khó và quản lý thời gian hiệu quả.',
-    features: ['', '', '', ''],
-    schedule: '2-3 buổi/tuần, 90 phút/buổi',
-    teacher: 'Sinh viên/ Giảng viên chuyên ngành Vật lý',
-    price: 'Liên hệ để được tư vấn',
-    highlights: [
-      'Giáo viên tốt nghiệp các trường ĐH Khoa học Tự nhiên, Bách Khoa',
-      'Phương pháp giảng dạy trực quan với video minh họa thí nghiệm',
-      'Bộ bài tập phân loại theo độ khó & dạng bài',
-      'Chấm bài chi tiết từng bước giải',
-      'Đề thi thử hàng tháng đánh giá tiến độ'
-    ],
-    curriculum: [
-      'Đánh giá nền tảng kiến thức',
-      'Cơ học & Nhiệt học',
-      'Điện học & Từ trường',
-      'Quang học & Vật lý nguyên tử',
-      'Bài tập tổng hợp & đề thi',
-      'Thi thử & rút kinh nghiệm',
-      'Tổng kết & củng cố'
-    ]
-  },
-  {
-    id: 5,
-    title: 'Gia Sư Ngữ Văn',
-    category: 'Ngữ văn',
-    level: 'Lớp 1-12',
-    duration: 'Linh hoạt',
-    image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=500',
-    description: 'Công cụ kiến thức ngữ phác và văn học, nắm vững tác phẩm trọng điểm. Phát triển kỹ năng lập luận và phân tích văn bản.',
-    features: ['Tác phẩm trọng điểm', 'Lập luận', 'Nghị luận', 'Phân tích văn bản'],
-    schedule: '2-3 buổi/tuần, 90 phút/buổi',
-    teacher: 'Sinh viên/ Giảng viên chuyên ngành Ngữ văn',
-    price: 'Liên hệ để được tư vấn',
-    highlights: [
-      'Giáo viên có kinh nghiệm chấm thi THPTQG',
-      'Phương pháp lập dàn ý nhanh & viết đoạn văn hay',
-      'Kho tác phẩm trọng điểm đầy đủ từ lớp 1-12',
-      'Nhận xét chi tiết từng bài viết của học sinh',
-      'Luyện kỹ năng đọc hiểu & nghị luận xã hội'
-    ],
-    curriculum: [
-      'Đánh giá trình độ đọc viết',
-      'Tác phẩm trọng điểm từng lớp',
-      'Kỹ năng lập dàn ý & viết đoạn',
-      'Nghị luận văn học & xã hội',
-      'Ôn tập & luyện đề',
-      'Chấm thi thử',
-      'Tổng kết & phương pháp thi'
-    ]
-  },
-  {
-    id: 6,
-    title: 'Gia Sư Sinh Học',
-    category: 'Sinh học',
-    level: 'Lớp 6-12',
-    duration: 'Linh hoạt',
-    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=500',
-    description: 'Sinh học tế bào, di truyền học, sinh thái học, sinh học phân tử. Phương pháp giảng dạy trực quan, bài tập thực hành phong phú.',
-    features: ['Sơ đồ tư duy', 'Thí nghiệm đo', 'Ôn thi HK', 'Trực quan'],
-    schedule: '2-3 buổi/tuần, 90 phút/buổi',
-    teacher: 'Sinh viên/ Giảng viên chuyên ngành Sinh học',
-    price: 'Liên hệ để được tư vấn',
-    highlights: [
-      'Giáo viên chuyên ngành Sinh học từ các trường ĐH Y Dược, KHTN',
-      'Sơ đồ tư duy sinh động, dễ nhớ kiến thức phức tạp',
-      'Video minh họa thí nghiệm sinh học',
-      'Bài tập phân loại theo chương & độ khó',
-      'Hỗ trợ ôn thi ĐH chuyên ngành Y, Sinh'
-    ],
-    curriculum: [
-      'Đánh giá kiến thức nền',
-      'Sinh học tế bào & vi sinh vật',
-      'Di truyền học & tiến hóa',
-      'Sinh thái học & môi trường',
-      'Cơ thể con người & sức khỏe',
-      'Ôn tập & luyện đề',
-      'Đánh giá & tư vấn'
-    ]
-  },
-  {
-    id: 7,
-    title: 'Ôn Thi Đại Học/THPTQG',
-    category: 'Toán',
-    level: 'Lớp 12',
-    duration: '3-6 tháng',
-    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500',
-    description: 'Bổ sung kiến thức còn thiếu, tập trung phương pháp giải đề nhanh. Luyện giải đề nâng cao, rèn kỹ năng phân xử. Đội ngũ giáo viên giàu kinh nghiệm chấm thi.',
-    features: ['Giải đề nhanh', 'Chiến lược thi cử', '20+ đề thi', 'Phân tích đề'],
-    schedule: '3-5 buổi/tuần, 90 phút/buổi',
-    teacher: 'Giảng viên/ Cựu học sinh top ĐH',
-    price: 'Liên hệ để được tư vấn',
-    highlights: [
-      'Giáo viên là cựu thủ khoa, top đầu các trường ĐH top',
-      'Phân tích xu hướng ra đề 5 năm gần đây',
-      'Phương pháp làm bài & quản lý thời gian trong phòng thi',
-      'Đề thi thử hàng tuần với chấm chi tiết',
-      'Tư vấn chọn trường, chọn ngành phù hợp'
-    ],
-    curriculum: [
-      'Đánh giá đầu vào & xác định mục tiêu',
-      'Ôn tập toàn diện kiến thức cốt lõi',
-      'Thực hành giải đề theo dạng',
-      'Phương pháp loại trừ & thủ thuật',
-      'Thi thử định kỳ hàng tuần',
-      'Chấm chi tiết & rút kinh nghiệm',
-      'Tổng ôn & chiến lược thi'
-    ]
-  },
-  {
-    id: 8,
-    title: 'Lấy Gốc/Kèm Học Sinh Yếu',
-    category: 'Toán',
-    level: 'Lớp 1-12',
-    duration: 'Linh hoạt',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500',
-    description: 'Đánh giá tình trạng mất gốc và bổ sung kiến thức nền tảng theo SGK. Xây dựng lộ trình cá nhân hóa. Phù hợp cho HS yếu mất gốc cần bắt kịp.',
-    features: ['Đánh giá mất gốc', 'Lộ trình cá nhân', 'Từ cơ bản lên', 'Kiên nhẫn'],
-    schedule: '2-4 buổi/tuần, 90 phút/buổi',
-    teacher: 'Giáo viên chuyên kèm yếu',
-    price: 'Liên hệ để được tư vấn',
-    highlights: [
-      'Phù hợp đặc biệt với học sinh yếu kiến thức nền tảng',
-      'Bắt đầu hoàn toàn từ cơ bản, không vội vàng',
-      'Giáo viên kiên nhẫn, hiểu tâm lý học sinh',
-      'Học 1-1 tối đa, chú ý điểm yếu cụ thể',
-      'Phụ huynh được cập nhật tiến độ hàng tuần'
-    ],
-    curriculum: [
-      'Đánh giá toàn diện kiến thức nền',
-      'Xác định các điểm mất gốc',
-      'Bổ sung kiến thức từ lớp 1-3 lên',
-      'Ôn tập & củng cố theo SGK',
-      'Bài tập từ dễ đến khó',
-      'Kiểm tra định kỳ & điều chỉnh',
-      'Đánh giá kết quả & lộ trình tiếp'
-    ]
-  },
-  {
-    id: 9,
-    title: 'Luyện Thi Vào Lớp 6',
-    category: 'Toán',
-    level: 'Lớp 5',
-    duration: '3-6 tháng',
-    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500',
-    description: 'Bồi dưỡng kiến thức nâng cao, sẵn sàng cho kỳ thi vào lớp 6. Luyện đề thi thử bám sát. Chuẩn bị kiến thức cả 3 môn: Toán, Tiếng Việt, Anh văn.',
-    features: ['Toán nâng cao', 'Tiếng Việt', 'Anh văn cơ bản', 'Đề thi thử'],
-    schedule: '3-4 buổi/tuần, 90 phút/buổi',
-    teacher: 'Giáo viên chuyên ôn lớp 6',
-    price: 'Liên hệ để được tư vấn',
-    highlights: [
-      'Giáo viên có kinh nghiệm dạy lớp 5, hiểu tâm lý em nhỏ',
-      'Bồi dưỡng song song 3 môn thi: Toán, TV, Anh',
-      'Đề thi thử bám sát các trường top Hà Nội & TPHCM',
-      'Phương pháp giảng dạy nhẹ nhàng, không gây áp lực',
-      'Tư vấn chọn trường phù hợp cho con'
-    ],
-    curriculum: [
-      'Đánh giá trình độ 3 môn',
-      'Toán: Tư duy logic, giải toán nâng cao',
-      'Tiếng Việt: Đọc hiểu, làm văn',
-      'Anh văn: Phát âm & giao tiếp cơ bản',
-      'Luyện thi thử định kỳ',
-      'Chấm chi tiết & nhận xét',
-      'Tổng ôn & bí kíp thi'
-    ]
-  },
-  {
-    id: 10,
-    title: 'Luyện Thi Vào Lớp 10',
-    category: 'Toán',
-    level: 'Lớp 9',
-    duration: '6-12 tháng',
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500',
-    description: 'Bổi dưỡng kiến thức nâng cao, sẵn sàng cho kỳ thi vào lớp 10. Luyện đề thi thử bám sát. Chuẩn bị đầy đủ các môn thi.',
-    features: ['Toán - Lý - Hóa', 'Ngữ Văn', 'Tiếng Anh'],
-    schedule: '3-5 buổi/tuần, 90 phút/buổi',
-    teacher: 'Giáo viên chuyên ôn lớp 10',
-    price: 'Liên hệ để được tư vấn',
-    highlights: [
-      'Giáo viên là cựu học sinh ưu tú các trường chuyên',
-      'Lộ trình học rõ ràng theo từng giai đoạn',
-      'Đề thi thử mô phỏng 100% đề thật',
-      'Cam kết đầu ra: vào trường công lập/ chuyên mục tiêu',
-      'Hỗ trợ đăng ký tuyển sinh & tư vấn chọn trường'
-    ],
-    curriculum: [
-      'Đánh giá trình độ đầu vào',
-      'Ôn tập kiến thức lớp 9 toàn diện',
-      'Bổ sung kiến thức nâng cao lớp 9',
-      'Luyện đề các trường top hàng tuần',
-      'Thi thử & chấm chi tiết',
-      'Chênh lệch kiến thức & bổ sung',
-      'Tổng ôn & bí kíp thi'
-    ]
-  }
-];
-
+
 export const CourseDetail = () => {
   const { id } = useParams();
   const { t } = useTranslation();
   const [apiCourse, setApiCourse] = useState(null);
   const [apiChecked, setApiChecked] = useState(false);
-  const fallbackCourse = COURSES.find(c => c.id === parseInt(id));
-  const course = apiCourse || fallbackCourse;
+  const course = apiCourse;
 
   useEffect(() => {
     let mounted = true;
@@ -418,11 +123,15 @@ export const CourseDetail = () => {
               className="relative"
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <img
-                  src={course.image}
-                  alt={course.title}
-                  className="w-full aspect-[4/3] object-cover"
-                />
+                {course.image ? (
+                  <img
+                    src={course.image}
+                    alt={course.title}
+                    className="w-full aspect-[4/3] object-cover"
+                  />
+                ) : (
+                  <div className="w-full aspect-[4/3] bg-slate-100 dark:bg-gray-800" />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-900/50 to-transparent" />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 border border-slate-100 dark:border-gray-700">
@@ -458,7 +167,7 @@ export const CourseDetail = () => {
             </p>
           </motion.div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {course.highlights.map((h, i) => (
+            {(course.highlights || []).map((h, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -495,7 +204,7 @@ export const CourseDetail = () => {
                 </p>
               </motion.div>
               <div className="space-y-4">
-                {course.curriculum.map((item, i) => (
+                {(course.curriculum || []).map((item, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -20 }}

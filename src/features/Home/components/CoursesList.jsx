@@ -8,111 +8,6 @@ import { Card } from '../../../components/Card';
 import { Button } from '../../../components/Button';
 import { publicApi } from '../../../services/api';
 
-const CATEGORIES = ['Tất cả', 'Tiếng Anh', 'Toán', 'Vật lý', 'Hóa học', 'Ngữ văn', 'Sinh học'];
-
-const BIT_COURSES = [
-  {
-    id: 1,
-    title: 'Gia Sư Tiếng Anh',
-    description: 'Củng cố phát âm và từ vựng, nâng cao khả năng giao tiếp thực tế. Nắm vững ngữ pháp và luyện nghe – nói, thành thạo trong thi cử.',
-    category: 'Tiếng Anh',
-    image: 'https://images.unsplash.com/photo-1543109740-4bdb38fda756?w=500',
-    duration: 'Linh hoạt',
-    level: 'Lớp 1-12',
-    features: ['Phát âm chuẩn', 'Ngữ pháp vững chắc', 'Luyện đề 9+']
-  },
-  {
-    id: 2,
-    title: 'Gia Sư Toán',
-    description: 'Nâng cao kiến thức Toán từ cơ bản đến nâng cao, phát triển tư duy logic. Luyện giải đề nhanh và hiệu quả.',
-    category: 'Toán',
-    image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=500',
-    duration: 'Linh hoạt',
-    level: 'Lớp 1-12',
-    features: ['Tư duy logic', 'Giải đề nhanh', 'Đạt 9+']
-  },
-  {
-    id: 3,
-    title: 'Gia Sư Hóa Học',
-    description: 'Bổ sung kiến thức Hóa học nâng cao bám sát chương trình SGK. Áp dụng sơ đồ tư duy để hiểu rõ các khái niệm.',
-    category: 'Hóa học',
-    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=500',
-    duration: 'Linh hoạt',
-    level: 'Lớp 8-12',
-    features: ['Ghi nhớ tuần hoàn', 'Cân bằng phương trình', 'Bài tập khó']
-  },
-  {
-    id: 4,
-    title: 'Gia Sư Vật Lý',
-    description: 'Phát triển tư duy và ghi nhớ quy tắc, giải quyết các bài toán phức tạp. Luyện giải đề khó và quản lý thời gian.',
-    category: 'Vật lý',
-    image: 'https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=500',
-    duration: 'Linh hoạt',
-    level: 'Lớp 6-12',
-    features: ['Phương trình vật lý', 'Đề khó', 'Thí nghiệm ảo']
-  },
-  {
-    id: 5,
-    title: 'Gia Sư Ngữ Văn',
-    description: 'Củng cố kiến thức ngữ pháp và văn học, nắm vững tác phẩm trọng điểm. Phát triển kỹ năng lập luận và phân tích.',
-    category: 'Ngữ văn',
-    image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=500',
-    duration: 'Linh hoạt',
-    level: 'Lớp 1-12',
-    features: ['Tác phẩm trọng điểm', 'Lập dàn ù', 'Nghị luận']
-  },
-  {
-    id: 6,
-    title: 'Gia Sư Sinh Học',
-    description: 'Sinh học tế bào, di truyền học, sinh thái học, sinh học phân tử. Phương pháp giảng dạy trực quan, bài tập thực hành phong phú.',
-    category: 'Sinh học',
-    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=500',
-    duration: 'Linh hoạt',
-    level: 'Lớp 6-12',
-    features: ['Sơ đồ tư duy', 'Thí nghiệm ảo', 'Ôn thi HK']
-  },
-  {
-    id: 7,
-    title: 'Ôn Thi Đại Học/THPTQG',
-    description: 'Bổ sung kiến thức còn thiếu, tập trung phương pháp giải đề nhanh. Luyện giải đề nâng cao, rèn kỹ năng phản xạ.',
-    category: 'Toán',
-    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=500',
-    duration: '3-6 tháng',
-    level: 'Lớp 12',
-    features: ['Giải đề nhanh', 'Chiến lược thi cử', '20+ đề thử']
-  },
-  {
-    id: 8,
-    title: 'Lấy Gốc/Kèm Học Sinh Yếu',
-    description: 'Đánh giá tình trạng mất gốc và bổ sung kiến thức nền tảng theo SGK. Xây dựng lộ trình cá nhân hóa.',
-    category: 'Toán',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500',
-    duration: 'Linh hoạt',
-    level: 'Lớp 1-12',
-    features: ['Đánh giá mất gốc', 'Lộ trình cá nhân', 'Từ cơ bản lên']
-  },
-  {
-    id: 9,
-    title: 'Luyện Thi Vào Lớp 6',
-    description: 'Bồi dưỡng kiến thức nâng cao, sẵn sàng cho kỳ thi vào lớp 6. Luyện đề thi thử bám sát.',
-    category: 'Toán',
-    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500',
-    duration: '3-6 tháng',
-    level: 'Lớp 5',
-    features: ['Toán nâng cao', 'Tiếng Việt', 'Anh văn cơ bản']
-  },
-  {
-    id: 10,
-    title: 'Luyện Thi Vào Lớp 10',
-    description: 'Bồi dưỡng kiến thức nâng cao, sẵn sàng cho kỳ thi vào lớp 10. Luyện đề thi thử bám sát.',
-    category: 'Toán',
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=500',
-    duration: '6-12 tháng',
-    level: 'Lớp 9',
-    features: ['Toán - Lý - Hóa', 'Ngữ Văn', 'Tiếng Anh']
-  }
-];
-
 export const CoursesList = ({ onRegisterClick }) => {
   const { t } = useTranslation();
   const [courses, setCourses] = useState([]);
@@ -142,7 +37,7 @@ export const CoursesList = ({ onRegisterClick }) => {
             console.error(coursesResult.reason);
             setError(coursesResult.reason.message);
           }
-          setCourses(BIT_COURSES);
+          setCourses([]);
         }
       })
       .finally(() => {
@@ -154,9 +49,7 @@ export const CoursesList = ({ onRegisterClick }) => {
     };
   }, []);
 
-  const filterItems = subjects.length
-    ? [{ id: 'all', name: 'Tất cả' }, ...subjects]
-    : CATEGORIES.map((name) => ({ id: name, name }));
+  const filterItems = [{ id: 'all', name: 'T?t c?' }, ...subjects];
 
   const activeSubject = subjects.find((subject) => subject.id === activeCategory);
   const filteredCourses = activeCategory === 'Tất cả' || activeCategory === 'all'
@@ -273,16 +166,25 @@ export const CoursesList = ({ onRegisterClick }) => {
               animate="visible"
               className="grid sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 lg:gap-8 min-w-0"
             >
+              {filteredCourses.length === 0 && (
+                <div className="sm:col-span-2 xl:col-span-3 rounded-lg border border-dashed border-slate-300 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 p-8 text-center text-slate-500 dark:text-gray-400">
+                  Ch?a c? kh?a h?c trong c? s? d? li?u.
+                </div>
+              )}
               {filteredCourses.map((course) => (
                 <motion.div key={course.id} variants={itemVariants}>
                 <Card variant="gradient" className="h-full flex flex-col group bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 shadow-sm hover:shadow-lg">
                   {/* Image */}
                   <Link to={`/courses/${course.id}`} className="block relative overflow-hidden">
-                    <img
-                      src={course.image}
-                      alt={course.title}
-                      className="w-full aspect-[16/11] sm:aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                    {course.image ? (
+                      <img
+                        src={course.image}
+                        alt={course.title}
+                        className="w-full aspect-[16/11] sm:aspect-[16/10] object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="w-full aspect-[16/11] sm:aspect-[16/10] bg-slate-100 dark:bg-gray-800" />
+                    )}
                     <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
                       <span className="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
                         {course.category}
@@ -307,7 +209,7 @@ export const CoursesList = ({ onRegisterClick }) => {
 
                     {/* Features */}
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {course.features.map((f, i) => (
+                      {(course.features || []).map((f, i) => (
                         <span key={i} className="px-2.5 py-1 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-md text-xs font-medium border border-teal-100 dark:border-teal-700">
                           {f}
                         </span>

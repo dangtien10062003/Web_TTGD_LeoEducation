@@ -9,18 +9,8 @@ import { publicApi } from '../../../services/api';
 export const Teachers = () => {
   const { t } = useTranslation();
 
-  const fallbackTeachers = [
-    { name: 'Cô Đinh Xuân Minh', subject: t('teachers.teacher1Subject'), experience: t('teachers.teacher1Exp'), school: t('teachers.teacher1School'), color: 'from-pink-500 to-rose-500', emoji: '👩‍🏫' },
-    { name: 'Thầy Nguyễn Xuân Hòa', subject: t('teachers.teacher2Subject'), experience: t('teachers.teacher2Exp'), school: t('teachers.teacher2School'), color: 'from-blue-500 to-indigo-500', emoji: '👨‍🔬' },
-    { name: 'Thầy Phạm Việt Dũng', subject: t('teachers.teacher3Subject'), experience: t('teachers.teacher3Exp'), school: t('teachers.teacher3School'), color: 'from-purple-500 to-violet-500', emoji: '👨‍🏫' },
-    { name: 'Cô Trần Thị Thùy Linh', subject: t('teachers.teacher4Subject'), experience: t('teachers.teacher4Exp'), school: t('teachers.teacher4School'), color: 'from-green-500 to-emerald-500', emoji: '👩‍🔬' },
-    { name: 'Cô Dương Thị Phương', subject: t('teachers.teacher5Subject'), experience: t('teachers.teacher5Exp'), school: t('teachers.teacher5School'), color: 'from-orange-500 to-amber-500', emoji: '👩‍🏫' },
-    { name: 'Cô Lê Ngọc Hồng', subject: t('teachers.teacher6Subject'), experience: t('teachers.teacher6Exp'), school: t('teachers.teacher6School'), color: 'from-teal-500 to-cyan-500', emoji: '👩‍🏫' },
-    { name: 'Thầy Lê Văn Quang', subject: t('teachers.teacher7Subject'), experience: t('teachers.teacher7Exp'), school: t('teachers.teacher7School'), color: 'from-yellow-500 to-orange-500', emoji: '👨‍🏫' },
-    { name: 'Thầy Lê Anh Tùng', subject: t('teachers.teacher8Subject'), experience: t('teachers.teacher8Exp'), school: t('teachers.teacher8School'), color: 'from-red-500 to-pink-500', emoji: '👨‍🔬' },
-  ];
-
-  const [teachers, setTeachers] = useState(fallbackTeachers);
+  const [teachers, setTeachers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedTeacher, setSelectedTeacher] = useState(null);
 
   useEffect(() => {
@@ -29,14 +19,19 @@ export const Teachers = () => {
     publicApi
       .instructors()
       .then((res) => {
-        if (mounted && res.data?.length) setTeachers(res.data);
+        if (mounted) setTeachers(res.data || []);
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        if (mounted) setLoading(false);
+      });
 
     return () => {
       mounted = false;
     };
   }, []);
+
+  if (!loading && teachers.length === 0) return null;
 
   return (
     <section className="py-24 bg-white dark:bg-gray-950 relative overflow-hidden transition-colors duration-200">
@@ -166,7 +161,7 @@ export const Teachers = () => {
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-xl bg-slate-50 p-4">
                 <p className="text-xs text-slate-500 mb-1">Đánh giá</p>
-                <p className="font-semibold text-slate-800">{selectedTeacher.rating || 5}/5</p>
+                <p className="font-semibold text-slate-800">{selectedTeacher.rating ?? 'Ch?a c?'}</p>
               </div>
               <div className="rounded-xl bg-slate-50 p-4">
                 <p className="text-xs text-slate-500 mb-1">Kinh nghiệm</p>
