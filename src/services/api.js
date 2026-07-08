@@ -34,6 +34,14 @@ export async function apiRequest(path, options = {}) {
 
 const body = (data) => JSON.stringify(data);
 const asArray = (value) => (Array.isArray(value) ? value : []);
+const withPaging = (params = {}) => {
+  const { limit, page, ...rest } = params;
+  return {
+    ...rest,
+    ...(limit !== undefined ? { pageSize: limit } : {}),
+    ...(page !== undefined ? { pageIndex: page } : {}),
+  };
+};
 
 export const mapCourse = (course) => ({
   ...course,
@@ -100,7 +108,7 @@ export const publicApi = {
     ...res,
     data: (res.data || []).map(mapSubject),
   })),
-  courses: (params = {}) => apiRequest('/courses', { params }).then((res) => ({
+  courses: (params = {}) => apiRequest('/courses', { params: withPaging(params) }).then((res) => ({
     ...res,
     data: (res.data || []).map(mapCourse),
   })),

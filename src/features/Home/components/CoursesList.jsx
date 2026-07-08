@@ -49,7 +49,7 @@ export const CoursesList = ({ onRegisterClick }) => {
     };
   }, []);
 
-  const filterItems = [{ id: 'all', name: 'T?t c?' }, ...subjects];
+  const filterItems = [{ id: 'all', name: 'Tất cả' }, ...subjects];
 
   const activeSubject = subjects.find((subject) => subject.id === activeCategory);
   const filteredCourses = activeCategory === 'Tất cả' || activeCategory === 'all'
@@ -168,7 +168,7 @@ export const CoursesList = ({ onRegisterClick }) => {
             >
               {filteredCourses.length === 0 && (
                 <div className="sm:col-span-2 xl:col-span-3 rounded-lg border border-dashed border-slate-300 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 p-8 text-center text-slate-500 dark:text-gray-400">
-                  Ch?a c? kh?a h?c trong c? s? d? li?u.
+                  Chưa có khóa học trong cơ sở dữ liệu.
                 </div>
               )}
               {filteredCourses.map((course) => (

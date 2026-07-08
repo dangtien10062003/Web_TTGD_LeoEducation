@@ -161,7 +161,7 @@ export const Teachers = () => {
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-xl bg-slate-50 p-4">
                 <p className="text-xs text-slate-500 mb-1">Đánh giá</p>
-                <p className="font-semibold text-slate-800">{selectedTeacher.rating ?? 'Ch?a c?'}</p>
+                <p className="font-semibold text-slate-800">{selectedTeacher.rating ?? 'Chưa có'}</p>
               </div>
               <div className="rounded-xl bg-slate-50 p-4">
                 <p className="text-xs text-slate-500 mb-1">Kinh nghiệm</p>
