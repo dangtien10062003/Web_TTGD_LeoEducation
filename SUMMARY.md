@@ -223,8 +223,7 @@ npm install
 # Run dev server
 npm run dev
 
-# Open browser
-http://localhost:5173
+# Open browser using VITE_DEV_SERVER_PORT from .env
 ```
 
 ### **2. Production Build**

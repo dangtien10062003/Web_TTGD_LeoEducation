@@ -20,7 +20,7 @@ export const Testimonials = () => {
   const fetchTestimonials = async () => {
     setLoading(true); setError(null);
     try {
-      const API_URL = process.env.NODE_ENV === 'production' ? 'https://your-backend-url.com/api/testimonials' : 'http://localhost:5000/api/testimonials';
+      const API_URL = (import.meta.env.VITE_API_BASE_URL || '/api') + '/testimonials';
       const response = await fetch(API_URL + '/random/3');
       const result = await response.json();
       if (!response.ok || !result.success) throw new Error('Loi');
@@ -35,7 +35,7 @@ export const Testimonials = () => {
 
   const fetchStats = async () => {
     try {
-      const API_URL = process.env.NODE_ENV === 'production' ? 'https://your-backend-url.com/api/testimonials' : 'http://localhost:5000/api/testimonials';
+      const API_URL = (import.meta.env.VITE_API_BASE_URL || '/api') + '/testimonials';
       const response = await fetch(API_URL + '/stats/average');
       const result = await response.json();
       if (response.ok && result.success) setStats(result.data);
@@ -279,7 +279,7 @@ export const ContactForm = () => {
   const onSubmit = async (data) => {
     setIsLoading(true); setError(null);
     try {
-      const API_URL = process.env.NODE_ENV === 'production' ? 'https://your-backend-url.com/api/contact' : 'http://localhost:5000/api/contact';
+      const API_URL = (import.meta.env.VITE_API_BASE_URL || '/api') + '/contact';
       const response = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
       const result = await response.json();
       if (!response.ok || !result.success) throw new Error(result.message || 'Loi');
@@ -436,7 +436,7 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
   const onSubmit = async (data) => {
     setIsLoading(true); setError(null);
     try {
-      const API_URL = process.env.NODE_ENV === 'production' ? 'https://your-backend-url.com/api/registrations' : 'http://localhost:5000/api/registrations';
+      const API_URL = (import.meta.env.VITE_API_BASE_URL || '/api') + '/registrations';
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

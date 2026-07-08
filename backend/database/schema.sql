@@ -1,5 +1,5 @@
 -- Database: Web_GD
--- SQL Server Express: localhost\SQLEXPRESS
+-- SQL Server location is configured by DB_SERVER in .env.
 
 -- Contact Requests Table
 CREATE TABLE ContactRequests (

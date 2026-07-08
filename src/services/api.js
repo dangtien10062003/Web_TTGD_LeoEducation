@@ -1,4 +1,4 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
 const fallbackImages = [
   'https://images.unsplash.com/photo-1543109740-4bdb38fda756?w=700',

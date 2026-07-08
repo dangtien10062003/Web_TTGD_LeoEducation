@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const SITE_URL = 'https://dangtien10062003.github.io/Web_TTGD_LeoEducation';
+const SITE_URL = import.meta.env.VITE_SITE_URL || window.location.origin;
 const DEFAULT_IMAGE = `${SITE_URL}/assets/Gemini_Generated_Image_yykl3wyykl3wyykl-removebg-preview-Bt_MIysS.png`;
 
 const routeMeta = {
