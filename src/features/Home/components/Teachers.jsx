@@ -34,9 +34,9 @@ export const Teachers = () => {
   if (!loading && teachers.length === 0) return null;
 
   return (
-    <section className="py-24 bg-white dark:bg-gray-950 relative overflow-hidden transition-colors duration-200">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-gray-700 to-transparent" />
-      <div className="absolute top-20 left-0 w-96 h-96 bg-teal-100/40 dark:bg-teal-900/10 rounded-full blur-3xl" />
+    <section className="py-24 bg-white dark:bg-navy-950 relative overflow-hidden transition-colors duration-200">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-200 dark:via-gold-800 to-transparent" />
+      <div className="absolute top-20 left-0 w-96 h-96 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-0 w-96 h-96 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -59,7 +59,7 @@ export const Teachers = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
             <span className="text-gradient">{t('teachers.title')}</span>
           </h2>
-          <p className="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-lg text-navy-600 dark:text-gold-100/70 max-w-2xl mx-auto">
             {t('teachers.subtitle')}
           </p>
         </motion.div>
@@ -75,7 +75,7 @@ export const Teachers = () => {
               whileHover={{ y: -8 }}
               className="group"
             >
-              <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 border border-slate-100 dark:border-gray-700 hover:border-teal-200 dark:hover:border-teal-700 transition-all shadow-sm hover:shadow-xl text-center h-full flex flex-col">
+              <div className="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-gold-100 dark:border-gold-800/60 hover:border-gold-200 dark:hover:border-gold-600 transition-all shadow-sm hover:shadow-xl hover:shadow-gold-900/10 text-center h-full flex flex-col">
                 <div className="relative inline-block mb-4">
                   {teacher.avatarUrl ? (
                     <img
@@ -88,25 +88,25 @@ export const Teachers = () => {
                       {teacher.emoji}
                     </div>
                   )}
-                  <div className="absolute -bottom-1 -right-1 bg-white dark:bg-gray-800 rounded-full p-1.5 shadow-lg border border-slate-100 dark:border-gray-700">
+                  <div className="absolute -bottom-1 -right-1 bg-white dark:bg-navy-800 rounded-full p-1.5 shadow-lg border border-gold-100 dark:border-gold-800/60">
                     <Sparkles className="w-4 h-4 text-gold-500" />
                   </div>
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-1">
+                <h3 className="text-lg font-bold text-navy-900 dark:text-gold-50 mb-1">
                   {teacher.name}
                 </h3>
 
-                <span className="inline-block px-3 py-1 bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-full text-xs font-semibold mb-3 border border-teal-100 dark:border-teal-700">
+                <span className="inline-block px-3 py-1 bg-gold-50 dark:bg-gold-900/30 text-gold-700 dark:text-gold-300 rounded-full text-xs font-semibold mb-3 border border-gold-100 dark:border-gold-700">
                   {teacher.subject}
                 </span>
 
                 <div className="space-y-2 mb-4 flex-1">
-                  <div className="flex items-center justify-center gap-2 text-sm text-slate-600 dark:text-gray-400">
+                  <div className="flex items-center justify-center gap-2 text-sm text-navy-600 dark:text-gold-100/70">
                     <Star className="w-4 h-4 text-gold-500" />
                     <span>{teacher.experience}</span>
                   </div>
-                  <div className="flex items-center justify-center gap-2 text-sm text-slate-500 dark:text-gray-500">
+                  <div className="flex items-center justify-center gap-2 text-sm text-navy-500 dark:text-gold-100/60">
                     <BookOpen className="w-4 h-4" />
                     <span className="text-center line-clamp-2">{teacher.school}</span>
                   </div>
@@ -116,7 +116,7 @@ export const Teachers = () => {
                   variant="outline"
                   size="sm"
                   onClick={() => setSelectedTeacher(teacher)}
-                  className="w-full mt-auto dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+                  className="w-full mt-auto dark:border-gold-700 dark:text-gold-100 dark:hover:bg-gold-900/30"
                 >
                   {t('teachers.viewProfile')}
                 </Button>
@@ -131,7 +131,7 @@ export const Teachers = () => {
           viewport={{ once: true }}
           className="text-center mt-12"
         >
-          <p className="text-slate-500 dark:text-gray-400 text-sm">
+          <p className="text-navy-500 dark:text-gold-100/60 text-sm">
             {t('teachers.moreTeachers')}
           </p>
         </motion.div>
@@ -153,25 +153,25 @@ export const Teachers = () => {
                 </div>
               )}
               <div>
-                <p className="text-sm text-teal-600 font-semibold">{selectedTeacher.subject}</p>
-                <p className="text-sm text-slate-500">{selectedTeacher.experience}</p>
+                <p className="text-sm text-gold-600 font-semibold">{selectedTeacher.subject}</p>
+                <p className="text-sm text-navy-500 dark:text-gold-100/60">{selectedTeacher.experience}</p>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-xl bg-slate-50 p-4">
-                <p className="text-xs text-slate-500 mb-1">Đánh giá</p>
-                <p className="font-semibold text-slate-800">{selectedTeacher.rating ?? 'Chưa có'}</p>
+              <div className="rounded-xl bg-gold-50 p-4 dark:bg-navy-800">
+                <p className="text-xs text-navy-500 dark:text-gold-100/60 mb-1">Đánh giá</p>
+                <p className="font-semibold text-navy-900 dark:text-gold-50">{selectedTeacher.rating ?? 'Chưa có'}</p>
               </div>
-              <div className="rounded-xl bg-slate-50 p-4">
-                <p className="text-xs text-slate-500 mb-1">Kinh nghiệm</p>
-                <p className="font-semibold text-slate-800">{selectedTeacher.experience}</p>
+              <div className="rounded-xl bg-gold-50 p-4 dark:bg-navy-800">
+                <p className="text-xs text-navy-500 dark:text-gold-100/60 mb-1">Kinh nghiệm</p>
+                <p className="font-semibold text-navy-900 dark:text-gold-50">{selectedTeacher.experience}</p>
               </div>
             </div>
 
             <div>
-              <p className="text-sm font-semibold text-slate-800 mb-2">Thông tin giảng dạy</p>
-              <p className="text-sm leading-relaxed text-slate-600">{selectedTeacher.school || selectedTeacher.bio || 'Giáo viên LeoEducation'}</p>
+              <p className="text-sm font-semibold text-navy-900 dark:text-gold-50 mb-2">Thông tin giảng dạy</p>
+              <p className="text-sm leading-relaxed text-navy-600 dark:text-gold-100/70">{selectedTeacher.school || selectedTeacher.bio || 'Giáo viên LeoEducation'}</p>
             </div>
           </div>
         )}

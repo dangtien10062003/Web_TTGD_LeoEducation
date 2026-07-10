@@ -45,9 +45,9 @@ export const CourseDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">Không tìm thấy khóa học</h2>
+          <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">Không tìm th?y khóa h?c</h2>
           <Link to="/courses">
-            <Button variant="gradientTeal">Quay lại danh sách</Button>
+            <Button variant="gradientTeal">Quay l?i danh sách</Button>
           </Link>
         </div>
       </div>
@@ -59,16 +59,16 @@ export const CourseDetail = () => {
       {/* Back bar */}
       <div className="pt-24 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-gray-700">
         <div className="container mx-auto px-4 pb-4">
-          <Link to="/courses" className="inline-flex items-center gap-2 text-teal-600 dark:text-teal-400 hover:text-teal-700 font-medium text-sm">
+          <Link to="/courses" className="inline-flex items-center gap-2 text-gold-600 dark:text-gold-400 hover:text-gold-700 font-medium text-sm">
             <ArrowLeft className="w-4 h-4" />
-            Quay lại danh sách khóa học
+            Quay l?i danh sách khóa h?c
           </Link>
         </div>
       </div>
 
       {/* Hero */}
       <section className="relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-navy-900/90 via-navy-800/80 to-teal-900/70" />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-900/90 via-navy-800/80 to-gold-900/70" />
         <div className="relative container mx-auto px-4 py-16 md:py-24">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -76,7 +76,7 @@ export const CourseDetail = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-teal-500/20 border border-teal-400/30 text-teal-300 rounded-full text-sm font-semibold mb-6">
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-gold-500/20 border border-gold-400/30 text-gold-300 rounded-full text-sm font-semibold mb-6">
                 <BookOpen className="w-4 h-4" />
                 {course.category}
               </span>
@@ -88,15 +88,15 @@ export const CourseDetail = () => {
               </p>
               <div className="flex flex-wrap gap-4 mb-8">
                 <div className="flex items-center gap-2 text-gray-300">
-                  <Users className="w-5 h-5 text-teal-400" />
+                  <Users className="w-5 h-5 text-gold-400" />
                   <span className="text-sm">{course.level}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-300">
-                  <Clock className="w-5 h-5 text-teal-400" />
+                  <Clock className="w-5 h-5 text-gold-400" />
                   <span className="text-sm">{course.duration}</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-300">
-                  <GraduationCap className="w-5 h-5 text-teal-400" />
+                  <GraduationCap className="w-5 h-5 text-gold-400" />
                   <span className="text-sm">{course.teacher}</span>
                 </div>
               </div>
@@ -105,9 +105,9 @@ export const CourseDetail = () => {
                   <motion.button
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold shadow-lg shadow-teal-500/20 hover:shadow-teal-500/30 transition-shadow"
+                    className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-white font-semibold shadow-lg shadow-gold-500/20 hover:shadow-gold-500/30 transition-shadow"
                   >
-                    Đăng ký học thử miễn phí
+                    Đăng ký h?c th? mi?n phí
                   </motion.button>
                 </a>
                 <a href="tel:0866123170" className="px-6 py-3.5 rounded-xl border-2 border-white/20 text-white font-semibold hover:bg-white/10 transition-colors inline-flex items-center gap-2">
@@ -136,12 +136,12 @@ export const CourseDetail = () => {
               </div>
               <div className="absolute -bottom-6 -right-6 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-4 border border-slate-100 dark:border-gray-700">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center">
                     <Star className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-slate-800 dark:text-white">{course.level}</p>
-                    <p className="text-xs text-slate-500 dark:text-gray-400">Cấp độ</p>
+                    <p className="text-xs text-slate-500 dark:text-gray-400">C?p d?</p>
                   </div>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export const CourseDetail = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-              Điểm nổi bật
+              Ði?m n?i b?t
             </h2>
             <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
               Những ưu đãi và tính năng đặc biệt của khóa học
@@ -176,8 +176,8 @@ export const CourseDetail = () => {
                 transition={{ delay: i * 0.1 }}
                 className="flex items-start gap-4 p-6 bg-white dark:bg-gray-800 rounded-2xl border border-slate-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-100 to-teal-200 dark:from-teal-900/50 dark:to-teal-800/50 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-100 to-gold-200 dark:from-gold-900/50 dark:to-gold-800/50 flex items-center justify-center flex-shrink-0">
+                  <CheckCircle className="w-5 h-5 text-gold-600 dark:text-gold-400" />
                 </div>
                 <p className="text-slate-700 dark:text-gray-300 font-medium leading-relaxed">{h}</p>
               </motion.div>
@@ -197,10 +197,10 @@ export const CourseDetail = () => {
                 viewport={{ once: true }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-                  Lộ trình học tập
+                  L? trình h?c t?p
                 </h2>
                 <p className="text-slate-600 dark:text-gray-400 mb-10">
-                  Chương trình học được thiết kế theo phương pháp Scaffolded Learning, đảm bảo học sinh tiến bộ từng bước
+                  Chuong trình h?c du?c thi?t k? theo phuong pháp Scaffolded Learning, d?m b?o h?c sinh ti?n b? t?ng bu?c
                 </p>
               </motion.div>
               <div className="space-y-4">
@@ -213,7 +213,7 @@ export const CourseDetail = () => {
                     transition={{ delay: i * 0.08 }}
                     className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-gray-900 rounded-xl border border-slate-200 dark:border-gray-700"
                   >
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold-500 to-gold-600 flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-bold text-sm">{i + 1}</span>
                     </div>
                     <p className="text-slate-700 dark:text-gray-300 font-medium">{item}</p>
@@ -230,40 +230,40 @@ export const CourseDetail = () => {
                 viewport={{ once: true }}
                 className="sticky top-24 bg-gradient-to-br from-navy-800 to-navy-900 rounded-3xl p-8 text-white shadow-xl"
               >
-                <h3 className="text-xl font-bold mb-6">Thông tin khóa học</h3>
+                <h3 className="text-xl font-bold mb-6">Thông tin khóa h?c</h3>
                 <div className="space-y-5 mb-8">
                   <div className="flex items-center gap-3">
-                    <BookOpen className="w-5 h-5 text-teal-400" />
+                    <BookOpen className="w-5 h-5 text-gold-400" />
                     <div>
                       <p className="text-xs text-gray-400">Môn học</p>
                       <p className="font-semibold">{course.category}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Target className="w-5 h-5 text-teal-400" />
+                    <Target className="w-5 h-5 text-gold-400" />
                     <div>
-                      <p className="text-xs text-gray-400">Cấp độ</p>
+                      <p className="text-xs text-gray-400">C?p d?</p>
                       <p className="font-semibold">{course.level}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Clock className="w-5 h-5 text-teal-400" />
+                    <Clock className="w-5 h-5 text-gold-400" />
                     <div>
-                      <p className="text-xs text-gray-400">Thời lượng</p>
+                      <p className="text-xs text-gray-400">Th?i lu?ng</p>
                       <p className="font-semibold">{course.duration}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Users className="w-5 h-5 text-teal-400" />
+                    <Users className="w-5 h-5 text-gold-400" />
                     <div>
                       <p className="text-xs text-gray-400">Giáo viên</p>
                       <p className="font-semibold">{course.teacher}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <CheckCircle className="w-5 h-5 text-teal-400" />
+                    <CheckCircle className="w-5 h-5 text-gold-400" />
                     <div>
-                      <p className="text-xs text-gray-400">Lịch học</p>
+                      <p className="text-xs text-gray-400">L?ch h?c</p>
                       <p className="font-semibold text-sm">{course.schedule}</p>
                     </div>
                   </div>
@@ -272,13 +272,13 @@ export const CourseDetail = () => {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white font-bold text-lg shadow-lg shadow-teal-500/20 hover:shadow-teal-500/30 transition-shadow"
+                    className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-white font-bold text-lg shadow-lg shadow-gold-500/20 hover:shadow-gold-500/30 transition-shadow"
                   >
-                    🎓 Đăng ký học thử miễn phí
+                    ?? Đăng ký h?c th? mi?n phí
                   </motion.button>
                 </a>
                 <p className="text-center text-xs text-gray-400 mt-4">
-                  📞 Hotline: 0866.123.170
+                  ?? Hotline: 0866.123.170
                 </p>
               </motion.div>
             </div>
@@ -296,28 +296,28 @@ export const CourseDetail = () => {
             className="max-w-2xl mx-auto"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-              Bắt đầu học ngay hôm nay
+              B?t d?u h?c ngay hôm nay
             </h2>
             <p className="text-slate-600 dark:text-gray-400 mb-8">
-              Đăng ký học thử miễn phí để trải nghiệm phương pháp giảng dạy 1-1 chất lượng cao
+              Đăng ký h?c th? mi?n phí d? tr?i nghi?m phuong pháp gi?ng d?y 1-1 ch?t lu?ng cao
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <motion.a
                 href="tel:0866123170"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="px-8 py-4 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white font-bold shadow-lg shadow-teal-500/20 inline-flex items-center gap-2"
+                className="px-8 py-4 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-white font-bold shadow-lg shadow-gold-500/20 inline-flex items-center gap-2"
               >
                 <Phone className="w-5 h-5" />
-                Gọi ngay: 0866.123.170
+                G?i ngay: 0866.123.170
               </motion.a>
               <a
                 href="https://zalo.me/0866123170"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 rounded-xl border-2 border-teal-500 text-teal-600 dark:text-teal-400 font-bold hover:bg-teal-50 dark:hover:bg-teal-900/20 transition-colors inline-flex items-center gap-2"
+                className="px-8 py-4 rounded-xl border-2 border-gold-500 text-gold-600 dark:text-gold-400 font-bold hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors inline-flex items-center gap-2"
               >
-                💬 Chat Zalo
+                ?? Chat Zalo
               </a>
             </div>
           </motion.div>

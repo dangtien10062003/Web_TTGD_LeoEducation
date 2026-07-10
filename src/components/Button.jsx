@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 export const Button = ({
@@ -12,14 +12,14 @@ export const Button = ({
   const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none';
 
   const variants = {
-    primary: 'bg-gradient-to-r from-navy-600 to-navy-700 hover:from-navy-700 hover:to-navy-800 text-white shadow-lg hover:shadow-xl hover:shadow-navy-500/20',
-    secondary: 'bg-white hover:bg-teal-50 text-navy-700 border-2 border-navy-200 hover:border-teal-300 shadow-md hover:shadow-lg',
-    outline: 'bg-transparent border-2 border-navy-600 text-navy-700 hover:bg-navy-600 hover:text-white dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white',
-    ghost: 'bg-transparent text-navy-700 hover:bg-navy-50 hover:text-navy-800',
-    gradientTeal: 'bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg hover:shadow-xl hover:shadow-teal-500/25',
-    gradientGold: 'bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-white shadow-lg hover:shadow-xl hover:shadow-gold-500/25',
-    gradientBlue: 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl hover:shadow-blue-500/25',
-    soft: 'bg-teal-50 text-teal-700 hover:bg-teal-100 border border-teal-200',
+    primary: 'bg-gradient-to-r from-gold-200 to-gold-400 hover:from-gold-300 hover:to-gold-500 text-navy-900 shadow-lg hover:shadow-xl hover:shadow-gold-500/25 ring-1 ring-gold-300',
+    secondary: 'bg-white hover:bg-gold-50 text-navy-700 border-2 border-gold-200 hover:border-gold-300 shadow-md hover:shadow-lg',
+    outline: 'bg-transparent border-2 border-gold-500 text-navy-700 hover:bg-gold-500 hover:text-white dark:border-gold-500 dark:text-gold-100 dark:hover:bg-gold-600 dark:hover:text-white',
+    ghost: 'bg-transparent text-navy-700 hover:bg-gold-50 hover:text-navy-800',
+    gradientTeal: 'bg-gradient-to-r from-gold-200 to-gold-400 hover:from-gold-300 hover:to-gold-500 text-navy-900 shadow-lg hover:shadow-xl hover:shadow-gold-500/25 ring-1 ring-gold-300',
+    gradientGold: 'bg-gradient-to-r from-gold-200 to-gold-400 hover:from-gold-300 hover:to-gold-500 text-navy-900 shadow-lg hover:shadow-xl hover:shadow-gold-500/25 ring-1 ring-gold-300',
+    gradientBlue: 'bg-gradient-to-r from-gold-200 to-gold-400 hover:from-gold-300 hover:to-gold-500 text-navy-900 shadow-lg hover:shadow-xl hover:shadow-gold-500/25 ring-1 ring-gold-300',
+    soft: 'bg-gold-50 text-gold-700 hover:bg-gold-100 border border-gold-200',
   };
 
   const sizes = {

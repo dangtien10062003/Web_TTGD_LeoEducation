@@ -1,98 +1,80 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Check, Sparkles, Gift, BookOpen } from 'lucide-react';
+import { BookOpen, Check, Gift, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '../../../components/Button';
 import { Modal } from '../../../components/Modal';
 
 export const Pricing = () => {
   const { t } = useTranslation();
   const [selectedPromo, setSelectedPromo] = React.useState(null);
 
-  // Trial & promotion section (từ trang Bit)
   const promotions = [
     {
       icon: BookOpen,
       title: t('pricing.trialTitle'),
       desc: t('pricing.trialDesc'),
-      color: 'from-teal-500 to-teal-600'
     },
     {
       icon: Gift,
       title: t('pricing.giftTitle'),
       desc: t('pricing.giftDesc'),
-      color: 'from-purple-500 to-purple-600'
     },
     {
       icon: Sparkles,
       title: t('pricing.discountTitle'),
       desc: t('pricing.discountDesc'),
-      color: 'from-gold-500 to-gold-600'
     },
     {
       icon: Check,
       title: t('pricing.pathTitle'),
       desc: t('pricing.pathDesc'),
-      color: 'from-blue-500 to-blue-600'
-    }
-  ];
-
-  const faq = [
-    { q: t('pricing.faq1Q'), a: t('pricing.faq1A') },
-    { q: t('pricing.faq2Q'), a: t('pricing.faq2A') },
-    { q: t('pricing.faq3Q'), a: t('pricing.faq3A') },
-    { q: t('pricing.faq4Q'), a: t('pricing.faq4A') }
+    },
   ];
 
   return (
-    <section className="py-24 bg-gradient-to-b from-slate-50 to-white dark:from-gray-900 dark:to-gray-950 transition-colors duration-200">
-      <div className="container mx-auto px-4">
-        {/* Trial registration section */}
+    <section className="relative overflow-hidden bg-white py-24 transition-colors duration-200 dark:bg-navy-950">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-200 to-transparent dark:via-gold-800" />
+      <div className="absolute left-0 top-20 h-80 w-80 rounded-full bg-gold-100/60 blur-3xl dark:bg-gold-900/20" />
+      <div className="absolute bottom-10 right-0 h-80 w-80 rounded-full bg-gold-50 blur-3xl dark:bg-gold-900/10" />
+
+      <div className="container relative z-10 mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
-          <motion.span
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: 'spring', stiffness: 200 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-700 text-teal-700 dark:text-teal-300 rounded-full text-sm font-semibold mb-6"
-          >
-            <Gift className="w-4 h-4" />
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold-200 bg-gold-50 px-4 py-2 text-sm font-bold text-gold-700 dark:border-gold-700 dark:bg-gold-900/30 dark:text-gold-300">
+            <Gift className="h-4 w-4" />
             {t('pricing.badge')}
-          </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          </span>
+          <h2 className="text-4xl font-black tracking-tight md:text-5xl">
             <span className="text-gradient">{t('pricing.title')}</span>
           </h2>
-          <p className="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-navy-600 dark:text-gold-100/70">
             {t('pricing.subtitle')}
           </p>
         </motion.div>
 
-        {/* 4 Promotion Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="mb-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {promotions.map((promo, index) => (
-            <motion.div
-              key={index}
+            <motion.button
+              key={promo.title}
+              type="button"
               onClick={() => setSelectedPromo(promo)}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -8 }}
-              className="cursor-pointer"
+              className="group h-full rounded-2xl border border-gold-100 bg-white p-6 text-center shadow-lg shadow-gold-900/5 transition hover:border-gold-300 hover:shadow-xl hover:shadow-gold-900/10 dark:border-gold-800/60 dark:bg-navy-900"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-slate-200 dark:border-gray-700 hover:border-transparent transition-all shadow-sm hover:shadow-xl text-center h-full">
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${promo.color} flex items-center justify-center mx-auto mb-4 shadow-lg`}>
-                  <promo.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-lg font-bold text-slate-800 dark:text-white mb-2">{promo.title}</h3>
-                <p className="text-sm text-slate-600 dark:text-gray-400">{promo.desc}</p>
+              <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-gold-200 to-gold-400 text-navy-900 shadow-lg ring-1 ring-gold-300 transition group-hover:scale-105">
+                <promo.icon className="h-8 w-8" />
               </div>
-            </motion.div>
+              <h3 className="text-lg font-black text-navy-900 dark:text-gold-50">{promo.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-navy-600 dark:text-gold-100/65">{promo.desc}</p>
+            </motion.button>
           ))}
         </div>
 
@@ -103,63 +85,35 @@ export const Pricing = () => {
         >
           {selectedPromo && (
             <div className="space-y-5">
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${selectedPromo.color} flex items-center justify-center shadow-lg`}>
-                <selectedPromo.icon className="w-8 h-8 text-white" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-gold-200 to-gold-400 text-navy-900 shadow-lg">
+                <selectedPromo.icon className="h-8 w-8" />
               </div>
-              <p className="text-sm leading-relaxed text-slate-600">{selectedPromo.desc}</p>
-              <div className="rounded-2xl bg-teal-50 border border-teal-100 p-4">
-                <p className="text-sm font-semibold text-teal-800 mb-1">Gợi ý tiếp theo</p>
-                <p className="text-sm text-teal-700">Đăng ký tư vấn để LeoEducation kiểm tra trình độ và đề xuất lộ trình phù hợp.</p>
+              <p className="text-sm leading-relaxed text-navy-600 dark:text-gold-100/70">{selectedPromo.desc}</p>
+              <div className="rounded-2xl border border-gold-100 bg-gold-50 p-4 dark:border-gold-800/60 dark:bg-gold-900/25">
+                <p className="mb-1 text-sm font-semibold text-gold-800 dark:text-gold-200">Gợi ý tiếp theo</p>
+                <p className="text-sm text-gold-700 dark:text-gold-100/75">Đăng ký tư vấn để LeoEducation kiểm tra trình độ và đề xuất lộ trình phù hợp.</p>
               </div>
             </div>
           )}
         </Modal>
 
-        {/* Registration form CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-2xl mx-auto mb-16"
+          className="mx-auto max-w-3xl"
         >
-          <div className="bg-gradient-to-br from-teal-500 to-navy-600 rounded-3xl p-8 md:p-10 text-center text-white shadow-2xl shadow-teal-500/20">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">{t('pricing.registerTitle')}</h3>
-            <p className="text-teal-100 mb-8 text-lg">{t('pricing.registerDesc')}</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="#contact-form" className="inline-flex items-center justify-center px-8 py-4 bg-white text-teal-600 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
+          <div className="rounded-[28px] border border-gold-200 bg-gold-50 p-8 text-center shadow-2xl shadow-gold-900/10 md:p-10 dark:border-gold-800/70 dark:bg-navy-900">
+            <h3 className="text-2xl font-black text-navy-900 md:text-3xl dark:text-gold-50">{t('pricing.registerTitle')}</h3>
+            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-navy-600 dark:text-gold-100/75">{t('pricing.registerDesc')}</p>
+            <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
+              <a href="#contact-form" className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-gold-200 to-gold-400 px-8 py-4 text-base font-black text-navy-900 shadow-lg shadow-gold-700/10 ring-1 ring-gold-300 transition hover:-translate-y-1 hover:from-gold-300 hover:to-gold-500">
                 {t('pricing.registerCta')}
               </a>
-              <a href="tel:0866123170" className="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white rounded-2xl font-bold text-lg hover:bg-white/10 transition-all">
+              <a href="tel:0866123170" className="inline-flex items-center justify-center rounded-full border border-gold-300 bg-white px-8 py-4 text-base font-black text-gold-700 shadow-sm transition hover:-translate-y-1 hover:bg-gold-50 dark:border-gold-800 dark:bg-navy-950 dark:text-gold-200">
                 {t('pricing.callNow')}
               </a>
             </div>
-          </div>
-        </motion.div>
-
-        {/* FAQ */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
-        >
-          <h3 className="text-2xl font-bold text-navy-700 dark:text-white mb-8 text-center">{t('pricing.faqTitle')}</h3>
-          <div className="space-y-4">
-            {faq.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 rounded-2xl p-6 border border-slate-200 dark:border-gray-700 shadow-sm"
-              >
-                <h4 className="font-semibold text-slate-800 dark:text-white mb-2 flex items-start gap-2">
-                  <span className="text-teal-500 font-bold">Q:</span> {item.q}
-                </h4>
-                <p className="text-slate-600 dark:text-gray-400 pl-6">{item.a}</p>
-              </motion.div>
-            ))}
           </div>
         </motion.div>
       </div>

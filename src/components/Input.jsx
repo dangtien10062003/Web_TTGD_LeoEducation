@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { forwardRef } from 'react';
 
 export const Input = forwardRef(({
@@ -28,7 +28,7 @@ export const Input = forwardRef(({
             ${Icon ? 'pl-11' : ''}
             ${error
               ? 'border-coral-300 focus:border-coral-500 focus:ring-4 focus:ring-coral-500/10 bg-coral-50/30'
-              : 'border-slate-200 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10 bg-white hover:border-slate-300'
+              : 'border-slate-200 focus:border-gold-500 focus:ring-4 focus:ring-gold-500/10 bg-white hover:border-slate-300'
             }
             ${className}`}
           {...props}

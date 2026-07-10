@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Target, Users, TrendingUp, CheckCircle2, Sparkles, ClipboardCheck } from 'lucide-react';
@@ -8,9 +8,9 @@ export const About = () => {
   const { t } = useTranslation();
 
   const features = [
-    { icon: Target, title: t('about.feature1Title'), desc: t('about.feature1Desc'), color: 'from-teal-400 to-teal-500' },
-    { icon: Users, title: t('about.feature2Title'), desc: t('about.feature2Desc'), color: 'from-blue-400 to-blue-500' },
-    { icon: TrendingUp, title: t('about.feature3Title'), desc: t('about.feature3Desc'), color: 'from-purple-400 to-purple-500' },
+    { icon: Target, title: t('about.feature1Title'), desc: t('about.feature1Desc'), color: 'from-gold-400 to-gold-500' },
+    { icon: Users, title: t('about.feature2Title'), desc: t('about.feature2Desc'), color: 'from-gold-400 to-gold-500' },
+    { icon: TrendingUp, title: t('about.feature3Title'), desc: t('about.feature3Desc'), color: 'from-gold-400 to-gold-500' },
     { icon: ClipboardCheck, title: t('about.feature4Title'), desc: t('about.feature4Desc'), color: 'from-gold-400 to-gold-500' }
   ];
 
@@ -32,7 +32,7 @@ export const About = () => {
   return (
     <section id="about" className="py-24 bg-slate-50 dark:bg-gray-900 relative overflow-hidden transition-colors duration-200">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-gray-700 to-transparent" />
-      <div className="absolute top-20 right-0 w-96 h-96 bg-teal-100/40 dark:bg-teal-900/10 rounded-full blur-3xl" />
+      <div className="absolute top-20 right-0 w-96 h-96 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-0 w-96 h-96 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -48,7 +48,7 @@ export const About = () => {
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 200 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-700 text-teal-700 dark:text-teal-300 rounded-full text-sm font-semibold mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gold-50 dark:bg-gold-900/30 border border-gold-200 dark:border-gold-700 text-gold-700 dark:text-gold-300 rounded-full text-sm font-semibold mb-6"
           >
             <Sparkles className="w-4 h-4" />
             {t('about.badge')}
@@ -73,7 +73,7 @@ export const About = () => {
               whileHover={{ y: -8, scale: 1.02 }}
               className="group relative"
             >
-              <div className="bg-white dark:bg-gray-950 rounded-2xl p-6 border border-slate-200 dark:border-gray-700 hover:border-teal-200 dark:hover:border-teal-700 transition-all shadow-sm hover:shadow-xl h-full">
+              <div className="bg-white dark:bg-gray-950 rounded-2xl p-6 border border-slate-200 dark:border-gray-700 hover:border-gold-200 dark:hover:border-gold-700 transition-all shadow-sm hover:shadow-xl h-full">
                 <motion.div
                   whileHover={{ rotate: 360, scale: 1.1 }}
                   transition={{ duration: 0.6 }}
@@ -103,10 +103,10 @@ export const About = () => {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-400 to-gold-400 dark:from-teal-600 dark:to-gold-600 rounded-3xl blur-2xl opacity-20 dark:opacity-30" />
+              <div className="absolute inset-0 bg-gradient-to-br from-gold-400 to-gold-400 dark:from-gold-600 dark:to-gold-600 rounded-3xl blur-2xl opacity-20 dark:opacity-30" />
               <img
                 src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600"
-                alt="Học tập cùng LeoEducation"
+                alt="H?c t?p c�ng LeoEducation"
                 className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-white dark:border-gray-700"
               />
             </motion.div>
@@ -124,8 +124,8 @@ export const About = () => {
                   transition={{ delay: index * 0.1 }}
                   className="flex items-start gap-3 group"
                 >
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-100 dark:bg-teal-900/50 flex items-center justify-center mt-0.5 group-hover:scale-110 transition-transform">
-                    <CheckCircle2 className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gold-100 dark:bg-gold-900/50 flex items-center justify-center mt-0.5 group-hover:scale-110 transition-transform">
+                    <CheckCircle2 className="w-4 h-4 text-gold-600 dark:text-gold-400" />
                   </div>
                   <p className="text-slate-700 dark:text-gray-300 leading-relaxed">{benefit}</p>
                 </motion.div>
@@ -147,7 +147,7 @@ export const About = () => {
           <div className="bg-white dark:bg-gray-950 rounded-2xl border border-slate-200 dark:border-gray-700 overflow-hidden shadow-lg">
             <div className="grid grid-cols-3 bg-slate-100 dark:bg-gray-800">
               <div className="p-4 font-semibold text-slate-700 dark:text-gray-300 text-sm">{t('about.compareFeature')}</div>
-              <div className="p-4 font-semibold text-teal-700 dark:text-teal-400 text-sm text-center">{t('about.compareLeo')}</div>
+              <div className="p-4 font-semibold text-gold-700 dark:text-gold-400 text-sm text-center">{t('about.compareLeo')}</div>
               <div className="p-4 font-semibold text-slate-500 dark:text-gray-500 text-sm text-center">{t('about.compareTraditional')}</div>
             </div>
             {comparison.map((row, i) => (
@@ -155,16 +155,16 @@ export const About = () => {
                 <div className="p-4 text-sm text-slate-700 dark:text-gray-300">{row.label}</div>
                 <div className="p-4 text-center">
                   {row.bit ? (
-                    <CheckCircle2 className="w-5 h-5 text-teal-500 mx-auto" />
+                    <CheckCircle2 className="w-5 h-5 text-gold-500 mx-auto" />
                   ) : (
-                    <span className="text-red-400">✕</span>
+                    <span className="text-red-400">?</span>
                   )}
                 </div>
                 <div className="p-4 text-center">
                   {row.traditional ? (
-                    <CheckCircle2 className="w-5 h-5 text-teal-500 mx-auto" />
+                    <CheckCircle2 className="w-5 h-5 text-gold-500 mx-auto" />
                   ) : (
-                    <span className="text-red-400">✕</span>
+                    <span className="text-red-400">?</span>
                   )}
                 </div>
               </div>

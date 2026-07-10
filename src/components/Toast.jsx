@@ -15,11 +15,11 @@ export const Toast = ({ open, type = 'success', title, message, onClose }) => {
   return (
     <div className="fixed right-4 top-24 z-[80] w-[calc(100vw-2rem)] max-w-sm">
       <div className={`rounded-lg border bg-white p-4 shadow-xl shadow-slate-900/15 dark:bg-gray-900 ${
-        isSuccess ? 'border-emerald-200 dark:border-emerald-700' : 'border-red-200 dark:border-red-700'
+        isSuccess ? 'border-gold-200 dark:border-gold-700' : 'border-red-200 dark:border-red-700'
       }`}>
         <div className="flex items-start gap-3">
           {isSuccess ? (
-            <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+            <CheckCircle2 className="mt-0.5 h-5 w-5 flex-shrink-0 text-gold-600" />
           ) : (
             <XCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-600" />
           )}

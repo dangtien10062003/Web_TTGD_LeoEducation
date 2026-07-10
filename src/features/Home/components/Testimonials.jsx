@@ -38,9 +38,9 @@ export const Testimonials = () => {
   }, [t]);
 
   if (loading) return (
-    <section className="py-24 bg-white dark:bg-gray-950 transition-colors duration-200">
+    <section className="py-24 bg-white dark:bg-navy-950 transition-colors duration-200">
       <div className="container mx-auto px-4 flex items-center justify-center min-h-[400px]">
-        <Loader2 className="w-12 h-12 animate-spin text-teal-600 dark:text-teal-400" />
+        <Loader2 className="w-12 h-12 animate-spin text-gold-600 dark:text-gold-400" />
       </div>
     </section>
   );
@@ -48,10 +48,10 @@ export const Testimonials = () => {
   if (!loading && items.length === 0) return null;
 
   return (
-    <section className="py-24 bg-white dark:bg-gray-950 relative overflow-hidden transition-colors duration-200">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-gray-700 to-transparent" />
+    <section className="py-24 bg-white dark:bg-navy-950 relative overflow-hidden transition-colors duration-200">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-200 dark:via-gold-800 to-transparent" />
       <div className="absolute top-40 right-0 w-80 h-80 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-0 w-80 h-80 bg-teal-100/40 dark:bg-teal-900/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-20 left-0 w-80 h-80 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -73,7 +73,7 @@ export const Testimonials = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
             <span className="text-gradient">{t('tutors.title')}</span>
           </h2>
-          <p className="text-lg text-slate-600 dark:text-gray-400">{t('tutors.subtitle')}</p>
+          <p className="text-lg text-navy-600 dark:text-gold-100/70">{t('tutors.subtitle')}</p>
         </motion.div>
 
         {/* Desktop: 3 columns */}
@@ -93,7 +93,7 @@ export const Testimonials = () => {
               <Card variant="glass" className="h-full" hover={false}>
                 <div className="p-6">
                   <motion.div initial={{ rotate: -20, scale: 0 }} whileInView={{ rotate: 0, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.3, type: 'spring' }}>
-                    <Quote className="w-10 h-10 text-teal-200 dark:text-teal-700 mb-4" />
+                    <Quote className="w-10 h-10 text-gold-200 dark:text-gold-700 mb-4" />
                   </motion.div>
 
                   <div className="flex gap-1 mb-4">
@@ -104,22 +104,22 @@ export const Testimonials = () => {
                     ))}
                   </div>
 
-                  <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.5 }} className="text-slate-600 dark:text-gray-300 mb-6 leading-relaxed text-[15px]">
+                  <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.5 }} className="text-navy-600 dark:text-gold-100/70 mb-6 leading-relaxed text-[15px]">
                     &ldquo;{item.content}&rdquo;
                   </motion.p>
 
-                  <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.6 }} className="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-gray-700">
+                  <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.6 }} className="flex items-center gap-4 pt-4 border-t border-gold-100 dark:border-gold-800/60">
                     <div className="relative">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center text-white font-bold text-lg">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-500 flex items-center justify-center text-white font-bold text-lg">
                         {item.name.charAt(0)}
                       </div>
-                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-teal-500 dark:bg-teal-600 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-900">
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gold-500 dark:bg-gold-600 rounded-full flex items-center justify-center border-2 border-white dark:border-navy-900">
                         <Star className="w-3 h-3 text-white fill-white" />
                       </div>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-slate-800 dark:text-white">{item.name}</h4>
-                      <p className="text-sm text-slate-500 dark:text-gray-400">{item.role}</p>
+                      <h4 className="font-semibold text-navy-900 dark:text-gold-50">{item.name}</h4>
+                      <p className="text-sm text-navy-500 dark:text-gold-100/60">{item.role}</p>
                     </div>
                   </motion.div>
                 </div>
@@ -143,20 +143,20 @@ export const Testimonials = () => {
               >
                 <Card variant="glass" hover={false}>
                   <div className="p-6">
-                    <Quote className="w-8 h-8 text-teal-200 dark:text-teal-700 mb-4" />
+                    <Quote className="w-8 h-8 text-gold-200 dark:text-gold-700 mb-4" />
                     <div className="flex gap-1 mb-4">
                       {[...Array(items[active]?.rating || 5)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                       ))}
                     </div>
-                    <p className="text-slate-600 dark:text-gray-300 mb-6">&ldquo;{items[active]?.content}&rdquo;</p>
-                    <div className="flex items-center gap-4 pt-4 border-t border-slate-100 dark:border-gray-700">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center text-white font-bold text-lg">
+                    <p className="text-navy-600 dark:text-gold-100/70 mb-6">&ldquo;{items[active]?.content}&rdquo;</p>
+                    <div className="flex items-center gap-4 pt-4 border-t border-gold-100 dark:border-gold-800/60">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-500 flex items-center justify-center text-white font-bold text-lg">
                         {items[active]?.name?.charAt(0)}
                       </div>
                       <div>
-                        <h4 className="font-semibold text-slate-800 dark:text-white">{items[active]?.name}</h4>
-                        <p className="text-sm text-slate-500 dark:text-gray-400">{items[active]?.role}</p>
+                        <h4 className="font-semibold text-navy-900 dark:text-gold-50">{items[active]?.name}</h4>
+                        <p className="text-sm text-navy-500 dark:text-gold-100/60">{items[active]?.role}</p>
                       </div>
                     </div>
                   </div>
@@ -167,24 +167,24 @@ export const Testimonials = () => {
             <div className="flex items-center justify-center gap-4 mt-6">
               <button
                 onClick={() => setActive(p => p === 0 ? items.length - 1 : p - 1)}
-                className="p-2 rounded-full bg-slate-50 dark:bg-gray-700 border border-slate-200 dark:border-gray-600 hover:bg-teal-50 dark:hover:bg-teal-900/30 transition-colors"
+                className="p-2 rounded-full bg-gold-50 dark:bg-navy-800 border border-gold-100 dark:border-gold-800/60 hover:bg-gold-100 dark:hover:bg-gold-900/30 transition-colors"
               >
-                <ChevronLeft className="w-5 h-5 text-slate-600 dark:text-gray-300" />
+                <ChevronLeft className="w-5 h-5 text-navy-600 dark:text-gold-100/70" />
               </button>
               <div className="flex gap-2">
                 {items.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setActive(i)}
-                    className={`w-2 h-2 rounded-full transition-all ${i === active ? 'bg-teal-500 dark:bg-teal-400 w-6' : 'bg-slate-300 dark:bg-gray-600'}`}
+                    className={`w-2 h-2 rounded-full transition-all ${i === active ? 'bg-gold-500 dark:bg-gold-400 w-6' : 'bg-gold-200 dark:bg-gold-900'}`}
                   />
                 ))}
               </div>
               <button
                 onClick={() => setActive(p => p === items.length - 1 ? 0 : p + 1)}
-                className="p-2 rounded-full bg-slate-50 dark:bg-gray-700 border border-slate-200 dark:border-gray-600 hover:bg-teal-50 dark:hover:bg-teal-900/30 transition-colors"
+                className="p-2 rounded-full bg-gold-50 dark:bg-navy-800 border border-gold-100 dark:border-gold-800/60 hover:bg-gold-100 dark:hover:bg-gold-900/30 transition-colors"
               >
-                <ChevronRight className="w-5 h-5 text-slate-600 dark:text-gray-300" />
+                <ChevronRight className="w-5 h-5 text-navy-600 dark:text-gold-100/70" />
               </button>
             </div>
           </div>
@@ -198,7 +198,7 @@ export const Testimonials = () => {
           {selectedItem && (
             <div className="space-y-5">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold-400 to-gold-500 flex items-center justify-center text-white font-bold text-xl">
                   {selectedItem.name?.charAt(0)}
                 </div>
                 <div>

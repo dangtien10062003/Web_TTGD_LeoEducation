@@ -80,12 +80,12 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
 
     } catch (err) {
       const nextError = err.message === 'Failed to fetch'
-        ? 'Backend chưa được deploy. Vui lòng liên hệ: leoeducation.vn@gmail.com hoặc 0866.123.170'
-        : (err.message || 'Có lỗi xảy ra, vui lòng thử lại sau');
+        ? 'Backend chua du?c deploy. Vui lòng liên h?: leoeducation.vn@gmail.com ho?c 0866.123.170'
+        : (err.message || 'Có l?i x?y ra, vui lòng th? l?i sau');
 
       setToast({
         type: 'error',
-        title: 'Đăng ký chưa thành công',
+        title: 'Đăng ký chua thành công',
         message: nextError,
       });
       trackEvent('course_registration_error', {
@@ -124,7 +124,7 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
           >
-            <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-4" />
+            <CheckCircle className="w-20 h-20 text-gold-500 mx-auto mb-4" />
           </motion.div>
           <h3 className="text-2xl font-bold text-gray-800 mb-2">
             {t('registration.success')}
@@ -155,7 +155,7 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
 
       {/* Hiển thị khóa học đã chọn */}
       {selectedCourse && (
-        <div className="bg-gradient-to-r from-gold-50 to-purple-50 rounded-xl p-4 border-2 border-gold-200">
+        <div className="bg-gradient-to-r from-gold-50 to-gold-50 rounded-xl p-4 border-2 border-gold-200">
           <label className="block text-sm font-medium text-gray-700 mb-2">
             {t('registration.course')}
           </label>
@@ -177,7 +177,7 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
 
       <Input
         label={t('registration.fullName')}
-        placeholder="Nguyễn Văn A"
+        placeholder="Nguy?n Van A"
         {...register('fullName')}
         error={errors.fullName?.message}
       />
@@ -185,7 +185,7 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
       <Input
         label={t('registration.email')}
         type="email"
-        placeholder="example@email.com (không bắt buộc)"
+        placeholder="example@email.com (không b?t bu?c)"
         {...register('email')}
         error={errors.email?.message}
       />

@@ -1,8 +1,7 @@
-﻿import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Globe, Sun, Moon } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Globe, Mail, Menu, Moon, Phone, Search, Sun, X } from 'lucide-react';
 import logoImage from '../../../assets/Gemini_Generated_Image_yykl3wyykl3wyykl-removebg-preview.png';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../../contexts/ThemeContext';
@@ -15,8 +14,9 @@ export const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener('scroll', handleScroll);
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -25,141 +25,148 @@ export const Navbar = () => {
     { label: t('nav.courses'), path: '/courses' },
     { label: t('nav.teachers'), path: '/teachers' },
     { label: t('nav.about'), path: '/about' },
-    { label: t('nav.contact'), path: '/contact' }
+    { label: t('nav.contact'), path: '/contact' },
   ];
 
   return (
-    <motion.nav
+    <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'glass-strong shadow-lg shadow-black/20 py-3' : 'bg-transparent py-5'
-      }`}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed left-0 right-0 top-0 z-50"
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <motion.div whileHover={{ scale: 1.03 }}>
-            <Link to="/" className="flex items-center gap-2.5 group">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-teal-500/30 transition-shadow overflow-hidden">
-                <img src={logoImage} alt="LeoEducation Logo" className="w-full h-full object-contain" />
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-xl font-bold text-gradient">LeoEducation</span>
-                <span className="hidden md:block text-[11px] text-slate-500 dark:text-gray-400">
-                  {t('hero.tagline')}
-                </span>
-              </div>
-            </Link>
-          </motion.div>
+      <div className="bg-gold-400 text-navy-900">
+        <div className="container mx-auto flex h-7 items-center justify-between px-4 text-[11px] font-semibold uppercase tracking-wide">
+          <div className="hidden items-center gap-4 sm:flex">
+            <span className="inline-flex items-center gap-1.5"><Mail className="h-3.5 w-3.5" /> leoeducation.vn@gmail.com</span>
+            <span className="inline-flex items-center gap-1.5"><Phone className="h-3.5 w-3.5" /> 0866.123.170</span>
+          </div>
+          <span className="sm:hidden">LeoEducation</span>
+          <Search className="hidden h-3.5 w-3.5 sm:block" />
+        </div>
+      </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map(item => (
-              <Link key={item.path} to={item.path}
-                className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-colors ${
-                  location.pathname === item.path
-                    ? 'text-teal-600 dark:text-teal-400'
-                    : 'text-slate-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-white/5'
-                }`}
-              >
-                {item.label}
-                {location.pathname === item.path && (
-                  <motion.div
-                    layoutId="nav-indicator"
-                    className="absolute inset-0 bg-teal-500/10 dark:bg-teal-500/15 rounded-xl -z-10 border border-teal-500/20"
-                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                  />
-                )}
-              </Link>
-            ))}
+      <nav className={`border-b border-gold-100 bg-white/96 backdrop-blur transition-all duration-300 dark:border-gold-800 dark:bg-navy-950/95 ${scrolled ? 'shadow-lg shadow-navy-900/10' : ''}`}>
+        <div className="container mx-auto flex h-16 items-center justify-between px-4">
+          <Link to="/" className="flex items-center gap-3">
+            <span className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-md bg-white">
+              <img src={logoImage} alt="LeoEducation Logo" className="h-full w-full object-contain" />
+            </span>
+            <span className="hidden text-lg font-extrabold uppercase tracking-wide text-navy-800 dark:text-gold-100 sm:block">
+              LeoEducation
+            </span>
+          </Link>
+
+          <div className="hidden items-center gap-1 lg:flex">
+            {navItems.map((item) => {
+              const active = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`relative px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors ${
+                    active ? 'text-gold-600' : 'text-navy-700 hover:text-gold-600 dark:text-gold-100/75 dark:hover:text-gold-300'
+                  }`}
+                >
+                  {item.label}
+                  {active && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute inset-x-4 -bottom-[21px] h-1 rounded-t bg-gold-400"
+                      transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+                    />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
-          {/* Right controls */}
-          <div className="hidden md:flex items-center gap-3">
-            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+          <div className="hidden items-center gap-2 lg:flex">
+            <button
+              type="button"
               onClick={toggleTheme}
-              className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-white/5 transition-colors border border-transparent hover:border-white/10"
-              title={isDarkMode ? 'Chuyển sang Light' : 'Chuyển sang Dark'}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold-200 bg-white text-navy-800 shadow-sm transition hover:-translate-y-0.5 hover:border-gold-300 hover:bg-gold-50 hover:text-gold-700 dark:border-gold-800 dark:bg-navy-900 dark:text-gold-100"
+              title={isDarkMode ? 'Chuyển sang giao diện sáng' : 'Chuyển sang giao diện tối'}
             >
-              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </motion.button>
-            <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+              {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
+            <button
+              type="button"
               onClick={() => i18n.changeLanguage(i18n.language === 'vi' ? 'en' : 'vi')}
-              className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-gray-400 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-white/5 transition-colors border border-transparent hover:border-white/10"
+              className="inline-flex h-10 items-center gap-2 rounded-full border border-gold-200 bg-white px-4 text-sm font-bold text-navy-800 shadow-sm transition hover:-translate-y-0.5 hover:border-gold-300 hover:bg-gold-50 hover:text-gold-700 dark:border-gold-800 dark:bg-navy-900 dark:text-gold-100"
             >
-              <Globe className="w-4 h-4" />
-              <span>{i18n.language.toUpperCase()}</span>
-            </motion.button>
-            <Link to="/contact">
-              <motion.button whileHover={{ scale: 1.03, y: -1 }} whileTap={{ scale: 0.97 }}
-                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white text-sm font-semibold shadow-lg shadow-teal-500/20 hover:shadow-teal-500/30 transition-shadow"
-              >
-                {t('hero.cta')}
-              </motion.button>
+              <Globe className="h-4 w-4" />
+              {i18n.language.toUpperCase()}
+            </button>
+            <Link
+              to="/contact"
+              className="rounded-full bg-gradient-to-r from-gold-200 to-gold-400 px-5 py-2.5 text-sm font-bold uppercase text-navy-900 shadow-lg shadow-gold-500/20 ring-1 ring-gold-300 transition hover:-translate-y-0.5 hover:from-gold-300 hover:to-gold-500 hover:shadow-xl"
+            >
+              {t('hero.joinTrial')}
             </Link>
           </div>
 
-          {/* Mobile hamburger */}
-          <motion.button whileTap={{ scale: 0.9 }} onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2.5 rounded-xl bg-white/5 text-slate-700 dark:text-gray-300 hover:bg-white/10 transition-colors border border-white/10"
+          <button
+            type="button"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="rounded-md border border-gold-200 p-2 text-navy-800 lg:hidden dark:border-gold-800 dark:text-gold-100"
           >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </motion.button>
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
 
-        {/* Mobile menu */}
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden mt-4 overflow-hidden"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden border-t border-gold-100 bg-white dark:border-gold-800 dark:bg-navy-950 lg:hidden"
             >
-              <div className="bg-gray-900/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl border border-gray-800 dark:border-gray-700 shadow-xl p-2">
-                {navItems.map((item, i) => (
-                  <Link key={item.path} to={item.path} onClick={() => setMobileOpen(false)}>
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05 }}
-                      className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                        location.pathname === item.path
-                          ? 'bg-teal-500/10 text-teal-400'
-                          : 'text-gray-400 hover:bg-white/5'
-                      }`}
-                    >
-                      {item.label}
-                    </motion.div>
+              <div className="container mx-auto space-y-1 px-4 py-3">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setMobileOpen(false)}
+                    className={`block rounded-md px-3 py-3 text-sm font-bold uppercase ${
+                      location.pathname === item.path ? 'bg-gold-100 text-gold-700' : 'text-navy-700 dark:text-gold-100/75'
+                    }`}
+                  >
+                    {item.label}
                   </Link>
                 ))}
-                <div className="mt-2 pt-2 border-t border-gray-800 flex items-center justify-between px-4 py-2">
-                  <div className="flex items-center gap-3">
-                    <button onClick={toggleTheme} className="flex items-center gap-2 text-sm text-gray-400">
-                      {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                <div className="mt-3 flex items-center justify-between border-t border-gold-100 pt-3 dark:border-gold-900">
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={toggleTheme}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold-200 bg-gold-50 text-navy-800 dark:border-gold-800 dark:bg-navy-900 dark:text-gold-100"
+                    >
+                      {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
                     </button>
                     <button
+                      type="button"
                       onClick={() => i18n.changeLanguage(i18n.language === 'vi' ? 'en' : 'vi')}
-                      className="flex items-center gap-2 text-sm text-gray-400"
+                      className="inline-flex h-10 items-center gap-2 rounded-full border border-gold-200 bg-gold-50 px-4 text-sm font-bold text-navy-800 dark:border-gold-800 dark:bg-navy-900 dark:text-gold-100"
                     >
-                      <Globe className="w-4 h-4" />
-                      <span>{i18n.language.toUpperCase()}</span>
+                      <Globe className="h-4 w-4" />
+                      {i18n.language.toUpperCase()}
                     </button>
                   </div>
-                  <Link to="/contact" onClick={() => setMobileOpen(false)}
-                    className="px-4 py-2 rounded-lg bg-gradient-to-r from-teal-500 to-teal-600 text-white text-sm font-semibold"
+                  <Link
+                    to="/contact"
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-full bg-gradient-to-r from-gold-200 to-gold-400 px-4 py-2 text-xs font-black uppercase text-navy-900 shadow"
                   >
-                    {t('hero.cta')}
+                    {t('hero.joinTrial')}
                   </Link>
                 </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
-    </motion.nav>
+      </nav>
+    </motion.header>
   );
 };

@@ -4,9 +4,9 @@
 @tailwind utilities;
 
 @layer utilities{
-.text-gradient{@apply bg-gradient-to-r from-navy-700 via-navy-500 to-gold-600 bg-clip-text text-transparent}
-.text-gradient-teal{@apply bg-gradient-to-r from-navy-700 to-navy-500 bg-clip-text text-transparent}
+.text-gradient{@apply text-gold-500 dark:text-gold-300}
+.text-gradient-teal{@apply text-gold-500 dark:text-gold-300}
 .btn-primary{@apply bg-gradient-to-r from-gold-600 to-gold-500 hover:from-gold-700 hover:to-gold-600 text-white font-semibold py-3 px-8 rounded transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-gold-500/20 transform hover:-translate-y-1}
-.btn-gradient-teal{@apply bg-gradient-to-r from-navy-700 to-navy-600 hover:from-navy-800 hover:to-navy-700 text-white font-semibold py-3 px-8 rounded transition-all duration-300 shadow-lg hover:shadow-navy-500/20 transform hover:-translate-y-0.5}
+.btn-gradient-teal{@apply bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-white font-semibold py-3 px-8 rounded transition-all duration-300 shadow-lg hover:shadow-gold-500/20 transform hover:-translate-y-0.5}
 .card-hover{@apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2}
 }

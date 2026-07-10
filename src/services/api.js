@@ -67,7 +67,7 @@ export const mapInstructor = (teacher) => ({
   name: teacher.fullName ?? teacher.name ?? '',
   subject: teacher.role ?? teacher.subject ?? '',
   school: teacher.bio ?? teacher.school ?? '',
-  color: teacher.color ?? 'from-teal-500 to-cyan-500',
+  color: teacher.color ?? 'from-gold-500 to-gold-500',
   emoji: teacher.emoji ?? '',
   avatarUrl: teacher.avatarUrl ?? '',
   experience: teacher.experience ?? teacher.experienceText ?? '',
@@ -91,7 +91,7 @@ export const mapBlog = (item) => ({
   date: item.createdAt ? new Date(item.createdAt).toLocaleDateString('vi-VN') : '',
   category: item.category ?? '',
   emoji: item.emoji ?? '',
-  color: item.color ?? 'from-blue-500 to-cyan-500',
+  color: item.color ?? 'from-gold-500 to-gold-500',
   imageUrl: item.imageUrl ?? '',
 });
 

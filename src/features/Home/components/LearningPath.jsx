@@ -1,148 +1,80 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ClipboardCheck, Map, TrendingUp, Award, ArrowRight } from 'lucide-react';
+import { Award, ClipboardCheck, Map, TrendingUp } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export const LearningPath = () => {
   const { t } = useTranslation();
 
   const steps = [
-    {
-      number: '01',
-      icon: ClipboardCheck,
-      title: t('learningPath.step1Title'),
-      desc: t('learningPath.step1Desc'),
-      color: 'from-teal-500 to-teal-600'
-    },
-    {
-      number: '02',
-      icon: Map,
-      title: t('learningPath.step2Title'),
-      desc: t('learningPath.step2Desc'),
-      color: 'from-blue-500 to-blue-600'
-    },
-    {
-      number: '03',
-      icon: TrendingUp,
-      title: t('learningPath.step3Title'),
-      desc: t('learningPath.step3Desc'),
-      color: 'from-purple-500 to-purple-600'
-    },
-    {
-      number: '04',
-      icon: Award,
-      title: t('learningPath.step4Title'),
-      desc: t('learningPath.step4Desc'),
-      color: 'from-gold-500 to-gold-600'
-    }
+    { number: '01', icon: ClipboardCheck, title: t('learningPath.step1Title'), desc: t('learningPath.step1Desc'), position: 'lg:left-0 lg:top-0' },
+    { number: '02', icon: Map, title: t('learningPath.step2Title'), desc: t('learningPath.step2Desc'), position: 'lg:right-0 lg:top-0' },
+    { number: '03', icon: TrendingUp, title: t('learningPath.step3Title'), desc: t('learningPath.step3Desc'), position: 'lg:left-0 lg:bottom-0' },
+    { number: '04', icon: Award, title: t('learningPath.step4Title'), desc: t('learningPath.step4Desc'), position: 'lg:right-0 lg:bottom-0' },
   ];
 
   return (
-    <section className="py-24 bg-white dark:bg-gray-950 relative overflow-hidden transition-colors duration-200">
-      {/* Decorative */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-gray-700 to-transparent" />
-      <div className="absolute top-20 right-0 w-96 h-96 bg-teal-100/40 dark:bg-teal-900/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-0 w-96 h-96 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
+    <section className="relative overflow-hidden bg-white py-24 transition-colors duration-200 dark:bg-navy-950">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-200 to-transparent dark:via-gold-800" />
+      <div className="absolute left-1/2 top-24 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-gold-100/50 blur-3xl dark:bg-gold-900/10" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Header */}
+      <div className="container relative z-10 mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <motion.span
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: 'spring', stiffness: 200 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-700 text-teal-700 dark:text-teal-300 rounded-full text-sm font-semibold mb-6"
-          >
-            <Map className="w-4 h-4" />
+          <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-gold-200 bg-gold-50 px-4 py-2 text-sm font-bold text-gold-700 dark:border-gold-700 dark:bg-gold-900/30 dark:text-gold-300">
+            <Map className="h-4 w-4" />
             {t('learningPath.badge')}
-          </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+          </span>
+          <h2 className="text-4xl font-black tracking-tight md:text-5xl">
             <span className="text-gradient">{t('learningPath.title')}</span>
           </h2>
-          <p className="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
-            {t('learningPath.subtitle')}
-          </p>
+          <p className="mt-4 text-lg leading-relaxed text-navy-600 dark:text-gold-100/70">{t('learningPath.subtitle')}</p>
         </motion.div>
 
-        {/* Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          {/* Connecting line (desktop) */}
-          <div className="hidden lg:block absolute top-16 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-teal-300 via-blue-300 via-purple-300 to-gold-300 dark:from-teal-700 dark:via-blue-700 dark:via-purple-700 dark:to-gold-700 z-0" />
+        <div className="relative mx-auto min-h-[720px] max-w-6xl lg:min-h-[560px]">
+          <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[430px] w-[430px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-gold-300 lg:block" />
+          <div className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold-200 bg-white/70 shadow-2xl shadow-gold-900/10 lg:block dark:border-gold-800 dark:bg-navy-900/70" />
 
-          {steps.map((step, index) => (
+          <div className="relative z-10 mx-auto mb-8 h-64 w-64 lg:absolute lg:left-1/2 lg:top-1/2 lg:mb-0 lg:h-72 lg:w-72 lg:-translate-x-1/2 lg:-translate-y-1/2">
             <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.15, type: 'spring', stiffness: 100 }}
-              className="relative z-10"
+              className="flex h-full w-full flex-col items-center justify-center rounded-full border border-gold-200 bg-gradient-to-br from-white via-gold-50 to-gold-100 p-8 text-center shadow-2xl shadow-gold-900/10 dark:border-gold-800 dark:from-navy-900 dark:via-navy-900 dark:to-gold-950/50"
             >
-              <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 border border-slate-100 dark:border-gray-700 hover:border-teal-200 dark:hover:border-teal-700 transition-all shadow-sm hover:shadow-xl text-center group">
-                {/* Number */}
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${step.color} text-white text-2xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                  {step.number}
-                </div>
-
-                {/* Icon */}
-                <step.icon className="w-8 h-8 text-teal-500 dark:text-teal-400 mx-auto mb-3" />
-
-                {/* Content */}
-                <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-gray-400 leading-relaxed">
-                  {step.desc}
-                </p>
-              </div>
-
-              {/* Arrow between steps (mobile) */}
-              {index < steps.length - 1 && (
-                <div className="flex justify-center my-4 lg:hidden">
-                  <ArrowRight className="w-6 h-6 text-teal-400 rotate-90" />
-                </div>
-              )}
+              <span className="text-sm font-black uppercase tracking-[0.22em] text-gold-600">{t('learningPath.methodTitle')}</span>
+              <p className="mt-4 text-sm leading-relaxed text-navy-600 dark:text-gold-100/75">{t('learningPath.methodDesc')}</p>
             </motion.div>
-          ))}
-        </div>
-
-        {/* Scaffolded method description */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-16 max-w-4xl mx-auto"
-        >
-          <div className="bg-gradient-to-br from-teal-50 to-blue-50 dark:from-teal-900/20 dark:to-blue-900/20 rounded-3xl p-8 md:p-10 border border-teal-100 dark:border-teal-800">
-            <h3 className="text-2xl font-bold text-navy-700 dark:text-white mb-4 text-center">
-              {t('learningPath.methodTitle')}
-            </h3>
-            <p className="text-slate-600 dark:text-gray-300 leading-relaxed text-center mb-6">
-              {t('learningPath.methodDesc')}
-            </p>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[0, 1, 2].map(i => (
-                <div key={i} className="text-center">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-400 to-teal-500 flex items-center justify-center mx-auto mb-3 text-white font-bold text-lg shadow-lg">
-                    {i + 1}
-                  </div>
-                  <h4 className="font-semibold text-navy-700 dark:text-white text-sm mb-1">
-                    {t(`learningPath.methodStep${i + 1}Title`)}
-                  </h4>
-                  <p className="text-xs text-slate-500 dark:text-gray-400">
-                    {t(`learningPath.methodStep${i + 1}Desc`)}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
-        </motion.div>
+
+          <div className="grid gap-5 lg:block">
+            {steps.map((step, index) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.12 }}
+                className={`rounded-2xl border border-gold-100 bg-white p-5 shadow-lg shadow-gold-900/5 dark:border-gold-800/60 dark:bg-navy-900 lg:absolute lg:w-[330px] ${step.position}`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-gold-200 to-gold-400 text-navy-900 shadow-md ring-1 ring-gold-300">
+                    <step.icon className="h-7 w-7" />
+                  </div>
+                  <div>
+                    <div className="mb-1 text-xs font-black uppercase tracking-[0.2em] text-gold-600">{step.number}</div>
+                    <h3 className="text-lg font-black text-navy-800 dark:text-gold-50">{step.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-navy-600 dark:text-gold-100/65">{step.desc}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

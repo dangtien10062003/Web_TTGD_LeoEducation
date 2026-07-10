@@ -1,5 +1,6 @@
 ﻿export { Navbar } from './Navbar';
 export { Hero } from './Hero';
+export { HeroInfo } from './HeroInfo';
 export { Categories } from './Categories';
 export { About } from './About';
 export { CoursesList } from './CoursesList';

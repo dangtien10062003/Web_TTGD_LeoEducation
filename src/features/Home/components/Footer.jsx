@@ -35,9 +35,9 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="bg-slate-50 dark:bg-gray-950 text-slate-800 dark:text-white relative overflow-hidden transition-colors duration-200">
+    <footer className="bg-white dark:bg-navy-950 text-navy-900 dark:text-gold-50 relative overflow-hidden transition-colors duration-200">
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] dark:opacity-[0.02]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-teal-500/5 dark:bg-teal-500/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gold-500/5 dark:bg-gold-500/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Main footer */}
@@ -48,12 +48,12 @@ export const Footer = () => {
               <div className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden">
                 <img src={logoImage} alt="LeoEducation Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="text-xl font-bold text-navy-700 dark:text-white">LeoEducation</span>
+              <span className="text-xl font-bold text-navy-700 dark:text-gold-50">LeoEducation</span>
             </div>
-            <p className="text-slate-600 dark:text-gray-400 mb-2 font-medium">
-              {t('footer.tagline') || 'Nước thang tri thức - Vững bước tương lai!'}
+            <p className="text-navy-600 dark:text-gold-100/75 mb-2 font-medium">
+              {t('footer.tagline') || 'Nấc thang tri thức - Vững bước tương lai!'}
             </p>
-            <p className="text-slate-500 dark:text-gray-500 mb-6 max-w-sm leading-relaxed">
+            <p className="text-navy-500 dark:text-gold-100/60 mb-6 max-w-sm leading-relaxed">
               {t('footer.description') || 'Trung tâm gia sư online 1-1 hàng đầu Việt Nam. Phương pháp Scaffolded Learning với lộ trình học cá nhân hóa.'}
             </p>
             <div className="flex gap-3">
@@ -67,7 +67,7 @@ export const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-white dark:bg-gray-800 hover:bg-teal-600 dark:hover:bg-teal-700 text-slate-700 dark:text-white hover:text-white flex items-center justify-center transition-all duration-300 border border-slate-200 dark:border-gray-700 hover:border-teal-500"
+                  className="w-10 h-10 rounded-xl bg-white dark:bg-navy-800 hover:bg-gold-600 dark:hover:bg-gold-700 text-navy-700 dark:text-gold-50 hover:text-white flex items-center justify-center transition-all duration-300 border border-gold-100 dark:border-gold-800/60 hover:border-gold-500"
                 >
                   <span className="capitalize text-xs font-medium">{social.name[0].toUpperCase()}</span>
                 </a>
@@ -77,13 +77,13 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-slate-400 dark:text-gray-400">
+            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-gold-700 dark:text-gold-300">
               {t('footer.quickLinks') || 'Liên kết nhanh'}
             </h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <Link to={link.path} className="text-slate-500 dark:text-gray-500 hover:text-teal-600 dark:hover:text-teal-400 transition-colors text-sm flex items-center gap-1 group">
+                  <Link to={link.path} className="text-navy-500 dark:text-gold-100/60 hover:text-gold-600 dark:hover:text-gold-400 transition-colors text-sm flex items-center gap-1 group">
                     {link.label}
                     <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
                   </Link>
@@ -94,13 +94,13 @@ export const Footer = () => {
 
           {/* Courses */}
           <div>
-            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-slate-400 dark:text-gray-400">
+            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-gold-700 dark:text-gold-300">
               {t('footer.coursesTitle') || 'Khóa học'}
             </h4>
             <ul className="space-y-3">
               {courseLinks.map((link) => (
                 <li key={link.label}>
-                  <Link to={link.path} className="text-slate-500 dark:text-gray-500 hover:text-teal-600 dark:hover:text-teal-400 transition-colors text-sm flex items-center gap-1 group">
+                  <Link to={link.path} className="text-navy-500 dark:text-gold-100/60 hover:text-gold-600 dark:hover:text-gold-400 transition-colors text-sm flex items-center gap-1 group">
                     {link.label}
                     <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
                   </Link>
@@ -111,40 +111,40 @@ export const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-slate-400 dark:text-gray-400">
+            <h4 className="font-semibold mb-5 text-sm uppercase tracking-wider text-gold-700 dark:text-gold-300">
               {t('footer.contact') || 'Liên hệ'}
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-teal-500 dark:text-teal-400 mt-0.5 flex-shrink-0" />
-                <span className="text-slate-500 dark:text-gray-500 text-sm">leoeducation.vn@gmail.com</span>
+                <Mail className="w-5 h-5 text-gold-500 dark:text-gold-400 mt-0.5 flex-shrink-0" />
+                <span className="text-navy-500 dark:text-gold-100/60 text-sm">leoeducation.vn@gmail.com</span>
               </li>
               <li className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-teal-500 dark:text-teal-400 mt-0.5 flex-shrink-0" />
-                <span className="text-slate-500 dark:text-gray-500 text-sm">0866.123.170</span>
+                <Phone className="w-5 h-5 text-gold-500 dark:text-gold-400 mt-0.5 flex-shrink-0" />
+                <span className="text-navy-500 dark:text-gold-100/60 text-sm">0866.123.170</span>
               </li>
               <li className="flex items-start gap-3">
-                <Globe2 className="w-5 h-5 text-teal-500 dark:text-teal-400 mt-0.5 flex-shrink-0" />
-                <span className="text-slate-500 dark:text-gray-500 text-sm">Tư vấn online toàn quốc</span>
+                <Globe2 className="w-5 h-5 text-gold-500 dark:text-gold-400 mt-0.5 flex-shrink-0" />
+                <span className="text-navy-500 dark:text-gold-100/60 text-sm">Tư vấn online toàn quốc</span>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Newsletter */}
-        <div className="border-t border-slate-200 dark:border-gray-800 py-8">
+        <div className="border-t border-gold-100 dark:border-gold-800/60 py-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h4 className="font-semibold text-slate-800 dark:text-white mb-1">{t('footer.newsletter') || 'Đăng ký nhận tin'}</h4>
-              <p className="text-sm text-slate-500 dark:text-gray-400">{t('footer.newsletterDesc') || 'Nhận thông tin về khóa học và ưu đãi mới nhất'}</p>
+              <h4 className="font-semibold text-navy-900 dark:text-gold-50 mb-1">{t('footer.newsletter') || 'Đăng ký nhận tin'}</h4>
+              <p className="text-sm text-navy-500 dark:text-gold-100/60">{t('footer.newsletterDesc') || 'Nhận thông tin về khóa học và ưu đãi mới nhất'}</p>
             </div>
             <div className="flex gap-2 w-full md:w-auto">
               <input
                 type="email"
                 placeholder={t('footer.emailPlaceholder') || 'Nhập email của bạn'}
-                className="px-4 py-3 rounded-xl bg-white dark:bg-gray-900 border border-slate-200 dark:border-gray-700 text-slate-800 dark:text-white placeholder:text-slate-400 dark:placeholder:text-gray-500 focus:outline-none focus:border-teal-500 transition-colors flex-1 md:w-64"
+                className="px-4 py-3 rounded-xl bg-white dark:bg-navy-900 border border-gold-100 dark:border-gold-800/60 text-navy-900 dark:text-gold-50 placeholder:text-navy-300 dark:placeholder:text-gold-100/40 focus:outline-none focus:border-gold-500 transition-colors flex-1 md:w-64"
               />
-              <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold hover:shadow-lg hover:shadow-teal-500/20 transition-all whitespace-nowrap">
+              <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-white font-semibold hover:shadow-lg hover:shadow-gold-500/20 transition-all whitespace-nowrap">
                 {t('footer.subscribe') || 'Đăng ký'}
               </button>
             </div>
@@ -152,13 +152,13 @@ export const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-slate-200 dark:border-gray-800 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-slate-500 dark:text-gray-600 text-sm">
+        <div className="border-t border-gold-100 dark:border-gold-800/60 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-navy-500 dark:text-gold-100/50 text-sm">
             {t('footer.copyright') || '© 2026 LeoEducation. All rights reserved.'}
           </p>
-          <div className="flex gap-6 text-sm text-slate-500 dark:text-gray-600">
-            <Link to="/privacy" className="hover:text-slate-700 dark:hover:text-gray-400 transition-colors">{t('footer.privacy') || 'Chính sách bảo mật'}</Link>
-            <Link to="/terms" className="hover:text-slate-700 dark:hover:text-gray-400 transition-colors">{t('footer.terms') || 'Điều khoản'}</Link>
+          <div className="flex gap-6 text-sm text-navy-500 dark:text-gold-100/50">
+            <Link to="/privacy" className="hover:text-gold-700 dark:hover:text-gold-300 transition-colors">{t('footer.privacy') || 'Chính sách bảo mật'}</Link>
+            <Link to="/terms" className="hover:text-gold-700 dark:hover:text-gold-300 transition-colors">{t('footer.terms') || 'Điều khoản'}</Link>
           </div>
         </div>
       </div>
@@ -167,7 +167,7 @@ export const Footer = () => {
       <div className="fixed right-4 bottom-5 z-50 flex flex-col gap-3">
         <a
           href="tel:0866123170"
-          className="w-11 h-11 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/30 flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+          className="w-11 h-11 rounded-full bg-gold-500 hover:bg-gold-600 text-white shadow-lg shadow-gold-500/30 ring-4 ring-gold-300/30 flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 animate-pulse dark:ring-gold-300/20"
           aria-label="Gọi điện" title="Gọi điện"
         >
           <PhoneCall className="w-5 h-5" />
@@ -176,7 +176,7 @@ export const Footer = () => {
           href="https://zalo.me/0866123170"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-11 h-11 rounded-full bg-blue-500 hover:bg-blue-600 text-white shadow-lg shadow-blue-500/30 flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+          className="w-11 h-11 rounded-full bg-gold-500 hover:bg-gold-600 text-white shadow-lg shadow-gold-500/30 ring-4 ring-gold-300/30 flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 animate-pulse dark:ring-gold-300/20"
           aria-label="Liên hệ Zalo" title="Liên hệ Zalo"
         >
           <span className="text-xs font-bold">ZL</span>
@@ -185,7 +185,7 @@ export const Footer = () => {
           href="https://www.facebook.com/leoeducation.vn?locale=vi_VN"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-11 h-11 rounded-full bg-sky-500 hover:bg-sky-600 text-white shadow-lg shadow-sky-500/30 flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5"
+          className="w-11 h-11 rounded-full bg-gold-500 hover:bg-gold-600 text-white shadow-lg shadow-gold-500/30 ring-4 ring-gold-300/30 flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 animate-pulse dark:ring-gold-300/20"
           aria-label="Liên hệ Messenger" title="Liên hệ Messenger"
         >
           <MessageCircle className="w-5 h-5" />
@@ -194,7 +194,7 @@ export const Footer = () => {
           <button
             type="button"
             onClick={scrollToTop}
-            className="w-11 h-11 rounded-full bg-slate-800 dark:bg-gray-800 hover:bg-slate-700 dark:hover:bg-gray-700 text-white shadow-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 border border-slate-700 dark:border-gray-700"
+            className="w-11 h-11 rounded-full bg-white text-gold-700 shadow-lg shadow-gold-900/10 ring-1 ring-gold-200 flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-50 dark:bg-gold-500 dark:text-navy-950 dark:ring-gold-300/30 dark:hover:bg-gold-400"
             aria-label="Lên đầu trang" title="Lên đầu trang"
           >
             <ArrowUp className="w-5 h-5" />

@@ -1,4 +1,4 @@
-{
+﻿{
   "nav": {
     "home": "Trang chủ",
     "courses": "Khóa học",
@@ -16,7 +16,7 @@
     "highlight3": "Tương tác trực tuyến, báo cáo kết quả liên tục",
     "cta": "Khám phá ngay",
     "joinTrial": "Đăng ký học thử",
-    "tagline": "Nước thang tri thức - Vững bước tương lai!",
+    "tagline": "Nấc thang tri thức - Vững bước tương lai!",
     "students": "Học viên",
     "courses": "Khóa học",
     "teachers": "Giáo viên",
@@ -255,7 +255,7 @@
     }
   },
   "footer": {
-    "tagline": "Nước thang tri thức - Vững bước tương lai!",
+    "tagline": "Nấc thang tri thức - Vững bước tương lai!",
     "description": "Trung tâm gia sư online 1-1 hàng đầu Việt Nam. Phương pháp Scaffolded Learning với lộ trình học cá nhân hóa.",
     "quickLinks": "Liên kết nhanh",
     "coursesTitle": "Khóa học",

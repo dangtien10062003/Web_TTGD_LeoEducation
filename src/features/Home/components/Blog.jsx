@@ -46,7 +46,7 @@ export const Blog = () => {
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 200 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 text-blue-700 dark:text-blue-300 rounded-full text-sm font-semibold mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gold-50 dark:bg-gold-900/30 border border-gold-200 dark:border-gold-700 text-gold-700 dark:text-gold-300 rounded-full text-sm font-semibold mb-6"
           >
             <Newspaper className="w-4 h-4" />
             {t('blog.badge')}
@@ -93,7 +93,7 @@ export const Blog = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+                  <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3 group-hover:text-gold-600 dark:group-hover:text-gold-400 transition-colors">
                     {post.title}
                   </h3>
 
@@ -101,7 +101,7 @@ export const Blog = () => {
                     {post.excerpt}
                   </p>
 
-                  <div className="flex items-center text-sm font-semibold text-teal-600 dark:text-teal-400 group-hover:gap-3 transition-all">
+                  <div className="flex items-center text-sm font-semibold text-gold-600 dark:text-gold-400 group-hover:gap-3 transition-all">
                     {t('blog.readMore')}
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" />
                   </div>
