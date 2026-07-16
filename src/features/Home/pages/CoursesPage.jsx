@@ -14,7 +14,7 @@ export const CoursesPage = () => {
   };
 
   return (
-    <div className="pt-24">
+    <div className="bottom-safe bg-[#fffdf6] pt-[118px] dark:bg-navy-950">
       <CoursesList onRegisterClick={handleRegisterClick} />
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} title="Đăng ký khóa học">
         {selectedCourse && (

@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Target, Users, TrendingUp, CheckCircle2, Sparkles, ClipboardCheck } from 'lucide-react';
@@ -106,7 +106,7 @@ export const About = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-gold-400 to-gold-400 dark:from-gold-600 dark:to-gold-600 rounded-3xl blur-2xl opacity-20 dark:opacity-30" />
               <img
                 src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600"
-                alt="H?c t?p c�ng LeoEducation"
+                alt="H?c t?p cùng LeoEducation"
                 className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-white dark:border-gray-700"
               />
             </motion.div>
@@ -157,14 +157,14 @@ export const About = () => {
                   {row.bit ? (
                     <CheckCircle2 className="w-5 h-5 text-gold-500 mx-auto" />
                   ) : (
-                    <span className="text-red-400">?</span>
+                    <span className="text-red-400">Không</span>
                   )}
                 </div>
                 <div className="p-4 text-center">
                   {row.traditional ? (
                     <CheckCircle2 className="w-5 h-5 text-gold-500 mx-auto" />
                   ) : (
-                    <span className="text-red-400">?</span>
+                    <span className="text-red-400">Không</span>
                   )}
                 </div>
               </div>
@@ -175,3 +175,4 @@ export const About = () => {
     </section>
   );
 };
+

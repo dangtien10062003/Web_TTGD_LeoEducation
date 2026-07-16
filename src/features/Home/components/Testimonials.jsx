@@ -38,7 +38,7 @@ export const Testimonials = () => {
   }, [t]);
 
   if (loading) return (
-    <section className="py-24 bg-white dark:bg-navy-950 transition-colors duration-200">
+    <section className="kid-section kid-section-cream dark:bg-navy-950">
       <div className="container mx-auto px-4 flex items-center justify-center min-h-[400px]">
         <Loader2 className="w-12 h-12 animate-spin text-gold-600 dark:text-gold-400" />
       </div>
@@ -48,32 +48,30 @@ export const Testimonials = () => {
   if (!loading && items.length === 0) return null;
 
   return (
-    <section className="py-24 bg-white dark:bg-navy-950 relative overflow-hidden transition-colors duration-200">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-200 dark:via-gold-800 to-transparent" />
-      <div className="absolute top-40 right-0 w-80 h-80 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-0 w-80 h-80 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
+    <section className="kid-section kid-section-soft kid-cloud-top kid-cloud-divider dark:bg-navy-950">
+      <div className="kid-dots absolute right-[7%] top-28 h-44 w-44 opacity-60" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mx-auto mb-14 max-w-3xl text-center"
         >
           <motion.span
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 200 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gold-50 dark:bg-gold-900/30 border border-gold-200 dark:border-gold-700 text-gold-700 dark:text-gold-300 rounded-full text-sm font-semibold mb-6"
+            className="kid-pill mb-5"
           >
             <MessageSquare className="w-4 h-4" />
             {t('tutors.badge')}
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            <span className="text-gradient">{t('tutors.title')}</span>
+          <h2 className="kid-title lux-underline text-4xl md:text-5xl">
+            {t('tutors.title')}
           </h2>
-          <p className="text-lg text-navy-600 dark:text-gold-100/70">{t('tutors.subtitle')}</p>
+          <p className="mt-5 text-lg text-navy-600 dark:text-gold-100/70">{t('tutors.subtitle')}</p>
         </motion.div>
 
         {/* Desktop: 3 columns */}
@@ -90,10 +88,10 @@ export const Testimonials = () => {
               style={{ marginTop: index === 1 ? '2rem' : 0 }}
               className="cursor-pointer"
             >
-              <Card variant="glass" className="h-full" hover={false}>
+              <Card variant="flat" className="lux-reveal-card kid-soft-card h-full bg-white shadow-lg shadow-navy-900/5" hover={false}>
                 <div className="p-6">
                   <motion.div initial={{ rotate: -20, scale: 0 }} whileInView={{ rotate: 0, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.3, type: 'spring' }}>
-                    <Quote className="w-10 h-10 text-gold-200 dark:text-gold-700 mb-4" />
+                    <Quote className="mb-4 h-10 w-10 text-gold-600" />
                   </motion.div>
 
                   <div className="flex gap-1 mb-4">
@@ -110,7 +108,7 @@ export const Testimonials = () => {
 
                   <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.2 + 0.6 }} className="flex items-center gap-4 pt-4 border-t border-gold-100 dark:border-gold-800/60">
                     <div className="relative">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold-400 to-gold-500 flex items-center justify-center text-white font-bold text-lg">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold-500 text-lg font-bold text-white">
                         {item.name.charAt(0)}
                       </div>
                       <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-gold-500 dark:bg-gold-600 rounded-full flex items-center justify-center border-2 border-white dark:border-navy-900">
@@ -141,9 +139,9 @@ export const Testimonials = () => {
                 transition={{ type: 'spring', stiffness: 100 }}
                 className="cursor-pointer"
               >
-                <Card variant="glass" hover={false}>
+              <Card variant="flat" className="lux-reveal-card kid-soft-card bg-white shadow-lg shadow-navy-900/5" hover={false}>
                   <div className="p-6">
-                    <Quote className="w-8 h-8 text-gold-200 dark:text-gold-700 mb-4" />
+                    <Quote className="mb-4 h-8 w-8 text-gold-600" />
                     <div className="flex gap-1 mb-4">
                       {[...Array(items[active]?.rating || 5)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -221,3 +219,4 @@ export const Testimonials = () => {
     </section>
   );
 };
+

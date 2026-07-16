@@ -87,7 +87,7 @@ export const CoursesList = ({ onRegisterClick }) => {
 
   if (loading) {
     return (
-      <section id="courses" className="py-24 bg-white dark:bg-navy-950 transition-colors duration-200">
+      <section id="courses" className="kid-section kid-section-cream dark:bg-navy-950">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-center min-h-[400px]">
             <div className="text-center">
@@ -101,8 +101,8 @@ export const CoursesList = ({ onRegisterClick }) => {
   }
 
   return (
-    <section id="courses" className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-navy-950 relative transition-colors duration-200">
-      <div className="absolute inset-0 bg-grid opacity-20 dark:opacity-10" />
+    <section id="courses" className="kid-section kid-section-cream kid-cloud-top kid-cloud-divider dark:bg-navy-950">
+      <div className="kid-dots absolute right-[6%] top-28 h-44 w-44 opacity-60" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-4 relative z-10">
         {/* Header */}
         <motion.div
@@ -111,12 +111,12 @@ export const CoursesList = ({ onRegisterClick }) => {
           viewport={{ once: true }}
           className="text-center mb-8 sm:mb-10 lg:mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-gold-50 dark:bg-gold-900/30 border border-gold-200 dark:border-gold-700 text-gold-700 dark:text-gold-300 rounded-full text-sm font-semibold mb-4 sm:mb-6">
+          <span className="kid-pill mb-4 sm:mb-6">
             <BookOpen className="w-4 h-4" />
             {t('courses.title')}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 tracking-tight">
-            <span className="text-gradient">{t('categories.title')}</span>
+          <h2 className="kid-title lux-underline mb-3 text-3xl sm:mb-4 sm:text-4xl md:text-5xl">
+            {t('categories.title')}
           </h2>
           <p className="text-base sm:text-lg text-navy-600 dark:text-gold-100/70 max-w-2xl mx-auto">{t('categories.subtitle')}</p>
         </motion.div>
@@ -127,7 +127,7 @@ export const CoursesList = ({ onRegisterClick }) => {
             initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="sticky top-16 z-20 -mx-4 sm:mx-0 rounded-none sm:rounded-lg border-y sm:border border-gold-100 dark:border-gold-800/60 bg-white/95 dark:bg-navy-900/95 backdrop-blur p-3 shadow-sm lg:top-28"
+            className="kid-soft-card sticky top-16 z-20 -mx-4 bg-white/95 p-3 backdrop-blur sm:mx-0 dark:border-gold-800/60 dark:bg-navy-900/95 lg:top-28"
           >
             <div className="flex items-center justify-between gap-3 px-1 sm:px-2 pb-3 mb-3 border-b border-gold-100 dark:border-gold-800/60">
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-gold-600 dark:text-gold-400">Môn học</p>
@@ -143,8 +143,8 @@ export const CoursesList = ({ onRegisterClick }) => {
                     onClick={() => handleFilterClick(cat)}
                     className={`shrink-0 snap-start whitespace-nowrap lg:whitespace-normal lg:w-full px-4 py-2.5 sm:py-3 rounded-md text-sm font-semibold text-left transition-all duration-200 border ${
                       isActive
-                        ? 'bg-gradient-to-r from-gold-200 to-gold-400 text-navy-900 border-gold-300 shadow-md shadow-gold-700/15'
-                        : 'bg-gold-50/60 dark:bg-navy-800 text-navy-700 dark:text-gold-100/75 border-gold-100 dark:border-gold-800/60 hover:bg-gold-100 hover:border-gold-300 hover:text-navy-900 dark:hover:bg-gold-900/25'
+                        ? 'border-gold-400 bg-[#fff7d8] text-navy-900 shadow-md shadow-navy-900/5'
+                        : 'border-gold-100 bg-white text-navy-700 hover:border-gold-400/60 hover:bg-[#fff7d8] hover:text-navy-900 dark:border-gold-800/60 dark:bg-navy-800 dark:text-gold-100/75 dark:hover:bg-gold-900/25'
                     }`}
                   >
                     <span className="flex items-center justify-between gap-3">
@@ -173,7 +173,7 @@ export const CoursesList = ({ onRegisterClick }) => {
               )}
               {filteredCourses.map((course) => (
                 <motion.div key={course.id} variants={itemVariants}>
-                <Card variant="gradient" className="h-full flex flex-col group bg-white dark:bg-navy-900 border border-gold-100 dark:border-gold-800/60 shadow-sm hover:shadow-lg hover:shadow-gold-900/10">
+                <Card variant="flat" className="lux-reveal-card kid-soft-card group flex h-full flex-col overflow-hidden border-gold-100 bg-white shadow-md shadow-navy-900/5 hover:shadow-xl dark:border-gold-800/60 dark:bg-navy-900">
                   {/* Image */}
                   <Link to={`/courses/${course.id}`} className="block relative overflow-hidden">
                     {course.image ? (
@@ -186,7 +186,7 @@ export const CoursesList = ({ onRegisterClick }) => {
                       <div className="w-full aspect-[16/11] sm:aspect-[16/10] bg-gold-50 dark:bg-navy-800" />
                     )}
                     <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                      <span className="bg-gold-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      <span className="rounded-full bg-navy-950 px-3 py-1 text-xs font-bold text-white">
                         {course.category}
                       </span>
                     </div>
@@ -245,3 +245,4 @@ export const CoursesList = ({ onRegisterClick }) => {
     </section>
   );
 };
+

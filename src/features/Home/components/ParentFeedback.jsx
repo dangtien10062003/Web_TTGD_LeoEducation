@@ -37,10 +37,9 @@ const feedbackTrack = [...feedbacks, ...feedbacks];
 
 export const ParentFeedback = () => {
   return (
-    <section className="relative overflow-hidden bg-white py-24 transition-colors duration-200 dark:bg-navy-950">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-200 to-transparent dark:via-gold-800" />
-      <div className="absolute left-0 top-12 h-96 w-96 rounded-full bg-gold-100/70 blur-3xl dark:bg-gold-900/20" />
-      <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-gold-50 blur-3xl dark:bg-gold-700/10" />
+    <section className="kid-section kid-section-cream kid-cloud-top kid-cloud-divider dark:bg-navy-950">
+      <div className="kid-dots absolute left-[6%] top-36 h-44 w-44 opacity-60" />
+      <div className="absolute right-[-90px] top-28 h-72 w-72 rounded-full border-[18px] border-gold-300/70" />
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.25fr] lg:items-center">
@@ -48,13 +47,13 @@ export const ParentFeedback = () => {
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="rounded-[32px] border border-gold-100 bg-gradient-to-br from-white via-gold-50 to-gold-100 p-8 shadow-2xl shadow-gold-900/10 dark:border-gold-800/70 dark:from-navy-900 dark:via-navy-900 dark:to-gold-950/40 dark:shadow-black/25"
+            className="kid-soft-card bg-[#fff7d8] p-8 dark:bg-navy-900"
           >
-            <span className="inline-flex items-center gap-2 rounded-full border border-gold-200 bg-white px-4 py-2 text-sm font-black uppercase tracking-wide text-gold-700 shadow-sm dark:border-gold-800 dark:bg-navy-800 dark:text-gold-200">
+            <span className="kid-pill">
               <Sparkles className="h-4 w-4" />
               Ý kiến phụ huynh
             </span>
-            <h2 className="mt-5 text-4xl font-black leading-tight text-gold-500 md:text-5xl dark:text-gold-300">
+            <h2 className="kid-title lux-underline mt-5 text-4xl md:text-5xl dark:text-gold-50">
               Phụ huynh nói gì về trung tâm?
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-navy-600 dark:text-gold-100/75">
@@ -67,7 +66,7 @@ export const ParentFeedback = () => {
                 { icon: TrendingUp, value: '+1.5', label: 'Điểm cải thiện' },
                 { icon: ShieldCheck, value: '24h', label: 'Phản hồi tư vấn' },
               ].map((item) => (
-                <div key={item.label} className="rounded-2xl border border-gold-100 bg-white p-4 shadow-sm dark:border-gold-800/60 dark:bg-navy-800">
+                <div key={item.label} className="rounded-[24px] bg-white p-4 shadow-sm dark:bg-navy-800">
                   <item.icon className="mb-3 h-5 w-5 text-gold-600 dark:text-gold-300" />
                   <p className="text-2xl font-black text-navy-900 dark:text-gold-50">{item.value}</p>
                   <p className="mt-1 text-xs font-bold uppercase tracking-wide text-navy-500 dark:text-gold-100/60">{item.label}</p>
@@ -76,7 +75,7 @@ export const ParentFeedback = () => {
             </div>
           </motion.div>
 
-          <div className="relative h-[560px] overflow-hidden rounded-[32px] border border-gold-100 bg-white/75 p-4 shadow-2xl shadow-gold-900/10 dark:border-gold-800/60 dark:bg-navy-900/70 dark:shadow-black/25">
+          <div className="kid-soft-card relative h-[560px] overflow-hidden bg-[#fffdf6] p-4 dark:bg-navy-900/70">
             <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-20 bg-gradient-to-b from-white via-white/85 to-transparent dark:from-navy-900 dark:via-navy-900/85" />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-20 bg-gradient-to-t from-white via-white/85 to-transparent dark:from-navy-900 dark:via-navy-900/85" />
 
@@ -89,10 +88,10 @@ export const ParentFeedback = () => {
               {feedbackTrack.map((item, index) => (
                 <article
                   key={`${item.name}-${index}`}
-                  className="rounded-[28px] border border-gold-100 bg-white p-6 shadow-lg shadow-gold-900/5 dark:border-gold-800/60 dark:bg-navy-900"
+                  className="lux-reveal-card kid-soft-card bg-white p-6 shadow-md shadow-navy-900/5 dark:border-gold-800/60 dark:bg-navy-900"
                 >
                   <div className="mb-4 flex items-center justify-between gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gold-100 text-gold-700 ring-1 ring-gold-200 dark:bg-gold-900/40 dark:text-gold-200 dark:ring-gold-800">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#fff6e8] text-gold-600 ring-1 ring-gold-200 dark:bg-gold-900/40 dark:text-gold-200 dark:ring-gold-800">
                       <Quote className="h-6 w-6" />
                     </div>
                     <span className="rounded-full bg-gold-50 px-3 py-1 text-xs font-black uppercase tracking-wide text-gold-700 ring-1 ring-gold-100 dark:bg-gold-900/30 dark:text-gold-200 dark:ring-gold-800">

@@ -45,9 +45,9 @@ export const CourseDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">Không tìm th?y khóa h?c</h2>
+          <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-4">Không tìm thấy khóa học</h2>
           <Link to="/courses">
-            <Button variant="gradientTeal">Quay l?i danh sách</Button>
+            <Button variant="gradientTeal">Quay lại danh sách</Button>
           </Link>
         </div>
       </div>
@@ -61,7 +61,7 @@ export const CourseDetail = () => {
         <div className="container mx-auto px-4 pb-4">
           <Link to="/courses" className="inline-flex items-center gap-2 text-gold-600 dark:text-gold-400 hover:text-gold-700 font-medium text-sm">
             <ArrowLeft className="w-4 h-4" />
-            Quay l?i danh sách khóa h?c
+            Quay lại danh sách khóa học
           </Link>
         </div>
       </div>
@@ -107,7 +107,7 @@ export const CourseDetail = () => {
                     whileTap={{ scale: 0.97 }}
                     className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-white font-semibold shadow-lg shadow-gold-500/20 hover:shadow-gold-500/30 transition-shadow"
                   >
-                    Đăng ký h?c th? mi?n phí
+                    Đăng ký học thử miễn phí
                   </motion.button>
                 </a>
                 <a href="tel:0866123170" className="px-6 py-3.5 rounded-xl border-2 border-white/20 text-white font-semibold hover:bg-white/10 transition-colors inline-flex items-center gap-2">
@@ -141,7 +141,7 @@ export const CourseDetail = () => {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-slate-800 dark:text-white">{course.level}</p>
-                    <p className="text-xs text-slate-500 dark:text-gray-400">C?p d?</p>
+                    <p className="text-xs text-slate-500 dark:text-gray-400">Cấp độ</p>
                   </div>
                 </div>
               </div>
@@ -160,7 +160,7 @@ export const CourseDetail = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-              Ði?m n?i b?t
+              Điểm nổi bật
             </h2>
             <p className="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
               Những ưu đãi và tính năng đặc biệt của khóa học
@@ -197,10 +197,10 @@ export const CourseDetail = () => {
                 viewport={{ once: true }}
               >
                 <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-                  L? trình h?c t?p
+                  Lộ trình học tập
                 </h2>
                 <p className="text-slate-600 dark:text-gray-400 mb-10">
-                  Chuong trình h?c du?c thi?t k? theo phuong pháp Scaffolded Learning, d?m b?o h?c sinh ti?n b? t?ng bu?c
+                  Chương trình học được thiết kế theo phương pháp Scaffolded Learning, đảm bảo học sinh tiến bộ từng bước
                 </p>
               </motion.div>
               <div className="space-y-4">
@@ -230,7 +230,7 @@ export const CourseDetail = () => {
                 viewport={{ once: true }}
                 className="sticky top-24 bg-gradient-to-br from-navy-800 to-navy-900 rounded-3xl p-8 text-white shadow-xl"
               >
-                <h3 className="text-xl font-bold mb-6">Thông tin khóa h?c</h3>
+                <h3 className="text-xl font-bold mb-6">Thông tin khóa học</h3>
                 <div className="space-y-5 mb-8">
                   <div className="flex items-center gap-3">
                     <BookOpen className="w-5 h-5 text-gold-400" />
@@ -242,14 +242,14 @@ export const CourseDetail = () => {
                   <div className="flex items-center gap-3">
                     <Target className="w-5 h-5 text-gold-400" />
                     <div>
-                      <p className="text-xs text-gray-400">C?p d?</p>
+                      <p className="text-xs text-gray-400">Cấp độ</p>
                       <p className="font-semibold">{course.level}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <Clock className="w-5 h-5 text-gold-400" />
                     <div>
-                      <p className="text-xs text-gray-400">Th?i lu?ng</p>
+                      <p className="text-xs text-gray-400">Thời lượng</p>
                       <p className="font-semibold">{course.duration}</p>
                     </div>
                   </div>
@@ -263,7 +263,7 @@ export const CourseDetail = () => {
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-gold-400" />
                     <div>
-                      <p className="text-xs text-gray-400">L?ch h?c</p>
+                      <p className="text-xs text-gray-400">Lịch học</p>
                       <p className="font-semibold text-sm">{course.schedule}</p>
                     </div>
                   </div>
@@ -274,11 +274,11 @@ export const CourseDetail = () => {
                     whileTap={{ scale: 0.98 }}
                     className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-white font-bold text-lg shadow-lg shadow-gold-500/20 hover:shadow-gold-500/30 transition-shadow"
                   >
-                    ?? Đăng ký h?c th? mi?n phí
+                    Đăng ký học thử miễn phí
                   </motion.button>
                 </a>
                 <p className="text-center text-xs text-gray-400 mt-4">
-                  ?? Hotline: 0866.123.170
+                  Hotline: 0866.123.170
                 </p>
               </motion.div>
             </div>
@@ -296,10 +296,10 @@ export const CourseDetail = () => {
             className="max-w-2xl mx-auto"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-800 dark:text-white mb-4">
-              B?t d?u h?c ngay hôm nay
+              Bắt đầu học ngay hôm nay
             </h2>
             <p className="text-slate-600 dark:text-gray-400 mb-8">
-              Đăng ký h?c th? mi?n phí d? tr?i nghi?m phuong pháp gi?ng d?y 1-1 ch?t lu?ng cao
+              Đăng ký học thử miễn phí để trải nghiệm phương pháp giảng dạy 1-1 chất lượng cao
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <motion.a
@@ -309,7 +309,7 @@ export const CourseDetail = () => {
                 className="px-8 py-4 rounded-xl bg-gradient-to-r from-gold-500 to-gold-600 text-white font-bold shadow-lg shadow-gold-500/20 inline-flex items-center gap-2"
               >
                 <Phone className="w-5 h-5" />
-                G?i ngay: 0866.123.170
+                Gọi ngay: 0866.123.170
               </motion.a>
               <a
                 href="https://zalo.me/0866123170"
@@ -317,7 +317,7 @@ export const CourseDetail = () => {
                 rel="noopener noreferrer"
                 className="px-8 py-4 rounded-xl border-2 border-gold-500 text-gold-600 dark:text-gold-400 font-bold hover:bg-gold-50 dark:hover:bg-gold-900/20 transition-colors inline-flex items-center gap-2"
               >
-                ?? Chat Zalo
+                Chat Zalo
               </a>
             </div>
           </motion.div>

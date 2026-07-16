@@ -201,6 +201,7 @@ export const Footer = () => {
           </button>
         )}
       </div>
+
     </footer>
   );
 };

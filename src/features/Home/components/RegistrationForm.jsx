@@ -80,12 +80,12 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
 
     } catch (err) {
       const nextError = err.message === 'Failed to fetch'
-        ? 'Backend chua du?c deploy. Vui lòng liên h?: leoeducation.vn@gmail.com ho?c 0866.123.170'
-        : (err.message || 'Có l?i x?y ra, vui lòng th? l?i sau');
+        ? 'Backend chưa được deploy. Vui lòng liên hệ: leoeducation.vn@gmail.com hoặc 0866.123.170'
+        : (err.message || 'Có lỗi xảy ra, vui lòng thử lại sau');
 
       setToast({
         type: 'error',
-        title: 'Đăng ký chua thành công',
+        title: 'Đăng ký chưa thành công',
         message: nextError,
       });
       trackEvent('course_registration_error', {
@@ -177,7 +177,7 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
 
       <Input
         label={t('registration.fullName')}
-        placeholder="Nguy?n Van A"
+        placeholder="Nguyễn Văn A"
         {...register('fullName')}
         error={errors.fullName?.message}
       />
@@ -185,7 +185,7 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
       <Input
         label={t('registration.email')}
         type="email"
-        placeholder="example@email.com (không b?t bu?c)"
+        placeholder="example@email.com (không bắt buộc)"
         {...register('email')}
         error={errors.email?.message}
       />

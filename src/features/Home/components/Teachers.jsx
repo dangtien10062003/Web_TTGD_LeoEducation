@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Star, BookOpen, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -34,37 +34,36 @@ export const Teachers = () => {
   if (!loading && teachers.length === 0) return null;
 
   return (
-    <section className="py-24 bg-white dark:bg-navy-950 relative overflow-hidden transition-colors duration-200">
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-200 dark:via-gold-800 to-transparent" />
-      <div className="absolute top-20 left-0 w-96 h-96 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-0 w-96 h-96 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
+    <section className="kid-section kid-section-soft kid-cloud-top kid-cloud-divider dark:bg-navy-950">
+      <div className="kid-dots absolute right-[8%] top-28 h-44 w-48 opacity-70" />
+      <div className="absolute -left-20 bottom-10 h-72 w-72 rounded-full border-[18px] border-gold-400/80" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mx-auto mb-14 max-w-3xl text-center"
         >
           <motion.span
             initial={{ scale: 0.8, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ type: 'spring', stiffness: 200 }}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gold-50 dark:bg-gold-900/30 border border-gold-200 dark:border-gold-700 text-gold-700 dark:text-gold-300 rounded-full text-sm font-semibold mb-6"
+            className="kid-pill mb-5"
           >
             <GraduationCap className="w-4 h-4" />
             {t('teachers.badge')}
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-            <span className="text-gradient">{t('teachers.title')}</span>
+          <h2 className="kid-title lux-underline text-4xl md:text-5xl">
+            {t('teachers.title')}
           </h2>
-          <p className="text-lg text-navy-600 dark:text-gold-100/70 max-w-2xl mx-auto">
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-navy-600 dark:text-gold-100/70">
             {t('teachers.subtitle')}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {teachers.map((teacher, index) => (
             <motion.div
               key={teacher.id || teacher.name || index}
@@ -75,20 +74,20 @@ export const Teachers = () => {
               whileHover={{ y: -8 }}
               className="group"
             >
-              <div className="bg-white dark:bg-navy-900 rounded-2xl p-6 border border-gold-100 dark:border-gold-800/60 hover:border-gold-200 dark:hover:border-gold-600 transition-all shadow-sm hover:shadow-xl hover:shadow-gold-900/10 text-center h-full flex flex-col">
+              <div className="lux-reveal-card kid-soft-card flex h-full flex-col bg-white p-6 text-center transition-all hover:border-gold-400/60 hover:shadow-xl dark:border-gold-800/60 dark:bg-navy-900">
                 <div className="relative inline-block mb-4">
                   {teacher.avatarUrl ? (
                     <img
                       src={teacher.avatarUrl}
                       alt={teacher.name}
-                      className="w-20 h-20 rounded-full object-cover shadow-lg group-hover:scale-110 transition-transform duration-300"
+                      className="mx-auto h-24 w-24 rounded-full border-4 border-[#eefaf6] object-cover shadow-lg transition-transform duration-300 group-hover:scale-110"
                     />
                   ) : (
-                    <div className={`w-20 h-20 rounded-full bg-gradient-to-br ${teacher.color} flex items-center justify-center text-4xl group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                    <div className={`mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br ${teacher.color} text-4xl shadow-lg transition-transform duration-300 group-hover:scale-110`}>
                       {teacher.emoji}
                     </div>
                   )}
-                  <div className="absolute -bottom-1 -right-1 bg-white dark:bg-navy-800 rounded-full p-1.5 shadow-lg border border-gold-100 dark:border-gold-800/60">
+                  <div className="absolute bottom-0 left-1/2 translate-x-6 rounded-full border border-gold-100 bg-white p-1.5 shadow-lg dark:border-gold-800/60 dark:bg-navy-800">
                     <Sparkles className="w-4 h-4 text-gold-500" />
                   </div>
                 </div>
@@ -97,7 +96,7 @@ export const Teachers = () => {
                   {teacher.name}
                 </h3>
 
-                <span className="inline-block px-3 py-1 bg-gold-50 dark:bg-gold-900/30 text-gold-700 dark:text-gold-300 rounded-full text-xs font-semibold mb-3 border border-gold-100 dark:border-gold-700">
+                <span className="mb-3 inline-block rounded-full border border-gold-100 bg-[#fff7d8] px-3 py-1 text-xs font-bold text-gold-700 dark:border-gold-700 dark:bg-gold-900/30 dark:text-gold-300">
                   {teacher.subject}
                 </span>
 
@@ -179,3 +178,4 @@ export const Teachers = () => {
     </section>
   );
 };
+

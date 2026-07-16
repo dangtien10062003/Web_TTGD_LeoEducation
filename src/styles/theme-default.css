@@ -1,16 +1,19 @@
-:root{--bg:#FFFCF1;--card:#FFFFFF;--border:#E8D9A8;--text:#2A2110;--muted:#6B5A32;--gold:#E4A912;--teal:#C4860E;--surface:#FFF4C7}
+:root{--bg:#FFF9E8;--card:#FFFDF6;--border:#EBD9A4;--text:#15364A;--muted:#4D6472;--gold:#BE8C28;--teal:#9B6C1B;--surface:#FFF1BE}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:var(--bg);color:var(--text);overflow-x:hidden}
-h1,h2,h3,.font-display{font-family:'Manrope','Inter',system-ui,sans-serif}
+body{font-family:'Inter','Be Vietnam Pro',system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:linear-gradient(180deg,#FFF9E8 0%,#FFF4D2 52%,#FFFDF6 100%);color:var(--text);overflow-x:hidden}
+h1,h2,h3,.font-display{font-family:'Inter','Be Vietnam Pro',system-ui,sans-serif}
 ::selection{background:rgba(234,192,125,0.35);color:var(--gold)}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:#94A3B8;border-radius:3px}
-.glassmorphism{background:rgba(255,255,255,0.76);backdrop-filter:blur(12px);border:1px solid rgba(194,199,207,0.7)}
-.glass-strong{background:rgba(255,255,255,0.9);backdrop-filter:blur(20px);border:1px solid rgba(194,199,207,0.9)}
+.glassmorphism{background:rgba(255,253,246,0.78);backdrop-filter:blur(12px);border:1px solid rgba(235,217,164,0.72)}
+.glass-strong{background:rgba(255,253,246,0.92);backdrop-filter:blur(20px);border:1px solid rgba(235,217,164,0.88)}
 
-html.dark{--bg:#1D1608;--card:#2A2110;--border:#5D3D0D;--text:#FFF6CC;--muted:#E9D79A;--gold:#FFD95F;--teal:#F8C22E;}
-html.dark .glassmorphism{background:rgba(17,24,39,0.7);border:1px solid rgba(255,255,255,0.05)}
-html.dark .glass-strong{background:rgba(17,24,39,0.85);border:1px solid rgba(255,255,255,0.08)}
-html.dark ::-webkit-scrollbar-thumb{background:#374151}
+html.dark{--bg:#0a0a0a;--card:#1a1a1a;--border:#2a2a2a;--text:#ffffff;--muted:#cccccc;--gold:#faff69;--teal:#faff69;color-scheme:dark}
+html.dark body{background:#0a0a0a;color:#ffffff}
+html.dark ::selection{background:rgba(250,255,105,0.35);color:#0a0a0a}
+html.dark .glassmorphism{background:rgba(26,26,26,0.82);border:1px solid rgba(42,42,42,0.92)}
+html.dark .glass-strong{background:rgba(26,26,26,0.94);border:1px solid rgba(58,58,58,0.95)}
+html.dark ::-webkit-scrollbar-track{background:#0a0a0a}
+html.dark ::-webkit-scrollbar-thumb{background:#3a3a3a}
