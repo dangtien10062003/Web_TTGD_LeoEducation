@@ -68,7 +68,7 @@ export const Hero = () => {
               transition={{ duration: 0.45 }}
             >
               <span className="kid-pill">Nấc thang tri thức - Vững bước tương lai</span>
-              <h1 className="kid-title mt-6 max-w-2xl text-5xl uppercase md:text-6xl lg:text-7xl">
+              <h1 className="kid-title hero-one-line-title mt-6 max-w-none uppercase">
                 {slide.title}
               </h1>
               <p className="mt-6 max-w-xl text-lg font-semibold leading-relaxed text-navy-800 md:text-xl">

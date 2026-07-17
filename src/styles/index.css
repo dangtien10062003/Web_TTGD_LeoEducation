@@ -45,6 +45,7 @@
   .kid-wave::after{display:none}
   .kid-card{border:1px solid #EBD9A4;background:#FFFDF6;box-shadow:0 18px 50px rgba(21,54,74,.08)}
   .kid-title{letter-spacing:0;color:#071522;font-weight:900;line-height:1.08}
+  .hero-one-line-title{width:max-content;max-width:100%;white-space:nowrap;font-size:clamp(2rem,4.6vw,4rem);letter-spacing:0!important;line-height:.96}
   .bottom-safe{padding-bottom:0}
   .lux-float-soft{animation:luxFloatSoft 7s ease-in-out infinite}
   .lux-float-soft-delay{animation:luxFloatSoft 8s ease-in-out 1.2s infinite}
