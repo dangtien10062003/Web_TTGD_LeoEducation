@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+﻿import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -26,10 +26,10 @@ const PageFallback = () => (
 );
 
 function App() {
-  // On GitHub Pages the path is /Web_TTGD_LeoEducation/
+  // On GitHub Pages the path is /Web_TTGD_LEO Education/
   // In dev (localhost) there is no basename
   const isGithubPages = window.location.hostname.includes('github.io');
-  const basename = isGithubPages ? '/Web_TTGD_LeoEducation' : undefined;
+  const basename = isGithubPages ? '/Web_TTGD_LEO Education' : undefined;
 
   return (
     <ThemeProvider>

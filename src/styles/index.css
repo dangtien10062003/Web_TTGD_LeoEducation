@@ -34,18 +34,15 @@
   .kid-section-soft{background:#fff8df}
   .kid-section-mint{background:#eefaf6}
   .kid-section-cream{background:#fffdf6}
-  .kid-cloud-top::before{content:"";position:absolute;left:-4%;right:-4%;top:-1px;height:46px;background:radial-gradient(circle at 24px 46px,#fffdf6 23px,transparent 24px) 0 0/96px 46px repeat-x;pointer-events:none;z-index:1}
-  .kid-cloud-divider::after{content:"";position:absolute;left:-4%;right:-4%;bottom:-1px;height:46px;background:radial-gradient(circle at 24px 0,#fffdf6 23px,transparent 24px) 0 0/96px 46px repeat-x;pointer-events:none;z-index:1}
-  .kid-section-mint.kid-cloud-divider::after{background:radial-gradient(circle at 24px 0,#fff8df 23px,transparent 24px) 0 0/96px 46px repeat-x}
-  .kid-section-soft.kid-cloud-divider::after{background:radial-gradient(circle at 24px 0,#fffdf6 23px,transparent 24px) 0 0/96px 46px repeat-x}
+  .kid-cloud-top::before,
+  .kid-cloud-divider::after{display:none}
   .kid-pill{display:inline-flex;align-items:center;gap:.5rem;border-radius:999px;background:#fff;border:1px solid #f1dfa8;padding:.65rem 1rem;font-size:.78rem;font-weight:900;text-transform:uppercase;color:#9b6c1b;box-shadow:0 12px 30px rgba(21,54,74,.06)}
   .kid-soft-card{border:1px solid #f1dfa8;background:#fff;border-radius:34px;box-shadow:0 22px 60px rgba(21,54,74,.08)}
   .kid-photo{border:14px solid #fff;border-radius:42px;box-shadow:0 28px 80px rgba(21,54,74,.16);overflow:hidden;background:#fff}
   .kid-blob-photo{border:14px solid #fff;border-radius:48% 52% 44% 56% / 58% 42% 58% 42%;box-shadow:0 28px 80px rgba(21,54,74,.16);overflow:hidden;background:#fff}
   .kid-activity-row{border-radius:26px;background:#fff;border:1px solid #f1dfa8;box-shadow:0 16px 46px rgba(21,54,74,.07)}
   .kid-wave{position:relative}
-  .kid-wave::after{content:"";position:absolute;left:-4%;right:-4%;bottom:-1px;height:54px;background:radial-gradient(circle at 26px 0,#fffdf6 25px,transparent 26px) 0 0/104px 54px repeat-x;pointer-events:none;z-index:2}
-  .kid-dots{background-image:radial-gradient(circle,#d9ad4a 2px,transparent 2.5px);background-size:28px 28px}
+  .kid-wave::after{display:none}
   .kid-card{border:1px solid #EBD9A4;background:#FFFDF6;box-shadow:0 18px 50px rgba(21,54,74,.08)}
   .kid-title{letter-spacing:0;color:#071522;font-weight:900;line-height:1.08}
   .bottom-safe{padding-bottom:0}
@@ -93,12 +90,10 @@
   html.dark .kid-section{background:#0a0a0a}
   html.dark .kid-section-soft,html.dark .kid-section-mint{background:#121212}
   html.dark .kid-section-cream{background:#0a0a0a}
-  html.dark .kid-cloud-top::before,html.dark .kid-cloud-divider::after,html.dark .kid-wave::after{display:none}
   html.dark .kid-pill{background:#1a1a1a;border:1px solid #2a2a2a;padding:.45rem .85rem;font-size:.75rem;font-weight:600;color:#faff69;box-shadow:none;letter-spacing:1.2px}
   html.dark .kid-soft-card,html.dark .kid-card{border:1px solid #2a2a2a;background:#1a1a1a;border-radius:12px;box-shadow:none}
   html.dark .kid-photo,html.dark .kid-blob-photo{border:1px solid #2a2a2a;border-radius:12px;box-shadow:none;background:#1a1a1a}
   html.dark .kid-activity-row{border-radius:12px;background:#1a1a1a;border:1px solid #2a2a2a;box-shadow:none}
-  html.dark .kid-dots{background-image:radial-gradient(circle,#faff69 1.5px,transparent 2px);opacity:.18!important}
   html.dark .kid-title{letter-spacing:-1.5px;color:#ffffff;font-weight:700}
   html.dark .lux-reveal-card::after{background:linear-gradient(110deg,transparent 0%,rgba(250,255,105,.08) 45%,transparent 70%)}
   html.dark .lux-reveal-card:hover{transform:translateY(-4px);box-shadow:none;border-color:#3a3a3a!important}

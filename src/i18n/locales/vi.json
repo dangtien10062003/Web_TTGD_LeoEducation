@@ -27,7 +27,7 @@
   },
   "categories": {
     "title": "Chương Trình Học",
-    "subtitle": "Với các phương thức và khóa học đa dạng, LeoEducation đáp ứng nhu cầu học tập của từng học sinh",
+    "subtitle": "Với các phương thức và khóa học đa dạng, LEO Education đáp ứng nhu cầu học tập của từng học sinh",
     "math": "Toán học",
     "physics": "Vật lý",
     "chemistry": "Hóa học",
@@ -41,8 +41,8 @@
   },
   "about": {
     "badge": "Về Chúng Tôi",
-    "title": "Về LeoEducation",
-    "subtitle": "Tại sao chọn LeoEducation?",
+    "title": "Về LEO Education",
+    "subtitle": "Tại sao chọn LEO Education?",
     "whyChoose": "Lý do bạn nên chọn chúng tôi",
     "feature1Title": "Lộ trình cá nhân hóa",
     "feature1Desc": "Mỗi học viên được đánh giá và xây dựng lộ trình học riêng theo phương pháp Scaffolded Learning.",
@@ -56,9 +56,9 @@
     "benefit2": "Giáo viên từ các trường top trên cả nước",
     "benefit3": "Học online trực tuyến, báo cáo định kỳ cho phụ huynh",
     "benefit4": "Cam kết kết quả với lộ trình rõ ràng",
-    "compareTitle": "So sánh LeoEducation với hình thức truyền thống",
+    "compareTitle": "So sánh LEO Education với hình thức truyền thống",
     "compareFeature": "Tính năng",
-    "compareLeo": "LeoEducation (Online)",
+    "compareLeo": "LEO Education (Online)",
     "compareTraditional": "Trung tâm truyền thống (Offline)",
     "compare1": "Chủ động thời gian học",
     "compare2": "Chọn giáo viên xuất sắc",
@@ -132,16 +132,16 @@
     "subtitle": "Những phản hồi chân thực từ phụ huynh và học sinh",
     "parentRole": "Phụ huynh học sinh",
     "studentRole": "Học sinh",
-    "testimonial1": "Con tôi học ở LeoEducation đã tiến bộ rõ rệt. Giáo viên nhiệt tình, phương pháp dạy dễ hiểu, con tôi đã tự tin hơn rất nhiều trong các kỳ thi.",
-    "testimonial2": "Sau khi học gia sư 1-1 tại LeoEducation, em đã đạt điểm 9+ trong kỳ thi học kỳ. Gia sư rất tận tình và luôn theo dõi tiến độ của em.",
-    "testimonial3": "Tôi rất hài lòng với cách LeoEducation tư vấn lộ trình học cho con. Báo cáo tiến độ sau mỗi buổi rất chi tiết, tôi luôn biết con đang ở đâu trong quá trình học."
+    "testimonial1": "Con tôi học ở LEO Education đã tiến bộ rõ rệt. Giáo viên nhiệt tình, phương pháp dạy dễ hiểu, con tôi đã tự tin hơn rất nhiều trong các kỳ thi.",
+    "testimonial2": "Sau khi học gia sư 1-1 tại LEO Education, em đã đạt điểm 9+ trong kỳ thi học kỳ. Gia sư rất tận tình và luôn theo dõi tiến độ của em.",
+    "testimonial3": "Tôi rất hài lòng với cách LEO Education tư vấn lộ trình học cho con. Báo cáo tiến độ sau mỗi buổi rất chi tiết, tôi luôn biết con đang ở đâu trong quá trình học."
   },
   "pricing": {
     "badge": "Chương Trình Học Thử",
     "title": "Đăng Ký Học Thử Miễn Phí",
-    "subtitle": "Học viên được tham gia buổi học thử của các khóa học tại LeoEducation được tổ chức hàng tuần",
+    "subtitle": "Học viên được tham gia buổi học thử của các khóa học tại LEO Education được tổ chức hàng tuần",
     "trialTitle": "Đăng ký học thử miễn phí",
-    "trialDesc": "LeoEducation tổ chức buổi học thử hàng tuần với các thầy cô trường chuyên.",
+    "trialDesc": "LEO Education tổ chức buổi học thử hàng tuần với các thầy cô trường chuyên.",
     "giftTitle": "Tặng 1 môn học bất kỳ",
     "giftDesc": "Đăng ký học 2 môn bất kỳ → được tặng 1 môn học trong tháng.",
     "discountTitle": "Ưu đãi học phí đến 50%",
@@ -190,7 +190,7 @@
     "question4": "Có được đổi giáo viên không?",
     "answer4": "Có. Nếu không phù hợp, bạn có thể yêu cầu đổi giáo viên miễn phí trong vòng 2 buổi học đầu tiên.",
     "question5": "Học có cam kết đầu ra không?",
-    "answer5": "Có. LeoEducation cam kết điểm đầu ra với các gói học dài hạn. Nếu không đạt mục tiêu, được học lại miễn phí.",
+    "answer5": "Có. LEO Education cam kết điểm đầu ra với các gói học dài hạn. Nếu không đạt mục tiêu, được học lại miễn phí.",
     "stillHaveQuestions": "Vẫn còn thắc mắc?",
     "contactUs": "Liên hệ với chúng tôi"
   },
@@ -270,7 +270,7 @@
     "newsletterDesc": "Nhận thông tin về khóa học và ưu đãi mới nhất",
     "emailPlaceholder": "Nhập email của bạn",
     "subscribe": "Đăng ký",
-    "copyright": "© 2026 LeoEducation. All rights reserved.",
+    "copyright": "© 2026 LEO Education. All rights reserved.",
     "privacy": "Chính sách bảo mật",
     "terms": "Điều khoản"
   }

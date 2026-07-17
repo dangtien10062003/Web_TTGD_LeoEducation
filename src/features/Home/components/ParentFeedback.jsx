@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { Quote, ShieldCheck, Sparkles, Star, TrendingUp } from 'lucide-react';
 
@@ -38,8 +38,6 @@ const feedbackTrack = [...feedbacks, ...feedbacks];
 export const ParentFeedback = () => {
   return (
     <section className="kid-section kid-section-cream kid-cloud-top kid-cloud-divider dark:bg-navy-950">
-      <div className="kid-dots absolute left-[6%] top-36 h-44 w-44 opacity-60" />
-      <div className="absolute right-[-90px] top-28 h-72 w-72 rounded-full border-[18px] border-gold-300/70" />
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="grid gap-10 lg:grid-cols-[0.95fr_1.25fr] lg:items-center">
@@ -57,7 +55,7 @@ export const ParentFeedback = () => {
               Phụ huynh nói gì về trung tâm?
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-navy-600 dark:text-gold-100/75">
-              LeoEducation ưu tiên kết quả rõ ràng: học sinh hiểu bài hơn, phụ huynh nắm tiến độ tốt hơn và lộ trình học được điều chỉnh theo từng mục tiêu.
+              LEO Education ưu tiên kết quả rõ ràng: học sinh hiểu bài hơn, phụ huynh nắm tiến độ tốt hơn và lộ trình học được điều chỉnh theo từng mục tiêu.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-3">

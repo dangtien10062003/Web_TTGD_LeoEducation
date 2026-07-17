@@ -17,7 +17,6 @@ export const FAQ = () => {
 
   return (
     <section className="kid-section kid-section-soft kid-cloud-top dark:bg-navy-950">
-      <div className="absolute right-[-90px] top-28 h-72 w-72 rounded-full border-[18px] border-gold-400/70" />
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">

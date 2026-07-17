@@ -36,8 +36,6 @@ export const Footer = () => {
 
   return (
     <footer className="bg-white dark:bg-navy-950 text-navy-900 dark:text-gold-50 relative overflow-hidden transition-colors duration-200">
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] dark:opacity-[0.02]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gold-500/5 dark:bg-gold-500/5 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Main footer */}
@@ -46,13 +44,15 @@ export const Footer = () => {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center overflow-hidden">
-                <img src={logoImage} alt="LeoEducation Logo" className="w-full h-full object-contain" />
+                <img src={logoImage} alt="LEO Education Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="text-xl font-bold text-navy-700 dark:text-gold-50">LeoEducation</span>
+              <div className="leading-tight">
+                <span className="block text-xl font-bold text-navy-700 dark:text-gold-50">LEO Education</span>
+                <span className="mt-1 block text-xs font-semibold text-gold-700 dark:text-gold-300">
+                  {t('footer.tagline') || 'Nấc thang tri thức - Vững bước tương lai!'}
+                </span>
+              </div>
             </div>
-            <p className="text-navy-600 dark:text-gold-100/75 mb-2 font-medium">
-              {t('footer.tagline') || 'Nấc thang tri thức - Vững bước tương lai!'}
-            </p>
             <p className="text-navy-500 dark:text-gold-100/60 mb-6 max-w-sm leading-relaxed">
               {t('footer.description') || 'Trung tâm gia sư online 1-1 hàng đầu Việt Nam. Phương pháp Scaffolded Learning với lộ trình học cá nhân hóa.'}
             </p>
@@ -154,7 +154,7 @@ export const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-gold-100 dark:border-gold-800/60 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-navy-500 dark:text-gold-100/50 text-sm">
-            {t('footer.copyright') || '© 2026 LeoEducation. All rights reserved.'}
+            {t('footer.copyright') || '© 2026 LEO Education. All rights reserved.'}
           </p>
           <div className="flex gap-6 text-sm text-navy-500 dark:text-gold-100/50">
             <Link to="/privacy" className="hover:text-gold-700 dark:hover:text-gold-300 transition-colors">{t('footer.privacy') || 'Chính sách bảo mật'}</Link>

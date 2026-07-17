@@ -102,7 +102,6 @@ export const CoursesList = ({ onRegisterClick }) => {
 
   return (
     <section id="courses" className="kid-section kid-section-cream kid-cloud-top kid-cloud-divider dark:bg-navy-950">
-      <div className="kid-dots absolute right-[6%] top-28 h-44 w-44 opacity-60" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-4 relative z-10">
         {/* Header */}
         <motion.div

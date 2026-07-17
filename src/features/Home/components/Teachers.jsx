@@ -35,8 +35,6 @@ export const Teachers = () => {
 
   return (
     <section className="kid-section kid-section-soft kid-cloud-top kid-cloud-divider dark:bg-navy-950">
-      <div className="kid-dots absolute right-[8%] top-28 h-44 w-48 opacity-70" />
-      <div className="absolute -left-20 bottom-10 h-72 w-72 rounded-full border-[18px] border-gold-400/80" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -170,7 +168,7 @@ export const Teachers = () => {
 
             <div>
               <p className="text-sm font-semibold text-navy-900 dark:text-gold-50 mb-2">Thông tin giảng dạy</p>
-              <p className="text-sm leading-relaxed text-navy-600 dark:text-gold-100/70">{selectedTeacher.school || selectedTeacher.bio || 'Giáo viên LeoEducation'}</p>
+              <p className="text-sm leading-relaxed text-navy-600 dark:text-gold-100/70">{selectedTeacher.school || selectedTeacher.bio || 'Giáo viên LEO Education'}</p>
             </div>
           </div>
         )}

@@ -49,7 +49,6 @@ export const Testimonials = () => {
 
   return (
     <section className="kid-section kid-section-soft kid-cloud-top kid-cloud-divider dark:bg-navy-950">
-      <div className="kid-dots absolute right-[7%] top-28 h-44 w-44 opacity-60" />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div

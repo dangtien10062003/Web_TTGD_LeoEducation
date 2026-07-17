@@ -65,7 +65,7 @@ export const RegistrationForm = ({ selectedCourse, onSuccess }) => {
       setToast({
         type: 'success',
         title: 'Đăng ký thành công',
-        message: 'LeoEducation đã nhận thông tin và sẽ liên hệ tư vấn.',
+        message: 'LEO Education đã nhận thông tin và sẽ liên hệ tư vấn.',
       });
       trackEvent('course_registration_success', {
         course_id: dataToSend.courseId,

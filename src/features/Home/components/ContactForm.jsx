@@ -56,7 +56,7 @@ export const ContactForm = () => {
       setToast({
         type: 'success',
         title: 'Đã gửi thông tin tư vấn',
-        message: 'LeoEducation sẽ liên hệ lại trong thời gian sớm nhất.',
+        message: 'LEO Education sẽ liên hệ lại trong thời gian sớm nhất.',
       });
       trackEvent('lead_submit_success', {
         form_name: 'contact_consultation',
@@ -105,8 +105,6 @@ export const ContactForm = () => {
         message={toast?.message}
         onClose={() => setToast(null)}
       />
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gold-200/20 dark:bg-gold-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gold-200/20 dark:bg-gold-500/10 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -142,7 +140,7 @@ export const ContactForm = () => {
             >
               <div className="bg-slate-50 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-100 dark:border-gray-800">
                 <h3 className="text-2xl font-bold text-navy-700 dark:text-white mb-6">
-                  {t('contact.whyChoose') || 'Tại sao chọn LeoEducation?'}
+                  {t('contact.whyChoose') || 'Tại sao chọn LEO Education?'}
                 </h3>
                 <div className="space-y-4">
                   {benefits.map((item, index) => (

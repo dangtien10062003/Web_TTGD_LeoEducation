@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -6,8 +6,6 @@ import {
   ChevronLeft,
   ChevronRight,
   NotebookPen,
-  Paperclip,
-  PenTool,
   Play,
   Star,
 } from 'lucide-react';
@@ -17,7 +15,7 @@ const slides = [
   {
     image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=900&auto=format&fit=crop&q=88',
     title: 'Gia sư online 1-1',
-    desc: 'LeoEducation đồng hành cùng học sinh qua lộ trình cá nhân hóa, giáo trình bám chuẩn Bộ Giáo dục Việt Nam.',
+    desc: 'LEO Education đồng hành cùng học sinh qua lộ trình cá nhân hóa, giáo trình bám chuẩn Bộ Giáo dục Việt Nam.',
   },
   {
     image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=900&auto=format&fit=crop&q=88',
@@ -45,18 +43,14 @@ export const Hero = () => {
   const slide = slides[active];
 
   return (
-    <section id="home" className="relative overflow-hidden bg-[#fffdf6] pt-[118px] dark:bg-navy-950">
+    <section id="home" className="relative overflow-hidden bg-[#fffdf6] pt-[74px] dark:bg-navy-950">
       <div className="kid-wave relative bg-[#fff0b8]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_25%,rgba(190,140,40,.18)_0_2px,transparent_3px)] bg-[length:22px_22px]" />
-        <div className="absolute -left-10 top-28 hidden h-28 w-28 rotate-[-16deg] rounded-[30px] bg-white/70 shadow-xl md:block" />
-        <div className="absolute right-8 top-20 hidden h-20 w-20 rotate-12 rounded-3xl bg-white/75 shadow-xl md:block" />
-        <div className="absolute bottom-32 left-14 hidden h-20 w-20 rotate-[-18deg] items-center justify-center rounded-[22px] bg-[#d9ad4a] text-white shadow-xl md:flex">
+        <div className="absolute -left-10 top-28 z-[2] hidden h-28 w-28 rotate-[-16deg] rounded-[30px] bg-white/70 shadow-xl md:block" />
+        <div className="absolute right-8 top-20 z-[2] hidden h-20 w-20 rotate-12 rounded-3xl bg-white/75 shadow-xl md:block" />
+        <div className="absolute bottom-32 left-14 z-[2] hidden h-20 w-20 rotate-[-18deg] items-center justify-center rounded-[22px] bg-[#d9ad4a] text-white shadow-xl md:flex">
           <NotebookPen className="h-10 w-10" />
         </div>
-        <div className="absolute right-[8%] top-24 hidden h-16 w-16 rotate-12 items-center justify-center rounded-full bg-white text-gold-600 shadow-xl lg:flex">
-          <Paperclip className="h-8 w-8" />
-        </div>
-        <div className="leo-staircase hidden lg:block" aria-hidden="true">
+        <div className="leo-staircase z-[2] hidden lg:block" aria-hidden="true">
           <span />
           <span />
           <span />
@@ -137,9 +131,6 @@ export const Hero = () => {
                   <p className="text-sm font-black text-navy-950">Linh hoạt</p>
                 </div>
               </div>
-            </div>
-            <div className="absolute -bottom-6 left-16 flex h-16 w-16 items-center justify-center rounded-full bg-gold-300 text-navy-950 shadow-xl">
-              <PenTool className="h-7 w-7" />
             </div>
           </motion.div>
         </div>

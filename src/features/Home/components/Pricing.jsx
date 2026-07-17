@@ -33,7 +33,6 @@ export const Pricing = () => {
 
   return (
     <section className="kid-section kid-section-cream kid-cloud-top kid-cloud-divider dark:bg-navy-950">
-      <div className="kid-dots absolute left-[8%] top-28 h-44 w-44 opacity-60" />
 
       <div className="container relative z-10 mx-auto px-4">
         <motion.div
@@ -89,7 +88,7 @@ export const Pricing = () => {
               <p className="text-sm leading-relaxed text-navy-600 dark:text-gold-100/70">{selectedPromo.desc}</p>
               <div className="rounded-2xl border border-gold-100 bg-gold-50 p-4 dark:border-gold-800/60 dark:bg-gold-900/25">
                 <p className="mb-1 text-sm font-semibold text-gold-800 dark:text-gold-200">Gợi ý tiếp theo</p>
-                <p className="text-sm text-gold-700 dark:text-gold-100/75">Đăng ký tư vấn để LeoEducation kiểm tra trình độ và đề xuất lộ trình phù hợp.</p>
+                <p className="text-sm text-gold-700 dark:text-gold-100/75">Đăng ký tư vấn để LEO Education kiểm tra trình độ và đề xuất lộ trình phù hợp.</p>
               </div>
             </div>
           )}

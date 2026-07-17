@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+﻿import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const SITE_URL = import.meta.env.VITE_SITE_URL || window.location.origin;
@@ -6,36 +6,36 @@ const DEFAULT_IMAGE = `${SITE_URL}/assets/Gemini_Generated_Image_yykl3wyykl3wyyk
 
 const routeMeta = {
   '/': {
-    title: 'LeoEducation - Gia sư online 1-1 cho học sinh Việt Nam',
-    description: 'LeoEducation cung cấp chương trình gia sư online 1-1 với lộ trình cá nhân hóa cho Toán, Tiếng Anh, Vật lý, Hóa học, Ngữ văn và luyện thi.',
+    title: 'LEO Education - Gia sư online 1-1 cho học sinh Việt Nam',
+    description: 'LEO Education cung cấp chương trình gia sư online 1-1 với lộ trình cá nhân hóa cho Toán, Tiếng Anh, Vật lý, Hóa học, Ngữ văn và luyện thi.',
   },
   '/courses': {
-    title: 'Khóa học online - LeoEducation',
-    description: 'Khám phá các khóa gia sư online theo môn học, cấp lớp và mục tiêu học tập tại LeoEducation.',
+    title: 'Khóa học online - LEO Education',
+    description: 'Khám phá các khóa gia sư online theo môn học, cấp lớp và mục tiêu học tập tại LEO Education.',
   },
   '/teachers': {
-    title: 'Đội ngũ giáo viên - LeoEducation',
-    description: 'Đội ngũ giáo viên LeoEducation đồng hành cùng học sinh bằng phương pháp học cá nhân hóa, rõ lộ trình và sát năng lực.',
+    title: 'Đội ngũ giáo viên - LEO Education',
+    description: 'Đội ngũ giáo viên LEO Education đồng hành cùng học sinh bằng phương pháp học cá nhân hóa, rõ lộ trình và sát năng lực.',
   },
   '/pricing': {
-    title: 'Học phí và gói học - LeoEducation',
+    title: 'Học phí và gói học - LEO Education',
     description: 'Tham khảo các gói học online linh hoạt, phù hợp theo nhu cầu học thử, học dài hạn và luyện thi.',
   },
   '/about': {
-    title: 'Về LeoEducation',
-    description: 'LeoEducation là nền tảng gia sư online giúp học sinh học đúng năng lực, tiến bộ theo lộ trình rõ ràng.',
+    title: 'Về LEO Education',
+    description: 'LEO Education là nền tảng gia sư online giúp học sinh học đúng năng lực, tiến bộ theo lộ trình rõ ràng.',
   },
   '/contact': {
-    title: 'Liên hệ tư vấn online - LeoEducation',
-    description: 'Để lại thông tin để LeoEducation tư vấn lộ trình học online phù hợp cho học sinh.',
+    title: 'Liên hệ tư vấn online - LEO Education',
+    description: 'Để lại thông tin để LEO Education tư vấn lộ trình học online phù hợp cho học sinh.',
   },
   '/privacy': {
-    title: 'Chính sách bảo mật - LeoEducation',
-    description: 'Chính sách bảo mật thông tin đăng ký tư vấn và dữ liệu liên hệ của LeoEducation.',
+    title: 'Chính sách bảo mật - LEO Education',
+    description: 'Chính sách bảo mật thông tin đăng ký tư vấn và dữ liệu liên hệ của LEO Education.',
   },
   '/terms': {
-    title: 'Điều khoản sử dụng - LeoEducation',
-    description: 'Điều khoản sử dụng website và dịch vụ tư vấn học online của LeoEducation.',
+    title: 'Điều khoản sử dụng - LEO Education',
+    description: 'Điều khoản sử dụng website và dịch vụ tư vấn học online của LEO Education.',
   },
 };
 
@@ -61,7 +61,7 @@ const setLink = (rel, href) => {
 };
 
 const setJsonLd = (data) => {
-  const id = 'leoeducation-jsonld';
+  const id = 'LEO Education-jsonld';
   let element = document.getElementById(id);
   if (!element) {
     element = document.createElement('script');
@@ -75,8 +75,8 @@ const setJsonLd = (data) => {
 export const getRouteMeta = (pathname) => {
   if (pathname.startsWith('/courses/')) {
     return {
-      title: 'Chi tiết khóa học online - LeoEducation',
-      description: 'Thông tin chi tiết khóa học online, lộ trình học và đăng ký tư vấn tại LeoEducation.',
+      title: 'Chi tiết khóa học online - LEO Education',
+      description: 'Thông tin chi tiết khóa học online, lộ trình học và đăng ký tư vấn tại LEO Education.',
     };
   }
 
@@ -107,7 +107,7 @@ export const RouteSEO = () => {
     setJsonLd({
       '@context': 'https://schema.org',
       '@type': 'EducationalOrganization',
-      name: 'LeoEducation',
+      name: 'LEO Education',
       url: SITE_URL,
       logo: DEFAULT_IMAGE,
       email: 'leoeducation.vn@gmail.com',

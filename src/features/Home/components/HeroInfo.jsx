@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, BookOpen, CheckCircle2, Headphones, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -10,14 +10,12 @@ export const HeroInfo = () => {
 
   return (
     <section className="kid-section kid-section-cream kid-cloud-divider dark:bg-navy-950">
-      <div className="kid-dots absolute left-[10%] top-24 h-40 w-44 opacity-70" />
-      <div className="absolute right-[8%] top-12 h-[360px] w-[360px] rounded-full border-[20px] border-gold-300/60" />
 
       <div className="container relative z-10 mx-auto px-4">
         <div className="mx-auto mb-14 max-w-3xl text-center">
           <span className="kid-pill">
             <BookOpen className="h-5 w-5" />
-            Về LeoEducation
+            Về LEO Education
           </span>
           <h2 className="kid-title lux-underline mt-5 text-4xl md:text-5xl">
             Nền tảng gia sư tương tác trực tuyến cho từng học sinh
@@ -31,9 +29,8 @@ export const HeroInfo = () => {
             viewport={{ once: true }}
             className="relative mx-auto w-full max-w-[560px]"
           >
-            <div className="absolute -right-8 top-8 h-52 w-52 rounded-full border-[18px] border-gold-300/70" />
             <div className="kid-blob-photo relative">
-              <img src={introImage} alt="Lớp học LeoEducation" className="h-[520px] w-full object-cover" />
+              <img src={introImage} alt="Lớp học LEO Education" className="h-[520px] w-full object-cover" />
             </div>
           </motion.div>
 
@@ -46,7 +43,7 @@ export const HeroInfo = () => {
             >
               <h3 className="text-2xl font-black text-navy-950">Phương pháp học</h3>
               <p className="mt-4 leading-relaxed text-navy-700">
-                LeoEducation xây dựng lớp học online 1-1 và nhóm nhỏ theo phương pháp Scaffolded Learning, tập trung vào phần kiến thức học sinh còn yếu trước khi tiến tới nội dung mới.
+                LEO Education xây dựng lớp học online 1-1 và nhóm nhỏ theo phương pháp Scaffolded Learning, tập trung vào phần kiến thức học sinh còn yếu trước khi tiến tới nội dung mới.
               </p>
               <div className="mt-7 space-y-3">
                 {benefits.map((item) => (
@@ -74,7 +71,7 @@ export const HeroInfo = () => {
                   <Headphones className="h-7 w-7" />
                 </span>
                 <div>
-                  <p className="font-semibold text-navy-700">Liên hệ LeoEducation ngay</p>
+                  <p className="font-semibold text-navy-700">Liên hệ LEO Education ngay</p>
                   <a href="tel:0866123170" className="text-2xl font-black text-navy-950">0866 123 170</a>
                 </div>
               </div>

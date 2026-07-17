@@ -32,8 +32,6 @@ export const About = () => {
   return (
     <section id="about" className="py-24 bg-slate-50 dark:bg-gray-900 relative overflow-hidden transition-colors duration-200">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-gray-700 to-transparent" />
-      <div className="absolute top-20 right-0 w-96 h-96 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-0 w-96 h-96 bg-gold-100/40 dark:bg-gold-900/10 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
@@ -106,7 +104,7 @@ export const About = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-gold-400 to-gold-400 dark:from-gold-600 dark:to-gold-600 rounded-3xl blur-2xl opacity-20 dark:opacity-30" />
               <img
                 src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600"
-                alt="H?c t?p cùng LeoEducation"
+                alt="H?c t?p cùng LEO Education"
                 className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-white dark:border-gray-700"
               />
             </motion.div>
@@ -134,7 +132,7 @@ export const About = () => {
           </div>
         </motion.div>
 
-        {/* Comparison table: LeoEducation vs Traditional */}
+        {/* Comparison table: LEO Education vs Traditional */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
